@@ -8,11 +8,8 @@
 //clientWidth:对象内容的可视区的宽度,不包滚动条等边线
       if (!clientWidth) return;
 //把document的fontSize大小设置成跟窗口成一定比例的大小
-
       docEl.style.fontSize = clientWidth * 0.0625 + 'px';
-
     };
-
   if (!doc.addEventListener) return; //DOMContentLoaded是firefox下特有的Event, 当所有DOM解析完以后会触发这个事件。
   win.addEventListener(resizeEvt, recalc, false);
   doc.addEventListener('DOMContentLoaded', recalc, false);
