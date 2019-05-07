@@ -18,11 +18,11 @@ export default new Router({
     //     { path:'Load',component:Load},
     //     { path:'Registe ',component:Registe},
     //   ]},
-    {path:'/Footer', component:Footer,children:[
-        { path:'Mai',component:Mai},
-        { path:'Sou ',component:Sou},
-        { path:'Ding',component:Ding},
-        { path:'My ',component:My},
-      ]},
+
+        { path:'/Mai',component:Mai},
+        { path:'/Sou ',component:Sou},
+        { path:'/Ding',component:Ding},
+        { path:'/My ',component:My},
+
   ]
 })

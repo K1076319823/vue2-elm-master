@@ -1,10 +1,10 @@
 <template>
-  <div class="footer text-center">
-    <router-link :to="{path:'/Footer/Mai'}">外卖</router-link>
-    <router-link :to="{path:'/Footer/Sou'}">搜索</router-link>
-    <router-link :to="{path:'/Footer/Ding'}">订单</router-link>
-    <router-link :to="{path:'/Footer/My'}">我的</router-link>
-  </div>
+    <div class="footer text-center">
+      <router-link :to="{path:'/Mai'}">外卖</router-link>
+      <router-link :to="{path:'/Sou'}">搜索</router-link>
+      <router-link :to="{path:'/Ding'}">订单</router-link>
+      <router-link :to="{path:'/My'}">我的</router-link>
+    </div>
 </template>
 
 <script>
@@ -24,6 +24,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+    box-shadow: 0 0 1px rgba(0,0,0,0.3);
   }
 
   hr {
@@ -31,9 +32,11 @@
   }
 
   a {
-    margin: 1.1rem;
+    margin: 0 1rem;
     font-size: 0.5rem;
     color: gray;
     text-decoration: none;
+    padding: 0.4rem;
+    display: inline-block;
   }
 </style>
