@@ -10,13 +10,14 @@
 import '../build/resize.js' // 引入 resize.js 文件
 
 import 'jquery/dist/jquery.min'
+import Header from "./components/Header";
 import Footer from "./components/Footer";
  // 引入 bootstrap.min css/js 文件
 // import 'node_modules/bootstrap/dist/js/bootstrap.min.js'
 
 export default {
   name: 'App',
-  components: {Footer}
+  components: {Header,Footer}
 }
 </script>
 
@@ -28,6 +29,7 @@ export default {
   html,body{
     width: 100%;
     height: 100%;
+    font-size: 14px;
   }
 
   #app{
