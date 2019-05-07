@@ -9,11 +9,15 @@ import Mai from '../components/Mai.vue';
 import My from '../components/My.vue';
 import Sou from '../components/Sou.vue';
 import Ding from '../components/Ding.vue';
-
+import Footer from '../components/Footer';
 export default new Router({
   routes: [
         { path: '/', redirect: '/index'},
-        {path :'/index', component:Index}   // {path: '/',}
+        {path :'/index', component:Index},
+            {path:'/Mai',component:Mai},
+            {path:'/Sou',component:Sou},
+            {path:'/Ding',component:Ding},
+            {path:'/My',component:My}
   ]
 })
 
