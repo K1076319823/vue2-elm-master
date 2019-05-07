@@ -19,5 +19,14 @@ export default {
 </script>
 
 <style>
-
+  *{
+    padding:0;
+    margin:0;
+    text-decoration: none;
+  }
+  .clearfix:after{
+    content:'';
+    display:table;
+    clear: both;
+  }
 </style>
