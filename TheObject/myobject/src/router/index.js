@@ -20,9 +20,9 @@ export default new Router({
     //   ]},
 
         { path:'/Mai',component:Mai},
-        { path:'/Sou ',component:Sou},
+        { path:'/Sou',component:Sou},
         { path:'/Ding',component:Ding},
-        { path:'/My ',component:My},
+        { path:'/My',component:My},
 
   ]
 })

@@ -1,5 +1,5 @@
 <template>
-    <div class="Sou">1231231321111111111111111111111ghf bycgjndgfderhgrte.kjhrkuubdyfhaqiy7fbovq7wyb8qY7BI8WA7WTBOFVAW8Y BFOV</div>
+    <div class="Sou">Sou</div>
 </template>
 
 <script>
@@ -9,5 +9,10 @@
 </script>
 
 <style scoped>
-
+.Sou{
+  width: 100%;
+  height:100%;
+  background: rgb(245,245,245);
+  margin-top: 1.9rem;
+}
 </style>
