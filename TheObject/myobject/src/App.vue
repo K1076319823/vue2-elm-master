@@ -6,8 +6,8 @@
 <script>
 
 import '../build/resize.js' // 引入 resize.js 文件
-import '../node_modules/swiper/dist/css/swiper.min.css'
-import '../node_modules/swiper/dist/js/swiper.min.js'
+// import '../node_modules/swiper/dist/css/swiper.min.css'
+// import '../node_modules/swiper/dist/js/swiper.min.js'
 
 
 
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style>
-  
+  @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
   /*
   百分比更换rem
   */
