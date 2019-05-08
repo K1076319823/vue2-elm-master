@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="container-fluid">
-      <div class="row">
+
         <div class="col-xs-4">
           <div class="one">
          <p><b>0.00</b>元</p>
@@ -34,7 +34,7 @@
             我的积分
           </div>
         </div>
-      </div>
+
     </div>
     <div class="biao">
       <div ><img src="../../images/ding.gif" />我的订单</div>
@@ -68,7 +68,7 @@
 <style scoped>
   .my{
 
-    margin-top:10%;
+    margin-top:2rem;
 
   }
   .myone{
@@ -121,7 +121,7 @@
   }
   .right span{
     display:block;
-    
+
 
   }
   .container-fluid{
