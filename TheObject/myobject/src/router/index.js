@@ -9,6 +9,7 @@ import Mai from '../components/Mai.vue';
 import My from '../components/My.vue';
 import Sou from '../components/Sou.vue';
 import Ding from '../components/Ding.vue';
+import Citydingwei from '../components/Citydingwei';
 import Footer from '../components/Footer';
 export default new Router({
   routes: [
@@ -17,8 +18,9 @@ export default new Router({
             {path:'/Mai',component:Mai},
             {path:'/Sou',component:Sou},
             {path:'/Ding',component:Ding},
-            {path:'/My',component:My}
-            
+            {path:'/My',component:My},
+    {path:'/Citydingwei',component:Citydingwei}
+
   ]
 })
 
