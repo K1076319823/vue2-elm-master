@@ -1,10 +1,16 @@
 <template>
-    <div class="Ding">这个里面就是空的</div>
+  <div class="Ding">
+    <Header></Header>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>
+    import Header from "./Header";
+    import Footer from "./Footer";
     export default {
-        name: "Ding"
+        name: "Ding",
+      components: {Footer, Header}
     }
 </script>
 

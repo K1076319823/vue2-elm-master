@@ -18,7 +18,9 @@
   export default {
     name: "Sou",
     components: {Header, Footer},
-    methods: {}
+    mounted(){
+
+    }
   }
 </script>
 
