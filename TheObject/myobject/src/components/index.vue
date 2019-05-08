@@ -2,20 +2,21 @@
     <div class="index">
         <!-- 这是第一天的 郑州站, swiper, 以及 页脚组件配置 -->
         <Header></Header>
-        <router-view></router-view>
+        <Slider></Slider>
         <Footer></Footer>
     </div>
 </template>
 
 <script>
 import Header from './Header.vue';
+import Slider from './Index_lunbo';
 import Footer from './Footer.vue';
-import I_lunbo from './Index_lunbo';
+
 
 export default {
     name: 'Index',
     components: {
-        Header, Footer,I_lunbo
+        Header, Footer,Slider
     }
 }
 </script>

@@ -18,6 +18,7 @@ export default new Router({
             {path:'/Sou',component:Sou},
             {path:'/Ding',component:Ding},
             {path:'/My',component:My}
+            
   ]
 })
 

@@ -1,79 +1,69 @@
 <template>
-    <div class="i_lunbo">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-
-                </div>
-
-                <div class="swiper-slide swiper-slider">
-
-                </div>
-            </div>
-        </div>
+  <div>
+  <div class="swiper-container" ref="slider">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" > 
+          <!-- v-for="(slide,index) in slides" :key="index" -->
+        <!-- <router-link :to="{name:'BookDetail',params:{id:slide.id}}"> -->
+        <!-- <img :src="slide.img_url"/> -->
+        <!-- </router-link> -->
+        <h1>你好</h1>
+      </div>
+      <div class="swiper-slide">
+          <h1>世界</h1>
+      </div>
     </div>
-</template>
-
-<script>
-export default {
-    name: 'I_lunbo'
-}
-
-// import Swiper from '../node_modules/swiper/swiper.min.js'
-
-// swiper JS 分配
-// var mySwiper = new Swiper ('.swiper-container', {
-
-//         // 轮播图的方向，也可以是vertical方向
-
-//         direction:'horizontal',
-
-//         //播放速度
-
-//         loop: true,
-
-//         // 自动播放时间
-
-//         autoplay:true,
-
-//         // 播放的速度
-
-//         speed:2000,
-
-//     　　// 这样，即使我们滑动之后， 定时器也不会被清除
-
-//     　　autoplayDisableOnInteraction : false
-
-//       });
-</script>
-
-<style scoped>
-    /* @import '../node_modules/swiper/swiper.min.css'; */
-    .i_lunbo{
-        width: 100%;
-        height: 40%;
+  </div>
+  </div>
+  </template>
+  <script>
+  import 'swiper/dist/css/swiper.css'
+  import Swiper from 'swiper'
+  export default {
+    name: "Slider",
+    data(){      return{
+        // slides:[{id:1,img_url:'./images/weixin.png'},{id:2,img_url:'./images/weixin.png'}]
+      }
+    },
+    mounted(){      new Swiper (this.$refs.slider, {
+        loop: true,        // 如果需要分页器        pagination: '.swiper-pagination',        // 如果需要前进后退按钮        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',        // 如果需要滚动条        scrollbar: '.swiper-scrollbar',
+      })
     }
-    .swiper-container{
-
-        width: 100%;
-
-        height: 100%;
-
     }
+    </script>
+    <style scoped>
+  .swiper-container {
+    width: 100%;
+    margin-top: 12.5%;
+    padding: 0;
+  }
 
-    .swiper-slide{
+  .swiper-wrapper {
+    height: 200px;
+  }
 
-        width: 100%;
+  .swiper-slide img {
+    max-width: 100%;
+  }
 
-        height: 100%;
-        background-color: lightblue;
+  .swiper-slide {
+    text-align: center;
+    background: lightskyblue;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
 
-    }
+  </style>
 
-    .swiper-slider{
-        width: 100%;
-
-        height: 100%;
-        background-color: lightcoral;
-    }
-</style>
