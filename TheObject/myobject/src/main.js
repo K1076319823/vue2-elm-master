@@ -6,12 +6,6 @@ import App from './App'
 import router from './router'
 
 
-
-// import Vue from 'vue'
-
-// import Swiper from "swiper";
-// import "swiper/dist/css/swiper.min.css";
-
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 import axios from 'axios'
@@ -22,6 +16,7 @@ Vue.use(VueAxios, axios);
 new Vue({
   el: '#app',
   router,
+  // render: h => h(Login),
   components: { App },
   template: '<App/>'
 })
