@@ -1,28 +1,28 @@
 <template>
-  <div>
-  <div class="swiper-container" ref="slider">
-    <div class="swiper-wrapper">
-      
-        <div class="swiper-slide" > 
-          <router-link v-for="(slide,index) in comshopArrLeft" :key="index" to="" @click.prevent>
+  <div class="index_lunbo">
+    <div class="swiper-container" ref="slider">
+      <div class="swiper-wrapper">
+        
+          <div class="swiper-slide" > 
+            <router-link v-for="(slide,index) in comshopArrLeft" :key="index" to="" @click.prevent>
+                <div class="vessel">
+                  <img :src="'//fuss10.elemecdn.com/' + slide.image_url" title="slide.title"/>
+                  <p class="pSize">{{ slide.title }}</p>
+                </div>
+            </router-link>
+          </div>
+
+          <div class="swiper-slide" > 
+            <router-link  v-for="(slide,index) in comshopArrRight" :key="index" to="" @click.prevent>
               <div class="vessel">
                 <img :src="'//fuss10.elemecdn.com/' + slide.image_url" title="slide.title"/>
                 <p class="pSize">{{ slide.title }}</p>
               </div>
-          </router-link>
-        </div>
+            </router-link>
+          </div>
 
-        <div class="swiper-slide" > 
-          <router-link  v-for="(slide,index) in comshopArrRight" :key="index" to="" @click.prevent>
-            <div class="vessel">
-              <img :src="'//fuss10.elemecdn.com/' + slide.image_url" title="slide.title"/>
-              <p class="pSize">{{ slide.title }}</p>
-            </div>
-          </router-link>
-        </div>
-
+      </div>
     </div>
-  </div>
   </div>
   </template>
   <script>
@@ -46,21 +46,26 @@
             Vue.axios.get('https://elm.cangdu.org/v2/index_entry').then((res)=>{
                   console.log(res.data)
                   this.shopArr = res.data;
-                  this.comshopArrLeft = this.shopArr.slice(0,8)
+                  this.comshopArrLeft = this.shopArr.slice(0,res.data.length/2)
                   console.log(this.comshopArrLeft)
-                  this.comshopArrRight = this.shopArr.slice(8,17)
+                  this.comshopArrRight = this.shopArr.slice(res.data.length/2)
                   console.log(this.comshopArrRight)
             }).catch(function(error){
                   console.log(error)
             }),
             new Swiper (this.$refs.slider, {    
-                pagination: '.swiper-pagination',            
+                // pagination: '.swiper-pagination',            
             })
         }
     }
     </script>
 
     <style scoped>
+      .index_lunbo{
+        overflow:scroll;
+        overflow-x:hidden;
+      }
+      
       .swiper-container {
         width: 100%;
         margin-top: 12.5%;
@@ -84,8 +89,6 @@
       .vessel{
         width: 60%;
         height: 50%;
-        /* float: left; */
-        /* text-align: center; */
         margin: 8% auto 0;
       }
       .swiper-slide a{
