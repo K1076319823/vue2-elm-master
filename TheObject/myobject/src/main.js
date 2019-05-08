@@ -4,7 +4,9 @@ import 'es6-promise/auto'
 import Vuex from 'vuex' // 引入 vuex 以及其依赖 的 promise模块
 import App from './App'
 import router from './router'
-import $ from 'jquery'
+
+
+
 // import Vue from 'vue'
 
 // import Swiper from "swiper";
