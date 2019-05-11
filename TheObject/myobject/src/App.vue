@@ -6,10 +6,6 @@
 <script>
 
 import '../build/resize.js' // 引入 resize.js 文件
-// import '../node_modules/swiper/dist/css/swiper.min.css'
-// import '../node_modules/swiper/dist/js/swiper.min.js'
-
-
 
 export default {
   name: 'App',
@@ -41,6 +37,7 @@ export default {
     margin:0;
     text-decoration: none;
   }
+  /* Vue清除浮动 */
   .clearfix:after{
     content:'';
     display:table;

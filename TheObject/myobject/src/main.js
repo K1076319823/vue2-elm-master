@@ -4,6 +4,10 @@ import 'es6-promise/auto'
 import Vuex from 'vuex' // 引入 vuex 以及其依赖 的 promise模块
 import App from './App'
 import router from './router'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import Classify from './components/Classify.vue';
+Vue.use(ElementUI);
 
 
 Vue.use(Vuex);
@@ -16,7 +20,7 @@ Vue.use(VueAxios, axios);
 new Vue({
   el: '#app',
   router,
-  // render: h => h(Login),
+  render: h => h(Classify),
   components: { App },
   template: '<App/>'
 })

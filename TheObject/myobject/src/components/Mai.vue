@@ -3,7 +3,7 @@
     <Header></Header>
     <div class="Mai">
       <div class="merchant">
-        <span class="pull-left clearfix"><img src="../../images/商家.png" class="merimg"/></span>
+        <!-- <span class="pull-left clearfix"><img src="../../images/商家.png" class="merimg"/></span> -->
         <span class="pull-right clearfix merfont">附近商家</span>
       </div>
       <ul class="ulinfor" v-for="(pro , index) in proArr" :key="index">

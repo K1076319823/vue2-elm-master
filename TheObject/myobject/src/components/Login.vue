@@ -24,6 +24,7 @@
                 <input type="text" placeholder="验证码" class="coder">
                 <img src="" alt="">
                 <div class="codeModule">
+                    <img :src="nums" alt="请刷新应用">
                     <span>看不清</span>
                     <a href="javascript:;">换一张</a>
                 </div>
@@ -45,6 +46,12 @@
 </template>
 
 <script>
+
+    import Vue from 'vue'
+    import axios from 'axios'
+    import VueAxios from 'vue-axios'
+    Vue.use(VueAxios, axios);
+
     export default {
         name: 'Login',
         data(){
@@ -53,18 +60,29 @@
                 value2: true,
                 show: true,
                 isText: 'text',
-                isPass: 'password'
+                isPass: 'password',
+                nums: ''
             }
+        },
+        mounted() {
+            Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((res)=>{
+             this.nums = res.data.code;
+             console.log(res.data);
+             console.log(this.nums)
+           })
         },
         methods: {
             clicker(){
                 this.show = !this.show
                 if(this.show === false){
                     this.isText = this.isPass
-                    console.log(this.show)
+                    // console.log(this.show)
                 }else if(this.show === true){
                     this.isText = 'text'
-                    console.log(this.show)
+                    // console.log(this.show)
+                }else if(this.show === false){
+                    this.isPass = 'password'
+                    // console.log(this.show)
                 }
             }
         },
@@ -73,8 +91,13 @@
 </script>
 
 <style scoped>
-    .shower{
-        type:'password'
+    .codeModule img{
+        width: 140%;
+        height: 100%;
+        position: absolute;
+        right: 3rem;
+        bottom: .3rem;
+        background-color: white;
     }
     .slides-enter-active, .slides-leave-active {
         transition:all .2s linear;

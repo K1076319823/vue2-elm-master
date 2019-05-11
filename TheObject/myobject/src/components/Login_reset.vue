@@ -12,10 +12,10 @@
             <input type="text" placeholder="旧密码">
             <input type="text" placeholder="请输入新密码">
             <input type="text" placeholder="请确认密码">
-            <div class="codes">
+            <div class="codes clearfix">
                 <input type="text" placeholder="验证码" class="coder">
-                <img src="" alt="">
                 <div class="codeModule">
+                    <img :src="nums" alt="抱歉，请刷新页面">
                     <span>看不清</span>
                     <a href="javascript:;">换一张</a>
                 </div>
@@ -30,13 +30,53 @@
 </template>
 
 <script>
-export default {
-    name: 'Reset'
-}
+
+    import Vue from 'vue'
+    import axios from 'axios'
+    import VueAxios from 'vue-axios'
+    Vue.use(VueAxios, axios);
+    
+    export default {
+        name: 'Reset',
+        data(){
+            return{
+                nums: '',
+                // txtNums: val
+            }
+        },
+        mounted() {
+            Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((res)=>{
+             this.nums = res.data.code;
+             console.log(res.code);
+             console.log(this.nums)
+           })
+        },
+        methods: {
+            subNums(){
+                if(toString(this.txtNums) !== this.nums){
+                    console.log(this.txtNums)
+                    alert('请重新输入验证码')
+                }
+            }
+        }
+    }
+
 </script>
 
 <style scoped>
-    
+    .codeModule img{
+        width: 30%;
+        height: 6%;
+        position: absolute;
+        right: 3rem;
+        bottom: 15.5rem;
+        background-color: white;
+    }
+    .loginDatas{
+        width: 20%;
+        height: 100%;
+        background-color: lightcoral;
+    }
     .reset{
         width: 100%;
         height: 100%;

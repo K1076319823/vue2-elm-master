@@ -14,6 +14,7 @@ import Footer from '../components/Footer';
 import FserviceC from '../components/FserviceC';
 import Login from '../components/Login';
 import Reset from '../components/Login_reset';
+import Classify from '../components/Classify'; 
 
 export default new Router({
   routes: [
@@ -27,9 +28,9 @@ export default new Router({
     { path: '/Citydingwei', component: Citydingwei },
     { path: '/FserviceC', component: FserviceC },
     { path: '/Login',component: Login },
-    { path: '/Reset', component: Reset }
+    { path: '/Reset', component: Reset },
+    { path: '/Classify', component: Classify }
 
   ]
 })
 
-console.log('我这走到了')
