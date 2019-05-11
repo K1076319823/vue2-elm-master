@@ -496,4 +496,7 @@
         position: relative;
         bottom: .16rem;
     }
+    :root{
+        background-color: lightblue;
+    }
 </style>
