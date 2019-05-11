@@ -20,7 +20,6 @@ Vue.use(VueAxios, axios);
 new Vue({
   el: '#app',
   router,
-  render: h => h(Classify),
   components: { App },
   template: '<App/>'
 })
