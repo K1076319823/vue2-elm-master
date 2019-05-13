@@ -16,7 +16,7 @@ import Login from '../components/Login';
 import Reset from '../components/Login_reset';
 import Classify from '../components/Classify'; 
 // 下面这两个是 全局动画组件和 账户信息 组件.
-import Bounce from '../components/Bounce';
+// import Bounce from '../components/Bounce';
 import Account from '../components/Account';
 // 账户信息组件 ----> 用户名 ----> 修改用户名
 import ChangeUser from '../components/ChangeUser'
@@ -37,7 +37,7 @@ export default new Router({
     { path: '/Login',component: Login },
     { path: '/Reset', component: Reset },
     { path: '/Classify', component: Classify },
-    { path: '/Bounce', component: Bounce },
+    // { path: '/Bounce', component: Bounce },
     { path: '/Account',component: Account },
     { path: '/ChangeUser', component: ChangeUser },
     { path: '/Addressee',component: Addressee }
