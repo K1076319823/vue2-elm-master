@@ -3,30 +3,47 @@
     <Starttop></Starttop>
    <div class="one">
      <p class="clearfix"><span>当前定位城市:</span><b>定位不准确时,请在城市列表中选择</b></p>
-     <p class="jian">
-       <router-link to=""><span class=" jian glyphicon glyphicon-chevron-right"></span></router-link></p>
+     <div class="dingweiarea clearfix">
+       <router-link :to="{path:'/CitySou'}">
+         <div class="dwcity"  @click="Dwcity(Dcity.name,Dcity.id,Dcity.latitude,Dcity.longitude)">{{Dcity.name}}</div>
+       </router-link>
+       <p class="jian">
+         <router-link :to="{path:'/CitySou'}">
+           <span class=" jian glyphicon glyphicon-chevron-right"></span>
+         </router-link>
+       </p>
+     </div>
+
    </div>
     <div class="hod">
       <p>热门城市</p>
       <div v-for="lt in Hotcity ">
-       <router-link  :to="{}"><div class="hname">{{lt.name}}</div></router-link>
+       <router-link  :to="{path:'/CitySou'}"><div class="hname" @click="Dwcity(lt.name,lt.id,lt.latitude,lt.longitude)">{{lt.name}}</div></router-link>
       </div>
     </div>
     <div v-for="(item ,i) in fc">
       <div class="clearfix abc" >
         <p>{{i}}</p>
-        <div class="allcity" v-for="addr in item">
-          {{addr.name}}
-        </div>
+
+        <router-link :to="{path:'/CitySou'}">
+          <div class="allcity" v-for="addr in item" @click="Dwcity(addr.name,addr.id,addr.latitude,addr.longitude)">
+            {{addr.name}}
+            {{addr.id}}
+          </div>
+        </router-link>
       </div>
 
     </div>
   </div>
 </template>
-
 <script>
   import  Vue from 'vue';
-    import Starttop from "./Starttop";
+  import Starttop from "./Starttop";
+  import axios from 'axios'
+  import Vuex from 'vuex'
+  import VueAxios from 'vue-axios'
+  Vue.use(VueAxios, axios);
+  Vue.use(Vuex)
     export default {
       name: "Citydingwei",
       data() {
@@ -35,9 +52,24 @@
           Hotcity: {},
           Grocity: {},
           citykey: {},
-          newCity: {}
+          newCity: {},
+          Dcity:{},
+
         }
       },
+      methods:{
+        Dwcity(a,b,c,d){
+          this.$store.state.msg1=a
+          // console.log(b,'qqqq')
+          this.$store.state.addid=b
+          this.$store.state.latitude=c
+          this.$store.state.longitude=d
+          console.log(this.$store.state.msg1,this.$store.state.addid)
+          console.log(this.$store.state.latitude,this.$store.state.longitude)
+        },
+
+      },
+
       components: {Starttop},
       comments: {
         Starttop
@@ -55,7 +87,7 @@
             return this.newCity;
           }
         },
-        created() {
+        mounted() {
           Vue.axios.get('https://elm.cangdu.org/v1/cities?type=hot').then((response) => {
             console.log(response.data);
             this.Hotcity = response.data;
@@ -63,6 +95,10 @@
           Vue.axios.get('https://elm.cangdu.org/v1/cities?type=group').then((response) => {
             // console.log(response.data);
             this.Grocity = response.data;
+          });
+          Vue.axios.get('https://elm.cangdu.org/v1/cities?type=guess').then((response) => {
+            // console.log(response.data);
+            this.Dcity = response.data;
           });
 
         }
@@ -83,12 +119,23 @@
   .one b{
     float:right;
   }
+  .dingweiarea{
+  line-height: 1.5rem;
+  }
+  .dwcity{
+    float:left;
+    font-size:1rem;
+    color:blue;
+  }
   .jian{
+    float:right;
     text-align: right;
+    line-height: 1.5rem;
+    border-bottom: 1px #fff solid;
   }
   .hod{
     background-color: #fff;
-    margin-bottom:1rem;
+    /*margin-bottom:1rem;*/
   }
   .hod p{
     margin-bottom:0;
@@ -125,13 +172,12 @@
   }
   .abc{
     margin:1rem 0;
-    background-color: #fff;
-    border:1px red solid;
+
+    border:1px #ccc solid;
   }
   .abc p{
-    background-color: red;
+    background-color: #ccc;
     margin-bottom:0;
-    margin-top:1rem;
   }
   .allcity{
     border:1px #ccc solid;

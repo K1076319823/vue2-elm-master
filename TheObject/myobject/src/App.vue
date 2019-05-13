@@ -6,12 +6,16 @@
 <script>
 
 import '../build/resize.js' // 引入 resize.js 文件
+import store from '../store/index'
+import Vue from 'vue'
+
 
 export default {
   name: 'App',
   components: {
 
-  }
+  },
+  store
 }
 </script>
 
