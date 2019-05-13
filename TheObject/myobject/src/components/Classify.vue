@@ -1,6 +1,6 @@
 <template>
     <div class="classify">
-        <!-- <Load></Load> -->
+        <Load></Load>
         <div class="vessel">
             <!-- 顶端跳转部分 -->
             <div class="ifyTop">
@@ -9,11 +9,11 @@
             </div>
             <div id="ifyCenter">
                 <el-menu
-                class="el-menu-demo"
+                class="el-menu-demo one"
                 mode="horizontal"
                 background-color="white"
                 text-color="#666"
-                active-text-color="rgb(49,144,232)">
+                active-text-color="rgb(49,144,232)" >
                     <el-submenu index="1" class="container">
                         <template slot="title">分类</template>
                         <el-submenu index="2-1"  v-for="(el,index) in leftOne" :key="index" >
@@ -29,7 +29,7 @@
                     </el-submenu>
                 </el-menu>
 
-                <el-menu
+                 <el-menu
                 class="el-menu-demo eler"
                 mode="vertical"
                 background-color="white"
@@ -71,13 +71,14 @@
 
                     </el-submenu>
                 </el-menu>
+
                 <el-menu
                 class="el-menu-demo  elers"
                 mode="vertical"
                 background-color="white"
                 text-color="#666"
                 active-text-color="rgb(49, 144, 232)">
-                    <el-submenu index="3" >
+                    <el-submenu index="3" class="right">
                         <template slot="title">筛选</template>
                         <div class="delivery">
                             <p class="delTxtOne">配送方式</p>
@@ -99,7 +100,7 @@
                             </div>
                             <form action="" class="former clearfix">
                                 <input type="submit" value="清空" title="清空" class="empty" @click="empty">
-                                <input type="submit" :value=" '确定' + clickTxt  " title="提交" class="sub">
+                                <input type="submit" :value="'确定'+clickTxt" title="提交" class="sub">
                             </form>
                         </div>
 
@@ -118,10 +119,11 @@
     import VueAxios from 'vue-axios'
     Vue.use(VueAxios, axios);
 
-    // import Load from './Loading.vue'
+    import Load from './Loading.vue'
 
     export default {
         name: 'Classify',
+        render: h => h(Classify),
         data() {
             return {
             txt: '快餐便当' ,
@@ -222,7 +224,7 @@
           
         },
         components: {
-            // Load
+            Load
         }
     }
 </script>
@@ -256,8 +258,8 @@
         border-radius: 4px;
     }
     .shopNature span{
-        width: .8rem;
-        height: .8rem;
+        width: 1.2rem;
+        height: 1.2rem;
         /* background-color: lightcoral; */
         padding-top: .2rem;
         padding-left: .2rem;
@@ -270,8 +272,8 @@
         vertical-align: top;
     }
     .mango img{
-        width: 1.4rem;
-        height: 1.2rem;
+        width: 1.2rem;
+        height: 1.1rem;
         position: relative;
     }
     .mango{
@@ -358,13 +360,14 @@
         height: 12%;
         background-color: white;
         margin-left: 1.4rem;
+        margin-bottom: .6rem;
         font-size: .4rem;
         border: 1px solid rgb(223, 223, 223);
         border-radius: 2px;
     }
     .delTxtOne{
         font-size: .5rem;
-        /* padding-top: .4rem; */
+        padding-top: .6rem;
         position: relative;
         right: 6rem;
         color: rgb(43, 43, 43);
@@ -407,8 +410,12 @@
         color: #666;
     }
     .container{
-        height: 2.4rem;
-        width: 5.33rem;
+        height: 2.9rem;
+        width: 6.33rem;
+        position: relative;
+        top: .3rem;
+        right: .4rem;
+        overflow: hidden;
     }
     .eler{
         display: block;
@@ -430,9 +437,10 @@
     }
     #ifyCenter{
         width: 200%;
-        height: 5.6%;
+        height: 20%;
         position: fixed;
-        margin-top: 12.7%;
+        margin-top: 12%;
+        background-color: white;
     }
     .vessel{
         width: 100%;
@@ -474,5 +482,21 @@
         background: url(../../images/login_arrows.png) no-repeat;
         background-position: center center;
         background-size: contain;
+    }
+    .classify{
+        width: 100%;
+        height: 110%;
+        background-color: white;
+    }
+    .center{
+        position: relative;
+        bottom: .16rem;
+    }
+    .right{
+        position: relative;
+        bottom: .16rem;
+    }
+    :root{
+        background-color: lightblue;
     }
 </style>
