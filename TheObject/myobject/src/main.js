@@ -11,13 +11,9 @@ Vue.use(Vuex);
 
 import Classify from './components/Classify.vue';
 Vue.use(ElementUI);
-<<<<<<< HEAD
+
 Vue.use(Vuex);
-=======
-Vue.use(Vuex)
 
-
->>>>>>> e6e9816aee4d869e6cc1c2b65a61d0b702320c33
 Vue.config.productionTip = false;
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -40,11 +36,9 @@ Vue.use(VueAxios, axios);
 new Vue({
   el: '#app',
   router,
-<<<<<<< HEAD
-  // render: h => h(Classify),
+  render: h => h(Classify),
   // store,
-=======
->>>>>>> e6e9816aee4d869e6cc1c2b65a61d0b702320c33
+
   components: { App },
 
   template: '<App/>'
