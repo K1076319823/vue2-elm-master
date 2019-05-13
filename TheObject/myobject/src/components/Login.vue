@@ -3,7 +3,7 @@
         <div class="login_top clearfix">
             <!-- 左侧点击按钮 -->
             <p class="goBack">
-                <router-link to="" class="goback"></router-link>
+                <router-link to="/index" class="goback"></router-link>
             </p>
 
             <p class="pSize">密码登录</p>
@@ -29,7 +29,7 @@
                     <a href="javascript:;">换一张</a>
                 </div>
             </div>
-            
+
             <div class="loginFonts">
                 <p>温馨提示：未注册过的账号，登录时将自动注册</p>
                 <p>注册过的用户可凭账号密码登录</p>
@@ -41,7 +41,7 @@
 
              <router-link to="">重置密码?</router-link>
         </form>
-           
+
     </div>
 </template>
 
@@ -140,7 +140,7 @@
         position: relative;
         bottom: 28%;
         right: 10%;
-        
+
     }
     .login{
         width: 100%;
@@ -207,7 +207,7 @@
         background-color: rgb(76, 217, 100);
         color: white;
         border-radius: 4px;
-        width: 94%; 
+        width: 94%;
         height: 20%;
     }
     .loginSim{
