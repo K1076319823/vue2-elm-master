@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header></Header>
+
     <div class="Mai">
       <div class="merchant">
         <!-- <span class="pull-left clearfix"><img src="../../images/商家.png" class="merimg"/></span> -->
@@ -42,7 +42,7 @@
         </li>
       </ul>
     </div>
-    <Footer></Footer>
+
   </div>
 
 </template>
@@ -89,7 +89,7 @@
 <style scoped>
   .Mai {
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 0.5rem;
     background: white;
     border-top: 1px solid gray;
   }

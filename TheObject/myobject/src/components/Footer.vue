@@ -1,6 +1,6 @@
 <template>
   <div class="footer text-center">
-    <router-link :to="{path:'/Mai'}">
+    <router-link :to="{path:'/index'}">
       <img src="../../images/饿了么.jpg"/><br>
       外卖</router-link>
     <router-link :to="{path:'/Sou'}">

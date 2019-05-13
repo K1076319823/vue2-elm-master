@@ -1,13 +1,28 @@
 <template>
 
   <div class="my">
-    <Header></Header>
-    <div class="myone clearfix">
+    <div class="head clearfix">
       <div class="left">
-        <div class="toutu"><span class="tou glyphicon glyphicon-user"></span></div>
+        <router-link :to="{path:'/index'}">
+          <span class="glyphicon glyphicon-chevron-left jiant"></span>
+        </router-link>
       </div>
       <div class="center">
-        <h4 class="dz"><b>登录/注册</b></h4>
+        我的
+      </div>
+    </div>
+    <div class="myone clearfix">
+      <div class="left">
+        <router-link :to="{path:'/login'}">
+        <div class="toutu"><span class="tou glyphicon glyphicon-user"></span></div>
+        </router-link>
+      </div>
+      <div class="center">
+        <h4 class="dz">
+          <router-link :to="{path:'/login'}">
+            <b>登录/注册</b>
+          </router-link>
+        </h4>
         <p class="sjh glyphicon glyphicon-phone"><span >暂无绑定手机号</span></p>
       </div>
       <div class="right">
@@ -18,8 +33,10 @@
 
         <div class="col-xs-4">
           <div class="one">
-         <p><b>0.00</b>元</p>
-          我的余额
+            <router-link :to="{path:'/Balance'}">
+              <p><b>0.00</b>元</p>
+              我的余额
+            </router-link>
         </div>
         </div>
         <div class="col-xs-4">
@@ -58,18 +75,15 @@
   import Footer from "./Footer";
   export default {
     name: "Mai",
-    components: {Footer, Header},
+    components: {Footer},
     comments:{
-      Header,Footer
+      Footer
     }
   }
 </script>
 
 <style scoped>
   .my{
-
-    margin-top:2rem;
-
   }
   .myone{
 
@@ -102,6 +116,9 @@
   }
   .dz{
     display:inline-block;
+
+  }
+  .dz b{
     color:#fff;
   }
   .sjh{
@@ -160,12 +177,12 @@
   }
   .biao div img{
     width:0.7rem;
-    hieht:0.7rem;
+    hight:0.7rem;
     margin:0 0.5rem;
   }
   .biao div  .ee{
     width:0.5rem;
-    hieht:0.5rem;
+    height:0.5rem;
   }
   .jian{
     color:#fff;
@@ -173,7 +190,30 @@
     text-align:right;
     margin-right:0.5rem;
   }
-
+  .head{
+    background-color: blue;
+  }
+  .head div{
+    float:left;
+    width:33%;
+    color:#fff;
+    font-size:1rem;
+    line-height: 2rem;
+  }
+  .head .left{
+    height:1rem;
+  }
+  .head .center{
+    text-align: center;
+    color:#fff;
+    font-size:0.8rem;
+  }
+  .jiant{
+    color:#fff;
+    display:block;
+    line-height: 1rem;
+    margin-top:0.4rem;
+  }
 
 </style>
 

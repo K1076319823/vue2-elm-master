@@ -3,15 +3,20 @@
         <!-- 这个 P标签里面的城市是可变的,先写死 -->
         <router-link to="" class="skip">
         </router-link>
-        <p class="fonts">郑州站</p>
+        <p class="fonts">{{$store.state.msgaddr}}</p>
         <div class="access clearfix">
-            <router-link to="" class="register">注册</router-link>
-            <router-link to="" class="login">登录</router-link>
+            <router-link to="/login" class="register">注册</router-link>
+            <router-link to="/login" class="login">登录</router-link>
         </div>
     </div>
 </template>
 
 <script>
+  import Vue from 'vue'
+  import axios from 'axios'
+  import VueAxios from 'vue-axios'
+  Vue.use(VueAxios, axios);
+
 export default {
     name: 'Header'
 }
@@ -31,14 +36,27 @@ export default {
         color: white;
     }
     .fonts{
-        margin: .5rem 30% 0 38%;
+      position: absolute;
+      left:0rem;
+      top:0.5rem;
+
         display: inline-block;
+      /*text-overflow:ellipsis;*/
+      color: #fff;
+      height:1rem;
+      z-index:2;
+      width:50%;
+      margin-left:25%;
+      text-align: center;
+      overflow: hidden;
+      text-overflow:ellipsis;
     }
     .access{
         float: right;
         position: relative;
         top: 0.6rem;
         right: 0.6rem;
+
     }
     .skip{
         width: 1.2rem;
@@ -50,6 +68,7 @@ export default {
         background: url(../../images/search.png) no-repeat;
         background-position: center center;
         background-size: contain;
+
     }
     .login{
         font-size: 0.6rem;
