@@ -100,7 +100,7 @@
                             </div>
                             <form action="" class="former clearfix">
                                 <input type="submit" value="清空" title="清空" class="empty" @click="empty">
-                                <input type="submit" :value=" '确定' + clickTxt  " title="提交" class="sub">
+                                <input type="submit" :value="'确定'+clickTxt" title="提交" class="sub">
                             </form>
                         </div>
 

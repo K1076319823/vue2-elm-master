@@ -8,13 +8,26 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import Classify from './components/Classify.vue';
 Vue.use(ElementUI);
+Vue.use(Vuex)
 
 
-Vue.use(Vuex);
 Vue.config.productionTip = false;
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios);
+
+
+// var store = new Vuex.Store({
+//   state: {
+
+//   },
+//   mutations: {
+
+//   },
+//   getters: {
+
+//   }
+// }) // 创建 Vuex 实例
 
 /* eslint-disable no-new */
 new Vue({

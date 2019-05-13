@@ -26,7 +26,7 @@
                 <div class="codeModule">
                     <img :src="nums" alt="请刷新应用">
                     <span>看不清</span>
-                    <a href="javascript:;">换一张</a>
+                    <a href="javascript:;" @click="sendReq">换一张</a>
                 </div>
             </div>
             
@@ -36,7 +36,7 @@
             </div>
 
             <div class="loginSim">
-                <input type="submit" value="登录" title="点击登录" class="lastInt">
+                <input type="submit" value="登录" title="点击登录" class="lastInt" @click="subLogin">
             </div>
 
              <router-link to="">重置密码?</router-link>
@@ -76,14 +76,19 @@
                 this.show = !this.show
                 if(this.show === false){
                     this.isText = this.isPass
-                    // console.log(this.show)
                 }else if(this.show === true){
                     this.isText = 'text'
-                    // console.log(this.show)
                 }else if(this.show === false){
                     this.isPass = 'password'
-                    // console.log(this.show)
                 }
+            },
+            sendReq(){
+                Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((res)=>{
+                    this.nums = res.data.code;
+                })   
+            },
+            subLogin(){
+                alert('你好')
             }
         },
     }
