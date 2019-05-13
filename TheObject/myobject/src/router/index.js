@@ -18,6 +18,8 @@ import Classify from '../components/Classify';
 import CitySou from '../components/CitySou';
 import Balance from "../components/Balance";
 import Baspask from "../components/Baspask";
+import Account from "../components/Account";
+import ChangeUser from "../components/ChangeUser"
 
 export default new Router({
   routes: [
@@ -36,6 +38,9 @@ export default new Router({
     { path: '/Reset', component: Reset },
     { path: '/Classify', component: Classify },
     {path:'/CitySou',component:CitySou},
+    {path:'/Account',component:Account},
+    {path:'/ChangeUser',component:ChangeUser},
+
 
   ]
 })
