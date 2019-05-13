@@ -17,16 +17,16 @@
    </div>
     <div class="hod">
       <p>热门城市</p>
-      <div v-for="lt in Hotcity ">
+      <div v-for="(lt,index) in Hotcity" :key='index'>
        <router-link  :to="{path:'/CitySou'}"><div class="hname" @click="Dwcity(lt.name,lt.id,lt.latitude,lt.longitude)">{{lt.name}}</div></router-link>
       </div>
     </div>
-    <div v-for="(item ,i) in fc">
+    <div v-for="(item ,i) in fc" :key='i'>
       <div class="clearfix abc" >
         <p>{{i}}</p>
 
         <router-link :to="{path:'/CitySou'}">
-          <div class="allcity" v-for="addr in item" @click="Dwcity(addr.name,addr.id,addr.latitude,addr.longitude)">
+          <div class="allcity" v-for="(addr,index) in item" :key="index" @click="Dwcity(addr.name,addr.id,addr.latitude,addr.longitude)">
             {{addr.name}}
             {{addr.id}}
           </div>

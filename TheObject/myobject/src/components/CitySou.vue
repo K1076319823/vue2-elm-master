@@ -25,7 +25,7 @@
 
     </div>
       <p class="history" v-show="isshow"> 搜索历史:</p>
-      <div  v-for="add in hit " class="list">
+      <div  v-for=" add in hit" class="list" :key='add.name'>
         <router-link :to="{path:'/index'}">
           <h3>{{add.name}}</h3>
           <p @click="Dcity(add.address)">
@@ -72,7 +72,7 @@
        let b=this.$store.state.addid
         console.log(b,'333')
         let a = 'https://elm.cangdu.org/v1/pois?city_id=' + b + '&keyword=' + this.text + '&type=search'
-        console.log(a,'jhjj');
+        console.log(a);
         Vue.axios.get(a).then((response) => {
           console.log(response.data);
           this.hit = response.data;
