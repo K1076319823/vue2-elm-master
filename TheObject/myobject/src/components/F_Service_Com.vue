@@ -78,7 +78,7 @@
 <style scoped>
   .selewen{
     background-color: #fff;
-
+    color: red;
   }
   .duan{
     padding:0.5rem;
