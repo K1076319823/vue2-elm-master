@@ -1,11 +1,11 @@
 <template>
-    <div class="Voucher" style="width: 100%; height: 100%; background:#f0f0f0;">
+    <div class="Voucher" style="width: 100%; background:#f0f0f0;">
       <div class="discountsBox">
         <div class="discountsMD clearfix">
           <span class="pull-left">有 <b>{{nums}}</b>个红包即将到期</span>
           <span class="pull-right">
         <img src="../../images/description.png"/>
-        <router-link :to="{path:'/'}">红包说明</router-link>
+        <router-link :to="{path:'/HongBaospeak'}">红包说明</router-link>
       </span>
         </div>
         <div class="packet clearfix" v-for="(pack, index) in disArr" :key="index">
@@ -16,24 +16,21 @@
           <div class="packet_right pull-left clearfix">
             <div class="packet_right_left pull-left" style="width: 100%;">
               <h4>{{pack.name}}</h4>
-              <p>{{pack.description_map.validity_periods}}</p>
-              <p>{{pack.description_map.phone}}</p>
+              <p style="color: #aaa;">{{pack.description_map.validity_periods}}</p>
+              <p style="color: #aaa;">{{pack.description_map.phone}}</p>
             </div>
           </div>
           <div class="pull-right">
             <div style="color:#ff5340;font-size: 0.8rem;">{{pack.description_map.validity_delta}}</div>
           </div>
         </div>
-        <div class="text-center" style="background:#f5f5f5;border-radius: 0 0 0.2rem 0.2rem">
-          <p style="font-size: 0.1rem;display: inline-block;color: #aaa;">限品类：快餐便当、特色菜系、小吃夜宵、甜品饮品、异国料理</p>
-        </div>
         <div class="text-center">
-          <router-link :to="{path:'/'}" style="width: 100%;color: #aaa;font-size: 0.5rem;padding: 0.6rem 0 3rem;display: inline-block;">查看历史红包 <img src="../../images/右箭头灰色.png" class="link_img"></router-link>
+          <router-link :to="{path:'/My_Past_F'}" style="width: 100%;color: #aaa;font-size: 0.5rem;padding: 0.6rem 0 3rem;display: inline-block;">查看历史红包 <img src="../../images/右箭头灰色.png" class="link_img"></router-link>
         </div>
       </div>
-      <footer style="width: 100%;height: 1.98rem;position: absolute; bottom: 0;left: 0;right: 0;background:white;" class="header_link header_link_a text-center">
-        <router-link :to="{path:'/'}" style="border-right: 1px solid #f0f0f0">兑换红包</router-link>
-        <router-link :to="{path:'/'}">推荐有奖</router-link>
+      <footer style="width: 100%;height: 2rem;position: absolute; bottom: 0;left: 0;right: 0;background:white;" class="header_link header_link_a text-center">
+        <router-link :to="{path:'/My_ConvertHB'}" style="border-right: 1px solid #f0f0f0">兑换红包</router-link>
+        <router-link :to="{path:'/My_Recommend_F'}">推荐有奖</router-link>
       </footer>
     </div>
 </template>
@@ -41,11 +38,12 @@
 <script>
   import Vue from 'vue'
     export default {
-        name: "Dis_Voucher_F",
+        name: "My_HongBao",
       data(){
         return {
           nums:'',
-          disArr:[]
+          disArr:[],
+          flavor:''
         }
       },
       mounted(){

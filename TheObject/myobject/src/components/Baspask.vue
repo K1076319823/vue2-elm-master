@@ -2,7 +2,7 @@
     <div class="Baspak">
       <div class="head clearfix">
         <div class="left">
-          <router-link :to="{path:'/index'}">
+          <router-link :to="{path:'/Balance'}">
             <span class="glyphicon glyphicon-chevron-left jiant"></span>
           </router-link>
         </div>
@@ -12,11 +12,12 @@
       </div>
       <div class="duan">
 
-        <ul>
-          <!--<li v-for="item in ipaddrArray" >-->
-         <!--{{item}}-->
-          <!--</li>-->
-        </ul>
+        <div>
+          <div v-for="(item,i) in bbb" :key="i">
+         <h4>{{item[1]}}{{item[2]}}</h4>
+            <p>{{item[3]}}</p>
+          </div>
+        </div>
       </div>
     </div>
 </template>
@@ -27,30 +28,44 @@
         name: "Baspask",
       data() {
         return {
-          yue: "",
-          arry:[]
+          yue:'',
+          arr:[],
+          arry:[],
         }
       },
-      computed:{
-    // ipaddrArray:function(){
-    //   return this. yue.split('###')
-    // }
-    },
-
       created(){
         Vue.axios.get('https://elm.cangdu.org/v3/profile/explain').then((response) => {
         console.log(response.data.balanceContent);
         this.yue= response.data.balanceContent;
       })
-      }
+      },
+      computed:{
 
+        bbb(){
+          this.arr = this.yue.split('###')
+          this.arr.map((a)=>{
+            this.arry.push(a.split(' '))
+          });
+          this.arry.splice(0,1)
+          this.arry.map((b)=>{
+            if(b.length==4){
+              b.splice(1,0,'')
+            }
+          })
+          console.log(this.arry)
+          return this.arry;
+        }
+      }
 
     }
 </script>
 
 <style scoped>
+  .Baspak{
+    background-color: #fff;
+  }
   .head{
-    background-color: blue;
+    background-color: #3190e8;
   }
   .head div{
     float:left;
@@ -72,6 +87,13 @@
     display:block;
     line-height: 1rem;
     margin-top:0.4rem;
+  }
+  .duan{
+    padding:0.5rem;
+  }
+  h4{
+    margin:0.5rem 0;
+    line-height: 1.2rem;
   }
 
 </style>

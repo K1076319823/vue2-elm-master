@@ -25,10 +25,10 @@
 
     </div>
       <p class="history" v-show="isshow"> 搜索历史:</p>
-      <div  v-for=" add in hit" class="list" :key='add.name'>
-        <router-link :to="{path:'/index'}">
+      <div  v-for=" (add,index) in hit" class="list" :key='index'>
+        <router-link :to="{path:'/index',query:{address:add.address}}">
           <h3>{{add.name}}</h3>
-          <p @click="Dcity(add.address)">
+          <p>
             {{add.address}}
           </p>
         </router-link>
@@ -39,6 +39,7 @@
 
 <script>
   import  Vue from 'vue';
+  import store from '../../store/index'
   import Starttop from "./Starttop";
  /* import axios from 'axios'
   import Vuex from 'vuex'
@@ -48,6 +49,7 @@
 
   export default {
     name: "CitySou",
+    store,
     data() {
       return {
         newaddr: '',
@@ -64,16 +66,24 @@
       text1() {
         console.log(this.text);
       },
+
+      // Dcity(b){
+      //   this.$store.state.msgaddr=b;
+      //   console.log(this.$store.state.msgaddr,111)
+      //   // console.log(this.$store.state, '11111111')
+      // },
+
       Dcity(b){
         this.$store.state.msgaddr=b
-        console.log(this.$store.state.msgaddr)
+        console.log(this.$store.state.msgaddr ,"aaaaaa")
       },
+
       getadd() {
        let b=this.$store.state.addid
         console.log(b,'333')
         let a = 'https://elm.cangdu.org/v1/pois?city_id=' + b + '&keyword=' + this.text + '&type=search'
         console.log(a);
-        Vue.axios.get(a).then((response) => {
+        Vue.axios.get(a).then((response)=>{
           console.log(response.data);
           this.hit = response.data;
         });
@@ -97,7 +107,7 @@
 
 <style scoped>
 .head{
-  background-color: blue;
+  background-color: #3190e8;
 }
 .head div{
     float:left;
@@ -130,7 +140,6 @@
 .sou div input{
   width:14rem;
   border:0;
-
   border:1px #ccc solid;
   display:block;
   height:1.5rem;

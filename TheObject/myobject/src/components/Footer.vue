@@ -1,23 +1,45 @@
 <template>
-  <div class="footer text-center">
+  <div class="footer text-center" >
     <router-link :to="{path:'/index'}">
-      <img src="../../images/饿了么.jpg"/><br>
-      外卖</router-link>
+      <div :class="{select:selectName==='外卖'?true:false}" @click="getProsByCateBtn('外卖')">
+        <span class="el-icon-eleme "></span>
+        外卖
+      </div></router-link>
     <router-link :to="{path:'/Sou'}">
-      <img src="../../images/浏览器.png"/><br>
-      搜索</router-link>
+      <div :class="{select:selectName==='搜索'?true:false}" @click="getProsByCateBtn('搜索')"  >
+      <span class="el-icon-discover"></span>
+      搜索
+      </div></router-link>
     <router-link :to="{path:'/Ding'}">
-      <img src="../../images/列表.png"/><br>
-      订单</router-link>
+      <div :class="{select:selectName==='订单'?true:false}" @click="getProsByCateBtn('订单')"   >
+      <span class="el-icon-tickets"></span>
+        订单
+      </div></router-link>
     <router-link :to="{path:'/My'}">
-      <img src="../../images/用户.png"/><br>
-      我的</router-link>
+      <div :class="{select:selectName==='我的'?true:false}" @click="getProsByCateBtn('我的')"   >
+      <span class="el-icon-user-solid"></span>
+        我的
+      </div></router-link>
   </div>
 </template>
 
 <script>
   export default {
-    name: "Footer"
+    name: "Footer",
+    data() {
+      return {
+        selectName:'外卖'
+      }
+      },
+    mounted(){
+      this.selectName=this.$store.state.abc;
+    },
+        methods: {
+          getProsByCateBtn(cName){
+            this.$store.state.abc = cName;
+            // console.log(this.selectName, 100)
+          }
+      }
   }
 </script>
 
@@ -38,6 +60,8 @@
   }
 
   a {
+    width:25%;
+    box-sizing: border-box;
     margin: 0 1rem;
     font-size: 0.5rem;
     color: gray;
@@ -45,8 +69,11 @@
     padding: 0.4rem;
     display: inline-block;
   }
-  img{
-    width:0.8rem ;
-    height: 0.8rem;
+  a span{
+    font-size:0.9rem;
+    padding:0.1rem;
+  }
+  .select{
+    color: #3190e8;
   }
 </style>

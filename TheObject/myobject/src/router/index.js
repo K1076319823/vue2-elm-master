@@ -19,12 +19,33 @@ import CitySou from '../components/CitySou';
 import Balance from "../components/Balance";
 import Baspask from "../components/Baspask";
 import Account from "../components/Account";
-import ChangeUser from "../components/ChangeUser"
+import ChangeUser from "../components/ChangeUser";
+import jifenspeak from "../components/jifenspeak";
+import Com_PromptBox from '../components/Com_PromptBox';
+import VipCenter_F from '../components/VipCenter_F';
+import Vip_OnlinePay_F from '../components/Vip_OnlinePay_F';
+import Vip_Convert_F from '../components/Vip_Convert_F';
+import DownLoading from '../components/Down_Loading';
+import IntegralShop_F from '../components/IntegralShop_F';
+import My_Integral_F from '../components/My_Integral_F';
+import My_Discounts_F from '../components/My_Discounts_F';
+import My_HongBao from '../components/My_HongBao';
+import My_DaiJinQuan from '../components/My_DaiJinQuan';
+import F_Service_Com from '../components/F_Service_Com'
+import My_Past_F from '../components/My_Past_F';
+import My_ConvertHB from '../components/My_ConvertHB';
+import My_Recommend_F from '../components/My_Recommend_F';
+import HongBaospeak from '../components/HongBaospaeak';
+import daimoneyspaek from '../components/daimoneyspaek';
+import huanyuanSpeak from '../components/huanyuanSpeak';
+import Shopjilu from '../components/Shopjilu';
+import Common from "../components/Common";
+import Evaluate from "../components/Evaluate";
 
 export default new Router({
   routes: [
 
-    { path: '/', redirect: '/index' },
+    { path: '/', redirect: '/Citydingwei' },
     { path: '/index', component: Index },
     { path: '/Mai', component: Mai },
     { path: '/Sou', component: Sou },
@@ -40,8 +61,30 @@ export default new Router({
     {path:'/CitySou',component:CitySou},
     {path:'/Account',component:Account},
     {path:'/ChangeUser',component:ChangeUser},
-
-
+    {path:'/jifenspaeak',component:jifenspeak},
+    {path:'/Com_PromptBox',component:Com_PromptBox},
+    {path: '/VipCenter_F', component: VipCenter_F},
+    {path: '/Vip_OnlinePay_F', component: Vip_OnlinePay_F},
+    {path: '/Vip_Convert_F', component: Vip_Convert_F},
+    {path:'/huanyuanSpeak',component:huanyuanSpeak},
+    {path: '/Down_Loading', component: DownLoading},
+    {path: '/IntegralShop_F', component: IntegralShop_F},
+    {path: '/My_Integral_F', component: My_Integral_F},
+    {path:'/F_Service_Com',component:F_Service_Com},
+    {path: '/My_Past_F', component: My_Past_F},
+    {path:'/My_ConvertHB',component:My_ConvertHB},
+    {path:'/My_Recommend_F',component:My_Recommend_F},
+    {path: '/My_Discounts_F', component: My_Discounts_F, children: [
+        {path:'/',component:My_HongBao},
+        {path: '/My_HongBao', component: My_HongBao},
+        {path: '/My_DaiJinQuan', component: My_DaiJinQuan}
+      ]},
+    {path:'/HongBaospeak',component:HongBaospeak},
+    {path:'/daimoneyspaek',component:daimoneyspaek},
+    {path:'/Shopjilu',component:Shopjilu},
+    { path: '/Common',component: Common },
+    { path: '/Evaluate',component: Evaluate }
   ]
 })
+
 

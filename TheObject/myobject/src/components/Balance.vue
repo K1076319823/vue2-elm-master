@@ -38,7 +38,7 @@
 <style scoped>
 .one{
   text-align: center;
-  background-color: blue;
+  background-color: #3190e8;
   color:#fff;
   line-height: 2rem;
   font-size:0.8rem;

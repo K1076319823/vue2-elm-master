@@ -1,79 +1,96 @@
 <template>
   <div>
-
     <div class="Mai">
       <div class="merchant">
-        <!-- <span class="pull-left clearfix"><img src="../../images/商家.png" class="merimg"/></span> -->
+         <span class="pull-left clearfix"><img src="../../images/商家.png" class="merimg"/></span>
         <span class="pull-right clearfix merfont">附近商家</span>
       </div>
-      <ul class="ulinfor" v-for="(pro , index) in proArr" :key="index">
-        <li class="pull-left imgli">
-          <img :src="'//elm.cangdu.org/img/'+ pro.image_path" alt="" class=""/>
-        </li>
-        <li class="pull-left ul_text">
-          <h4 class="head">
-            <span class="pp">{{premium ? '品牌': NaN}}</span>
-            {{pro.name}}
-            <span class="pull-right ">
+      <router-link :to="{path:'/'}" v-for="(pro , index) in proArr" :key="index" >
+        <ul class="ulinfor" @click="Scity(pro.id)">
+          <li class="pull-left imgli">
+            <img :src="'//elm.cangdu.org/img/'+ pro.image_path" alt="" class=""/>
+          </li>
+          <li class="pull-left ul_text">
+            <h4 class="head">
+              <span class="pp">{{premium ? '品牌': NaN}}</span>
+              {{pro.name}}
+              <span class="pull-right ">
             <b>{{pro.supports[0].icon_name}}</b>
             <b>{{pro.supports[1].icon_name}}</b>
           </span>
-          </h4>
-          <h4>
+            </h4>
+            <h4>
             <span class="pull-left">
               <span class="rating">{{pro.rating}}</span>
               <span class="recent">月售{{pro.recent_order_num}}单</span>
             </span>
-            <span class="pull-right">
+              <span class="pull-right">
               <span class="delivery">{{pro.delivery_mode.text}}</span>
               <span class="supports">{{pro.supports[1].name}}</span>
             </span>
-          </h4><br>
-          <h4>
+            </h4><br>
+            <h4>
             <span class="pull-left piecewise">
               ￥20起送 / {{pro.piecewise_agent_fee.tips}}
             </span>
-            <span class="pull-right distance">
+              <span class="pull-right distance">
               <span>{{pro.distance}}</span>
               /
               <span class="time">{{pro.order_lead_time}}</span>
             </span>
-          </h4>
-        </li>
-      </ul>
+            </h4>
+          </li>
+        </ul>
+      </router-link>
     </div>
-
   </div>
 
 </template>
 
 <script>
-  import Header from "./Header";
   import Footer from "./Footer";
-  import Vue from 'vue'
   import Swiper from 'swiper'
+  import Vue from 'vue';
+  import Starttop from "./Starttop";
+  import axios from 'axios'
+  import Vuex from 'vuex'
+  import VueAxios from 'vue-axios'
 
+  Vue.use(VueAxios, axios, Vue);
   export default {
     name: "Mai",
     data() {
       return {
         premium: true,
-        proArr: []
+        proArr: [],
+        idArr: [],
       }
     },
-    components: {Footer, Header},
+    components: {Footer},
     mounted() {
-      Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude=113.689133&longitude=31.255541').then((res) => {
+      let j = this.$store.state.latitude;
+      let w = this.$store.state.longitude;
+      let c = this.$store.state.msg1;
+      console.log(j , w,'当前城市是:',c)
+      Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${j}&longitude=${w}`).then((res) => {
+        // 遍历商品的信息展示在界面上
         this.proArr = res.data;
         console.log(res);
-        console.log(res.data[0].supports[2].icon_name);
-        let pre = res.data.is_premium;
-        for (let i = 0; i < res.data.is_premium ; i++) {
-          if(pre === true) {
+        for (let i = 0; i < res.data.length; i++) {
+          let pre = []
+          pre = res.data[i].is_premium
+          // console.log(pre);
+          if (pre == true) {
             this.premium = true
           } else {
-            this.premium = false;
+            this.premium = false
           }
+        }
+        // 遍历里面的id值将其存入Vuex里
+        for (let i =0;i<res.data.length;i++){
+          this.idArr = res.data[i].id;
+          // console.log(this.idArr)
+          // console.log(res.data[i])
         }
 
       }).catch((error) => {
@@ -82,6 +99,12 @@
       new Swiper(this.$refs.slider, {
         // pagination: '.swiper-pagination',
       })
+    },
+    methods: {
+      Scity(id){
+        console.log(id);
+        this.$store.state.shopid=id;
+      }
     }
   }
 </script>
@@ -198,3 +221,4 @@
     font-size: 0.01rem;
   }
 </style>
+

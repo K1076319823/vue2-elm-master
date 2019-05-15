@@ -125,7 +125,7 @@
   .dwcity{
     float:left;
     font-size:1rem;
-    color:blue;
+    color:rgb(49, 144, 232);
   }
   .jian{
     float:right;

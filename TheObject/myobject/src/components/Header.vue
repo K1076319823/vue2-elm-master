@@ -3,7 +3,7 @@
         <!-- 这个 P标签里面的城市是可变的,先写死 -->
         <router-link to="" class="skip">
         </router-link>
-        <p class="fonts">{{$store.state.msgaddr}}</p>
+        <p class="fonts"><router-link :to="{path:'/Citydingwei'}" style="color: white;">{{$route.query.address}}</router-link></p>
         <div class="access clearfix">
             <router-link to="/login" class="register">注册</router-link>
             <router-link to="/login" class="login">登录</router-link>
@@ -15,10 +15,12 @@
   import Vue from 'vue'
   import axios from 'axios'
   import VueAxios from 'vue-axios'
+  import store from '../../store/index'
   Vue.use(VueAxios, axios);
 
 export default {
-    name: 'Header'
+    name: 'Header',
+  store,
 }
 </script>
 
@@ -26,7 +28,7 @@ export default {
     .header{
         width: 100%;
         height: 7%;
-        background-color: rgb(49, 144, 232);
+      background-color: #3190e8;
         position: fixed;
         left: 0;
         top: 0;
@@ -34,6 +36,7 @@ export default {
         text-align: center;
         font-size: 0.8rem;
         color: white;
+      z-index: 9999999;
     }
     .fonts{
       position: absolute;
@@ -84,3 +87,5 @@ export default {
         text-decoration: none;
     }
 </style>
+
+

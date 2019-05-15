@@ -3,17 +3,17 @@
         <div class="reset_top">
             <!-- 左侧点击按钮 -->
             <p class="goBack">
-                <router-link to="" class="goback"></router-link>
+                <router-link :to="{path:'/Login'}" class="goback"></router-link>
             </p>
             <p class="pSize">重置密码</p>
         </div>
         <form action="" class="login_form">
-            <input type="text" placeholder="账号">
-            <input type="text" placeholder="旧密码">
-            <input type="text" placeholder="请输入新密码">
-            <input type="text" placeholder="请确认密码">
+            <input type="text" placeholder="账号" v-model="User">
+            <input type="text" placeholder="旧密码" v-model="Oldps">
+            <input type="text" placeholder="请输入新密码" v-model="Newps">
+            <input type="text" placeholder="请确认密码" v-model="Okps">
             <div class="codes clearfix">
-                <input type="text" placeholder="验证码" class="coder">
+                <input type="text" placeholder="验证码" class="coder" v-model="Ycode">
                 <div class="codeModule">
                     <img :src="nums" alt="抱歉，请刷新页面">
                     <span>看不清</span>
@@ -21,11 +21,12 @@
                 </div>
             </div>
 
-            <div class="loginSim">
-                <input type="submit" value="确认修改" title="确认修改" class="lastInt">
+            <div class="loginSim" @click="resetps">
+                <input type="submit" value="确认修改" title="确认修改" class="lastInt" >
             </div>
         </form>
-           
+      <Com_PromptBox v-show='isHide' :childCom="SetTxt" @childEvent="Show($event)"></Com_PromptBox>
+
     </div>
 </template>
 
@@ -34,14 +35,24 @@
     import Vue from 'vue'
     import axios from 'axios'
     import VueAxios from 'vue-axios'
+    import Com_PromptBox from "./Com_PromptBox";
     Vue.use(VueAxios, axios);
-    
+
     export default {
         name: 'Reset',
-        data(){
+      components: {Com_PromptBox},
+      data(){
             return{
                 nums: '',
                 // txtNums: val
+              User:'',
+              Oldps:'',
+              Newps:'',
+              Okps:'',
+              Ycode:'',
+              xmsg:[],
+              isHide:false,
+              SetTxt:''
             }
         },
         mounted() {
@@ -51,13 +62,39 @@
              console.log(this.nums)
            })
         },
+      updated() {
+      },
         methods: {
             subNums(){
                 if(toString(this.txtNums) !== this.nums){
                     console.log(this.txtNums)
                     alert('请重新输入验证码')
                 }
-            }
+                },
+              resetps(){
+
+            Vue.axios.post('https://elm.cangdu.org/v2/changepassword',{
+              username:this.User,
+              oldpassWord:this.Oldps,
+              newpassword:this.Newps,
+              confirmpassword:this.Okps,
+              captcha_code:this.Ycode
+            }).then((res)=>{
+              this.xmsg=res.data
+              console.log(this.xmsg);
+              if(this.xmsg.status==0){
+                // alert(this.xmsg.message)
+                this.SetTxt = this.xmsg.message
+              }else{
+                // alert(this.xmsg.success)
+                this.SetTxt = this.xmsg.success
+              }
+            })
+                this.isHide = true
+              },
+         Show(){
+              this.isHide = false
+         }
         }
     }
 
@@ -75,7 +112,7 @@
     .loginDatas{
         width: 20%;
         height: 100%;
-        background-color: lightcoral;
+      background-color: #3190e8;
     }
     .reset{
         width: 100%;
@@ -134,7 +171,7 @@
         background-color: rgb(76, 217, 100);
         color: white;
         border-radius: 4px;
-        width: 94%; 
+        width: 94%;
         height: 20%;
         margin-top: 1.4rem;
     }

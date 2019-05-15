@@ -4,8 +4,8 @@
         <div class="vessel">
             <!-- 顶端跳转部分 -->
             <div class="ifyTop">
-                <router-link to="" class="goBack"></router-link>
-                <p> {{ this.txt }} </p>
+                <router-link :to="{path:'/index'}" class="goBack"></router-link>
+                <p> {{ $store.state.Dclass }} </p>
             </div>
             <div id="ifyCenter">
                 <el-menu
@@ -91,7 +91,7 @@
                             <div>
                                 <div class="shopNature" >
                                     <!-- key 这个就是那个对象 key.isClick就是我要添加的属性 然后我把这个key对象传给函数   -->
-                                    <p v-for="key in rightTwo" :key="key.id" 
+                                    <p v-for="key in rightTwo" :key="key.id"
                                       :class="{ color:key.isClick}" @click="changeColor(key)">
                                         <span>{{ key.icon_name }}</span>
                                         {{ key.name }}
@@ -106,7 +106,7 @@
 
                     </el-submenu>
                 </el-menu>
-                
+
             </div>
         </div>
     </div>
@@ -155,7 +155,7 @@
             indexNum:0  //默认给0
             }
         },
-        mounted(){  
+        mounted(){
             //  请求分类
             Vue.axios.get('https://elm.cangdu.org/shopping/v2/restaurant/category')
 
@@ -174,9 +174,9 @@
                 this.mangoTxt = res.data[0].text
                 this.mangoUrl = res.config.url
             })
-            
+
             Vue.axios.get('https://elm.cangdu.org/shopping/v1/restaurants/activity_attributes')
-            
+
             .then((res)=>{
                 for (const keys in res.data) {
                     this.rightTwo.push(res.data[keys])
@@ -194,7 +194,7 @@
                 console.log(this.leftTwo)
             },
             clickFor(target){
-            
+
                 console.log(target.id)
                 target.onclick = function(){
                     target.bgc = this.blon
@@ -219,9 +219,9 @@
                     Vue.set(key,"isClick",false);
                  }else{
                     Vue.set(key,"isClick",true);
-                 }   
+                 }
             }
-          
+
         },
         components: {
             Load
@@ -230,10 +230,10 @@
 </script>
 
 <style scoped>
-/* 想办法让这个选择器权重最高 可以了 然后看我怎么写*/ 
-   .shopNature .color{  
+/* 想办法让这个选择器权重最高 可以了 然后看我怎么写*/
+   .shopNature .color{
         color: #fff;
-        background: #62b0f7;
+     background-color: #3190e8;
     }
     .shopNature{
         text-align: left;
@@ -312,7 +312,7 @@
         width: 270%;
         position: relative;
         right: 5.4rem;
-        
+
     }
     .empty{
 

@@ -2,19 +2,19 @@
   <div class="index_lunbo">
     <div class="swiper-container" ref="slider">
       <div class="swiper-wrapper">
-        
-          <div class="swiper-slide" > 
-            <router-link v-for="(slide,index) in comshopArrLeft" :key="index" to="" @click.prevent>
-                <div class="vessel">
+
+          <div class="swiper-slide" >
+            <router-link v-for="(slide,index) in comshopArrLeft" :to="{path:'/Classify'}"  @click.prevent :key="index" >
+              <div class="vessel" @click="Dclass(slide.title)">
                   <img :src="'//fuss10.elemecdn.com/' + slide.image_url" title="slide.title"/>
                   <p class="pSize">{{ slide.title }}</p>
                 </div>
             </router-link>
           </div>
 
-          <div class="swiper-slide" > 
+          <div class="swiper-slide" >
             <router-link  v-for="(slide,index) in comshopArrRight" :key="index" to="" @click.prevent>
-              <div class="vessel">
+              <div class="vessel" @click="Dclass(slide.title)">
                 <img :src="'//fuss10.elemecdn.com/' + slide.image_url" title="slide.title"/>
                 <p class="pSize">{{ slide.title }}</p>
               </div>
@@ -35,14 +35,14 @@
 
   export default {
     name: "Slider",
-    data(){     
+    data(){
         return{
         shopArr:[],
         comshopArrLeft: [],
         comshopArrRight: []
       }
     },
-    mounted(){      
+    mounted(){
             Vue.axios.get('https://elm.cangdu.org/v2/index_entry').then((res)=>{
                   console.log(res.data)
                   this.shopArr = res.data;
@@ -53,10 +53,16 @@
             }).catch(function(error){
                   console.log(error)
             }),
-            new Swiper (this.$refs.slider, {    
-                // pagination: '.swiper-pagination',            
+            new Swiper (this.$refs.slider, {
+                // pagination: '.swiper-pagination',
             })
-        }
+        },
+    methods:{
+      Dclass(c){
+        this.$store.state.Dclass=c
+        console.log(this.$store.state.Dclass )
+      },
+    }
     }
     </script>
 
@@ -65,7 +71,7 @@
         overflow:scroll;
         overflow-x:hidden;
       }
-      
+
       .swiper-container {
         width: 100%;
         margin-top: 12.5%;
@@ -104,8 +110,9 @@
       }
       .pSize{
         font-size: 14px;
-        text-shadow: 2px 2px 2px solid lightgray;
+        text-shadow: 2px 2px 2px  lightgray;
       }
 
   </style>
+
 
