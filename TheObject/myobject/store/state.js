@@ -16,7 +16,7 @@ let state={
   userId:'',//用户名id
 
 
-  abc:'搜索'
+  abc:'外卖'
 
 }
 export  default  state;
