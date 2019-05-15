@@ -78,13 +78,14 @@
 <style scoped>
   .selewen{
     background-color: #fff;
-    color: red;
+    color: #000;
   }
   .duan{
     padding:0.5rem;
   }
   h4{
     margin:0.5rem 0;
+    font-weight: 700;
     line-height: 1.2rem;
   }
 </style>
