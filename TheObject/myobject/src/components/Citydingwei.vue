@@ -15,20 +15,19 @@
      </div>
 
    </div>
-    <div class="hod">
+    <div class="hod ">
       <p>热门城市</p>
-      <div v-for="(lt,index) in Hotcity" :key='index'>
-       <router-link  :to="{path:'/CitySou'}"><div class="hname" @click="Dwcity(lt.name,lt.id,lt.latitude,lt.longitude)">{{lt.name}}</div></router-link>
+      <div v-for="(lt,index) in Hotcity" :key='index'  >
+       <router-link  :to="{path:'/CitySou'}" ><div class="hname" @click="Dwcity(lt.name,lt.id,lt.latitude,lt.longitude)">{{lt.name}}</div></router-link>
       </div>
     </div>
-    <div v-for="(item ,i) in fc" :key='i'>
+    <div v-for="(item ,i) in fc" :key='i' class="allsC">
       <div class="clearfix abc" >
         <p>{{i}}</p>
-
         <router-link :to="{path:'/CitySou'}">
           <div class="allcity" v-for="(addr,index) in item" :key="index" @click="Dwcity(addr.name,addr.id,addr.latitude,addr.longitude)">
             {{addr.name}}
-            {{addr.id}}
+            <!--{{addr.id}}-->
           </div>
         </router-link>
       </div>
@@ -107,6 +106,13 @@
 </script>
 
 <style scoped>
+  .allsC{
+    margin-top:1rem;
+  }
+  .abc{
+    background-color: #fff;
+
+  }
 .one{
   margin-top:2rem;
   background-color: #fff;
@@ -135,12 +141,17 @@
   }
   .hod{
     background-color: #fff;
-    /*margin-bottom:1rem;*/
+
   }
   .hod p{
     margin-bottom:0;
     line-height: 1.5rem;
     border-top:1px #ccc solid;
+  }
+  .hod .hname{
+    float:left;
+    width:25%;
+    box-sizing: border-box;
   }
   .hname{
     width:25%;
@@ -152,15 +163,16 @@
     color: rgb(49, 144, 232);
     line-height: 1.5rem;
     border:1px #ccc solid;
+    background-color: #fff;
   }
   .allcity{
     width:25%;
     box-sizing: border-box;
     float:left;
     text-align:center;
-
+    background-color: #fff;
     font-size:0.5rem;
-    color: #ccc;
+    color:#000;
     line-height: 1.5rem;
     border:1px #ccc solid;
     text-align:center;
@@ -171,8 +183,7 @@
 
   }
   .abc{
-    margin:1rem 0;
-
+    margin:0.5rem  0;
     border:1px #ccc solid;
   }
   .abc p{

@@ -13,20 +13,33 @@
     <form action="#">
       <label for="input"></label>
       <div class="onehang clearfix">
+        <span class="xiankuang"  v-show='flag==false' >{{zixian}}</span>
         <input type="text" name="input" id="input" class="input-lg" placeholder="请输入商家或美食名称" v-model="Input">
+        <span class="literr"  @click="deinput" >X</span>
         <div class="btn btn-primary" @click="F_btn">提交</div>
       </div>
     </form>
-    <p class="li" v-show='flag==true'>
-      历史信息
-    </p>
-    <p class="li" v-show='flag==false'>
+
+
+      <div v-show='ftiao==true'>
+      <p class="li" >
+        删除历史
+      </p>
+      <div v-for="(item,index) in perhistory" :key="index" class="tiao " >
+        <div class="onedata clearfix">
+          <div class="nshao" @click="add(item.Input)" >{{item.Input}} </div> <div @click="deletePer(index)" class="err">X</div>
+        </div>
+      </div>
+      <div class="jilu" @click="clearall">清除历史记录</div>
+    </div>
+    <div v-show='flag==false'>
+    <p class="li" >
       商家
     </p>
-    <!--{{sangjia}}-->
-    <!--<h3 v-show='fe==false'>暂无搜索</h3>-->
+    <!--<h3 v-show='fe==false' class="niming">暂无搜素记录</h3>-->
     <div v-for="(sxin,index) in sangjia" :key="index">
-      <div class="yidan clearfix">
+      <div class="yidan clearfix"  @click="Scity(sxin.id)">
+        <router-link :to="{path:'/'}">
         <div class="left">
           <img class="souimg" :src="'//elm.cangdu.org/img/'+ sxin.image_path" alt="">
         </div>
@@ -36,7 +49,9 @@
          20元起送/
          距离:{{sxin. distance}}
        </div>
+        </router-link>
       </div>
+    </div>
     </div>
     <Footer></Footer>
   </div>
@@ -55,7 +70,10 @@
         Input: '',
         sangjia:'',
         flag:true,
-        fe:false
+        ftiao:false,
+        perhistory:[],
+        zixian:'',
+        // fe:false
       }
     },
     components: { Footer},
@@ -66,7 +84,12 @@
     },
     methods:{
       F_btn() {
-        this.flag = !this.flag
+        this.ftiao=false;
+        this.fe=false;
+        // this.flag = !this.flag;
+        this.flag = false;
+        this.zixian=this.Input;
+        console.log(this.zixian);
         let jin=this.$store.state.latitude
         let wei=this.$store.state.longitude
         console.log(jin,wei)
@@ -75,16 +98,67 @@
         Vue.axios.get(sou).then((res) => {
           console.log(res.data);
           this.sangjia=res.data;
+
         }).catch((error) => {
           console.log('请求错误', error);
-          this.fe = !this.fe
+          // this.fe = true
         })
-      }
+        let per ={
+          Input:this.Input,
+        };
+        this.perhistory.push(per);
+        this.Input = "";
+
+      },
+      deletePer(i){
+        this.perhistory.splice(i,1);
+      },
+      add(nei){
+        this.Input = nei;
+        this.perhistory.splice(0,1);
+     },
+      clearall(){
+       this.ftiao=false;
+        this.perhistory.splice(0,this.perhistory.length);
+      },
+      deinput(){
+       this.Input="";
+       this.ftiao=true;
+        this.flag = !this.flag;
+      },
+        Scity(id){
+          console.log(id);
+          this.$store.state.shopid=id;
+        }
     }
   }
 </script>
 
 <style scoped>
+  .literr{
+    position: relative;
+    left:-1rem;
+    top:0.3rem;
+  }
+  .tiao {
+    background-color: #fff;
+
+  }
+  .jilu{
+    background-color: #fff;
+    color:dodgerblue;
+    text-align: center;
+    line-height: 1.2rem;
+  }
+  .onedata{
+    padding:0.3rem;
+  }
+  .nshao{
+    float:left;
+  }
+  .err{
+    float:right;
+  }
   .head{
     background-color: #3190e8;
   }
@@ -121,8 +195,17 @@
     font-weight: 600;
     float:right;
   }
+  .btn-primary{
+    position: relative;
+    top:-0.65rem;
+  }
   .jian{
     color:#fff;
+  }
+  .niming{
+    background-color: #fff;
+    text-align: center;
+    padding:2rem;
   }
   .onehang{
     margin:0 auto;
@@ -147,5 +230,13 @@
   }
   .li{
     padding:0.2rem 0.5rem;
+  }
+  .xiankuang{
+    position: fixed;
+    left:1rem;
+    top:3rem;
+    height: 1.2rem;
+    width:10rem;
+    background-color:  rgb(245, 245, 245);
   }
 </style>

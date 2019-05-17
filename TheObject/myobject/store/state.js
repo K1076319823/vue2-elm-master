@@ -16,7 +16,8 @@ let state={
   userId:'',//用户名id
 
 
-  abc:'外卖'
+  abc:'外卖',
+  cityname:''  //记录选地点名称
 
 }
 export  default  state;

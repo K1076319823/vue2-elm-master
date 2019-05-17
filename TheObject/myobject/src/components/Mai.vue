@@ -78,7 +78,7 @@
         console.log(res);
         for (let i = 0; i < res.data.length; i++) {
           let pre = []
-          pre = res.data[i].is_premium
+          pre = res.data.is_premium
           // console.log(pre);
           if (pre == true) {
             this.premium = true

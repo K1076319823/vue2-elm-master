@@ -22,15 +22,21 @@
       <div class="tijiao" @click="getadd" >
         提交
       </div>
-
+      <div  v-show="isshow">
+        <p class="history"> 搜索历史:</p>
+        <h3 class="hish3"> {{$store.state.cityname}}</h3>
+        <p>{{$store.state.msgaddr}}</p>
+      </div>
     </div>
-      <p class="history" v-show="isshow"> 搜索历史:</p>
       <div  v-for=" (add,index) in hit" class="list" :key='index'>
+
         <router-link :to="{path:'/index',query:{address:add.address}}">
+          <div class="cl" @click="storeadd(add.name,add.address)">
           <h3>{{add.name}}</h3>
           <p>
             {{add.address}}
           </p>
+          </div>
         </router-link>
       </div>
     </div>
@@ -55,7 +61,10 @@
         newaddr: '',
         text: '',
         hit: {},
-        isshow: true
+        isshow: true,
+        perCity:[] , //存储城市历史
+        name:'',
+        addr:''
       }
 
     },
@@ -87,8 +96,15 @@
           console.log(response.data);
           this.hit = response.data;
         });
-          this.isshow = !this.isshow;
+          this.isshow = false;
       },
+      storeadd(a,b){
+        this.$store.state.cityname=a;
+        this.$store.state.msgaddr=b;
+        console.log(this.$store.state.cityname,this.$store.state.msgaddr ,"aaaaaa")
+       }
+
+
 
       // updata() {
       //   let a = 'https://elm.cangdu.org/v1/pois?city_id=&keyword=' + this.text + 'type=search'
@@ -106,8 +122,20 @@
 </script>
 
 <style scoped>
+.CitySou{
+  width:100%;
+  height:100%;
+
+}
 .head{
   background-color: #3190e8;
+  position: fixed;
+  left:0;
+  top:0;
+  width:100%;
+  padding:0 0.2rem;
+  height:2rem;
+  box-sizing: border-box;
 }
 .head div{
     float:left;
@@ -128,8 +156,9 @@
   color:#fff;
 }
 .sou{
+  box-sizing: border-box;
   background-color: #fff;
-  margin:0.5rem 0 ;
+  margin:2.8rem 0 0.5rem 0 ;
   padding:0.3rem;
 }
   .sou div{
@@ -150,7 +179,7 @@
   .tijiao{
     width:100%;
     height:1.5rem;
-    background: blue;
+    background: #3190e8;
     color:#fff;
     border-radius: 0.2rem;
     text-align:center;
@@ -158,16 +187,22 @@
     line-height: 1.5rem;
   }
   .history{
-    width:15.3rem;
-    margin:0 auto;
-    border-bottom: 1px #ccc solid;
+    margin:0.5rem auto;
+    padding:0.5rem;
+    box-sizing: border-box;
     line-height: 1.2rem;
+    border-bottom:1px #ccc solid;
   }
+  .hish3{
+  color: #3190e8;
+    margin-bottom:1rem;
+}
   .list{
     background-color: #fff;
+    padding:0.5rem;
+    box-sizing: border-box;
     margin:0;
     border-bottom: 1px #ccc solid;
-    padding:0.5rem;
   }
 .list h3{
   margin:0;

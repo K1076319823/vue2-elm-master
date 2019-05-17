@@ -73,6 +73,10 @@
   }
   .head{
     background-color: #3190e8;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
   }
   h4{
     margin:0.5rem 0;
@@ -101,5 +105,6 @@
   }
   .duan{
     padding:0.5rem;
+    margin-top:1.6rem;
   }
 </style>

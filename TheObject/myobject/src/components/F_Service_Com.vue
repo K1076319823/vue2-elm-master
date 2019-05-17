@@ -76,12 +76,18 @@
 </script>
 
 <style scoped>
+  .header{
+    position: fixed;
+    top:0;
+    left:0;
+  }
   .selewen{
     background-color: #fff;
     color: #000;
   }
   .duan{
     padding:0.5rem;
+    margin-top:2rem;
   }
   h4{
     margin:0.5rem 0;
