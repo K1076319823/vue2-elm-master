@@ -41,6 +41,8 @@ import huanyuanSpeak from '../components/huanyuanSpeak';
 import Shopjilu from '../components/Shopjilu';
 import Common from "../components/Common";
 import Evaluate from "../components/Evaluate";
+import Dinglist from "../components/Dinglist";
+import Proshow from "../components/Proshow";
 
 export default new Router({
   routes: [
@@ -50,6 +52,7 @@ export default new Router({
     { path: '/Mai', component: Mai },
     { path: '/Sou', component: Sou },
     { path: '/Ding', component: Ding },
+    {path:'/Dinglist',component:Dinglist},
     { path: '/My', component: My},
     {path:'/Balance',component:Balance},
     {path:'/Baspask',component:Baspask},
@@ -83,7 +86,8 @@ export default new Router({
     {path:'/daimoneyspaek',component:daimoneyspaek},
     {path:'/Shopjilu',component:Shopjilu},
     { path: '/Common',component: Common },
-    { path: '/Evaluate',component: Evaluate }
+    { path: '/Evaluate',component: Evaluate },
+    {path:'/Proshow',component:Proshow}
   ]
 })
 

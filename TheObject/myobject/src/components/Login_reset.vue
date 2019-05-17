@@ -15,9 +15,9 @@
             <div class="codes clearfix">
                 <input type="text" placeholder="验证码" class="coder" v-model="Ycode">
                 <div class="codeModule">
-                    <img :src="nums" alt="抱歉，请刷新页面">
+                    <img :src="nums" alt="抱歉，请刷新页面" class="codertu">
                     <span>看不清</span>
-                    <a href="javascript:;">换一张</a>
+                    <a href="javascript:;" @click="sendReq">换一张</a>
                 </div>
             </div>
 
@@ -63,6 +63,7 @@
            })
         },
       updated() {
+
       },
         methods: {
             subNums(){
@@ -94,7 +95,12 @@
               },
          Show(){
               this.isHide = false
-         }
+         },
+          sendReq() {
+            Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((res) => {
+              this.nums = res.data.code;
+            })
+          }
         }
     }
 
@@ -189,7 +195,7 @@
         background-color: white;
     }
     .coder{
-        width: 70%;
+        width: 40%;
         height: 100%;
     }
     img{
@@ -208,6 +214,11 @@
         padding-top: .2rem;
         line-height: 1rem;
         color: #666;
+    }
+    .codertu{
+      position: absolute;
+      right:0;
+      top:9.4rem;
     }
     a{
         text-decoration: none;
