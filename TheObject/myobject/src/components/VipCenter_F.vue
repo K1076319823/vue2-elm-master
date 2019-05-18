@@ -51,12 +51,19 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   export default {
     name: "VipCenter_F",
     data(){
       return {
-        v:'123'
+        v:''
       }
+    },
+    mounted(){
+      Vue.axios.get(`https://elm.cangdu.org/v1/user`).then((res) => {
+        console.log(res)
+        this.v = res.data.username
+      })
     }
   }
 </script>

@@ -7,7 +7,7 @@
     </span>兑换会员
     </header>
     <div class="ConvertUser">
-      <p><span class="overCon">成功兑换后将关联到当前账号:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><b>{{'获取登录账户的数据'}}</b></span>
+      <p><span class="overCon">成功兑换后将关联到当前账号:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><b>{{v}}</b></span>
       </p>
     </div>
     <div class="ConvertInput" v-for="(place , index) in InPlace" :key="index">
@@ -32,14 +32,15 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import F_Service_Com from "./F_Service_Com";
   import Com_PromptBox from "./Com_PromptBox";
-
   export default {
     name: "Vip_Convert_F",
     components: {Com_PromptBox, F_Service_Com},
     data() {
       return {
+        v:'',
         isHide:false,
         InPlace: [
           {in: '请输入10位卡号',max:10,txtIN:''},
@@ -53,6 +54,10 @@
     },
     mounted(){
       console.log(this.InPlace);
+      Vue.axios.get(`https://elm.cangdu.org/v1/user`).then((res) => {
+        console.log(res)
+        this.v = res.data.username
+      })
     },
     methods:{
       ifIn() {
