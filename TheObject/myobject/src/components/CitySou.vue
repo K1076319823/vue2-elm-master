@@ -24,8 +24,10 @@
       </div>
       <div  v-show="isshow">
         <p class="history"> 搜索历史:</p>
+        <router-link :to="{path:'/index'}">
         <h3 class="hish3"> {{$store.state.cityname}}</h3>
-        <p>{{$store.state.msgaddr}}</p>
+        <p class="gadd">{{$store.state.msgaddr}}</p>
+        </router-link>
       </div>
     </div>
       <div  v-for=" (add,index) in hit" class="list" :key='index'>
@@ -122,9 +124,13 @@
 </script>
 
 <style scoped>
+  .gadd{
+    color:#000;
+  }
 .CitySou{
   width:100%;
   height:100%;
+  font-size:0.6rem;
 
 }
 .head{
@@ -204,8 +210,12 @@
     margin:0;
     border-bottom: 1px #ccc solid;
   }
+  h3{
+    font-size:0.8rem;
+  }
 .list h3{
   margin:0;
+
 }
 .list p{
   margin:0;

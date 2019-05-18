@@ -16,14 +16,14 @@
 
    </div>
     <div class="hod ">
-      <p>热门城市</p>
+      <p class="ti">热门城市</p>
       <div v-for="(lt,index) in Hotcity" :key='index'  >
        <router-link  :to="{path:'/CitySou'}" ><div class="hname" @click="Dwcity(lt.name,lt.id,lt.latitude,lt.longitude)">{{lt.name}}</div></router-link>
       </div>
     </div>
     <div v-for="(item ,i) in fc" :key='i' class="allsC">
       <div class="clearfix abc" >
-        <p>{{i}}</p>
+        <p class="ti">{{i}}</p>
         <router-link :to="{path:'/CitySou'}">
           <div class="allcity" v-for="(addr,index) in item" :key="index" @click="Dwcity(addr.name,addr.id,addr.latitude,addr.longitude)">
             {{addr.name}}
@@ -116,6 +116,7 @@
 .one{
   margin-top:2rem;
   background-color: #fff;
+  font-size:0.6rem;
 }
 .one p{
   padding:0 0.4rem;
@@ -128,10 +129,12 @@
   .dingweiarea{
   line-height: 1.5rem;
   }
+
   .dwcity{
     float:left;
     font-size:1rem;
     color:rgb(49, 144, 232);
+    margin-left:0.3rem;
   }
   .jian{
     float:right;
@@ -192,5 +195,9 @@
   }
   .allcity{
     border:1px #ccc solid;
+  }
+  .ti{
+    font-size:0.6rem;
+    padding-left:0.3rem;
   }
 </style>

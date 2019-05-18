@@ -4,7 +4,7 @@
     <router-link to="" class="skip">
     </router-link>
     <p class="fonts">
-      <router-link :to="{path:'/Citydingwei'}" style="color: white;">{{$route.query.address}}</router-link>
+      <router-link :to="{path:'/Citydingwei'}" style="color: white;">{{$store.state.msgaddr}}</router-link>
     </p>
     <div class="access clearfix">
       <span class="register" @click="rouTer()">{{a}}</span>

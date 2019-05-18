@@ -30,6 +30,7 @@
   h3{
     float:left;
     margin: 0.5rem;
+    font-size:0.6rem;
   }
   .access{
     float: right;
@@ -43,6 +44,7 @@
     color: white;
     border-right: 2px solid white;
     text-decoration: none;
+
   }
   .register{
     font-size: 0.6rem;

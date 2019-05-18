@@ -40,7 +40,7 @@
     <!--<h3 v-show='fe==false' class="niming">暂无搜素记录</h3>-->
     <div v-for="(sxin,index) in sangjia" :key="index">
       <div class="yidan clearfix"  @click="Scity(sxin.id)">
-        <router-link :to="{path:'/'}">
+        <router-link :to="{path:'/CAndESocket'}">
         <div class="left">
           <img class="souimg" :src="'//elm.cangdu.org/img/'+ sxin.image_path" alt="">
         </div>
@@ -141,16 +141,20 @@
     position: fixed;
     width:100%;
     background-color: #fff;
-  top:2rem;
+  top:2.2rem;
     left:0;
   }
   .dataxi{
    margin-top: 6rem;
   }
-  .literr{
+  .onehang{
     position: relative;
-    left:-1rem;
+  }
+  .literr{
+    position: absolute;
+    left:11rem;
     top:0.3rem;
+    font-size:0.7rem;
   }
   .tiao {
     background-color: #fff;
@@ -161,9 +165,11 @@
     color:dodgerblue;
     text-align: center;
     line-height: 1.2rem;
+    font-size:0.7rem;
   }
   .onedata{
     padding:0.3rem;
+    font-size:0.6rem;
   }
   .nshao{
     float:left;
@@ -208,13 +214,14 @@
 
   .btn {
     width: 2.7rem;
+    height: 1.5rem;
     font-weight: 600;
     float:right;
+    text-align:center;
+    /*line-height: 1.5rem;*/
+    font-size:0.7rem;
   }
-  .btn-primary{
-    position: relative;
-    top:-0.65rem;
-  }
+
   .jian{
     color:#fff;
   }
@@ -235,6 +242,7 @@
   .yidan{
     background-color: #fff;
     padding:0.3rem;
+    font-size:0.6rem;
     border-bottom:1px #ccc solid;
   }
    .left, .right{
@@ -246,13 +254,19 @@
   }
   .li{
     padding:0.2rem 0.5rem;
+    font-size:0.7rem;
   }
   .xiankuang{
-    position: fixed;
-    left:1rem;
-    top:3rem;
-    height: 1.2rem;
+    position: absolute;
+    left:0rem;
+    top:0rem;
+    text-align: left;
+    height: 1.3rem;
+    padding:0.2rem;
+    font-size:0.6rem;
     width:10rem;
+    line-height: 1.3rem;
+    font-weight: bold;
     background-color:  rgb(245, 245, 245);
   }
 </style>

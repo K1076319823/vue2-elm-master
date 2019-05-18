@@ -233,6 +233,7 @@
           Scity(id){
             console.log(id);
             this.$store.state.shopid=id;
+            console.log(this.$store.state.shopid);
           },
             clickSub(target){
                 this.leftTwo = target.sub_categories.slice(1)
@@ -585,6 +586,7 @@
     }
 /*下部布局*/
 .mar{
+
   padding:0.4rem;
 }
 .left{
@@ -592,7 +594,9 @@
   width:20%;
 }
 .right{
+  font-size:0.6rem;
   float:left;
+  width:75%;
   width:75%;
   box-sizing: border-box;
   margin-left:0.4rem;

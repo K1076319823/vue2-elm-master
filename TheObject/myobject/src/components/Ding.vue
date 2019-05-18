@@ -18,7 +18,7 @@
         <div class="right">
           <div class="clearfix"><h4 class="name">哈哈死亡诗社7777 </h4><span class="zhishi">></span> <span class="copy">等待支付</span></div>
           <div class="clearfix"><span class="danhao">23-31</span><span class="jia">￥:1738:00</span></div>
-          <div class="clearfix"><span class="zou">去支付,还剩15分10秒</span></div>
+          <div class="clearfix"><span class="zou">去支付,还剩{{minutes }}分{{seconds}}秒</span></div>
         </div>
       </div>
     </div>
@@ -30,9 +30,51 @@
     import Header from "./Header";
     import Footer from "./Footer";
     export default {
-        name: "Ding",
-      components: {Footer, Header}
+      name: "Ding",
+      components: {Footer, Header},
+      data() {
+        return {
+          minutes : 15,
+          seconds: 0
+        }
+      },
+      methods: {
+        num(n) {
+          return n < 10 ? '0' + n : '' + n
+        },
+        timer() {
+          var _this = this
+          var time = window.setInterval(function () {
+            if (_this.seconds === 0 && _this.minutes !== 0) {
+              _this.seconds = 59
+              _this.minutes -= 1
+            } else if (_this.minutes === 0 && _this.seconds === 0) {
+              _this.seconds = 0
+              window.clearInterval(time)
+            } else {
+              _this.seconds -= 1
+            }
+          }, 1000)
+        }
+      },
+      mounted() {
+        this.timer()
+      },
+      watch: {
+        second: {
+          handler(newVal) {
+            this.num(newVal)
+
+          }
+        },
+        minute: {
+          handler(newVal) {
+            this.num(newVal)
+          }
+        }
+      }
     }
+
 </script>
 
 <style scoped>
@@ -55,6 +97,7 @@
   }
   h4{
     float:left;
+    font-size:0.8rem;
   }
   .zhishi{
     color:#ccc;
@@ -82,6 +125,7 @@
     float:right;
     padding:0.2rem;
     color:red;
+    font-size:0.5rem;
   }
 
 
