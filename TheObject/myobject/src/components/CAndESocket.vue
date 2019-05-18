@@ -1,0 +1,97 @@
+<template>
+    <div class="CAndESocket">
+        <div class="titler clearfix">
+            <span class="commo">
+                <router-link :to="{ path: '/CAndESocket/Common' }">
+                    <div class="shopBox">商品</div>
+                </router-link>
+            </span>
+            <span class="appraise">
+                <router-link :to="{ path: '/CAndESocket/Evaluate' }">
+                    评价
+                </router-link>
+            </span>
+        </div>
+        <!-- 给路由插座 添加动画 -->
+        <transition name="fade" mode="out-in">
+            <router-view class="orange-router"></router-view>
+        </transition>
+    </div>
+</template>
+
+<script>
+import Common from '../components/Common.vue'
+import Evaluate from '../components/Evaluate.vue'
+export default {
+    name: 'CAndESocket',
+    components: {
+        Common,
+        Evaluate
+    }
+}
+</script>
+
+<style scoped>
+
+    .fade-enter-active{
+        animation: fadeIn 1s;
+    }
+    .fade-leave-active{
+        animation: fadeOut 1s;
+    }
+
+    a{
+        text-decoration: none;
+        font-weight: 600;
+        color: rgb(49, 144, 232);
+    }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        list-style: none;
+    }
+    html,body{
+        width: 100%;
+        height: 100%;
+    }
+    .evaluate{
+        width: 100%;
+        height: 100%;
+        background-color: rgb(245, 245, 245);
+    }
+     .titler{
+        width: 100%;
+        height: 8%;
+        background-color: white;
+        border-bottom: 1px solid lightgray;
+        box-shadow: 1px 1px 1px lightgray;
+        font-size: .8rem;
+        line-height: 2.3rem;
+        box-shadow: 4px 4px 4px rgb(163, 163, 163);
+    }
+    .sohopBox{
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 10px 2px;
+    }
+    .titler span{
+        display: inline-block;
+    }
+    .commo{
+        width: 50%;
+        display: inline-block;
+        float: left;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    .appraise{
+        width: 50%;
+        display: inline-block;
+        float: left;
+        text-align: center;
+        color: rgb(49, 144, 232);
+        font-weight: 600;
+    }
+</style>
