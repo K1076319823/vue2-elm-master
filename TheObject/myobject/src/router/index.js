@@ -40,10 +40,22 @@ import daimoneyspaek from '../components/daimoneyspaek';
 import huanyuanSpeak from '../components/huanyuanSpeak';
 import Shopjilu from '../components/Shopjilu';
 import Common from "../components/Common";
-import Evaluate from "../components/Evaluate";
+import Evaluate from "../components/Evaluate"; // 商品评价
 import Dinglist from "../components/Dinglist";
 import Proshow from "../components/Proshow";
+import CAndESocket from '../components/CAndESocket'; // 插座
 
+import Indent from '../components/Indent' // 下单页面
+import Bill from '../components/Bill' // 下单页面 -> 发票组件
+
+import Account_UserName from '../components/Account_UserName';
+import Account_Location from '../components/Account_Location';
+import Account_LogOutBox from '../components/Account_LogOutBox';
+import Account_NewPath from '../components/Account_NewPath';
+import Account_Position from'../components/Account_Position';
+import Shop_Address from '../components/Shop_Address';
+import Select_Address from '../components/Select_Address';
+import Select_Position from '../components/Select_Position'
 export default new Router({
   routes: [
 
@@ -87,7 +99,25 @@ export default new Router({
     {path:'/Shopjilu',component:Shopjilu},
     { path: '/Common',component: Common },
     { path: '/Evaluate',component: Evaluate },
-    {path:'/Proshow',component:Proshow}
+    {path:'/Proshow',component:Proshow},
+    {path: '/CAndESocket',component: CAndESocket, children: [
+        { path: '/', component: Common },
+        { path: 'Common', component: Common },
+        { path: 'Evaluate', component: Evaluate }
+      ]},
+    // 下单页面
+    { path: '/Indent', component: Indent },
+    // 下单页面 -> 发票组件
+    { path: '/Bill', component: Bill },
+    {path:'/Account_UserName',component:Account_UserName},
+    {path:'/Account_Location',component:Account_Location},
+    {path:'/Account_LogOutBox',component:Account_LogOutBox},
+    {path:'/Account_NewPath',component:Account_NewPath},
+    {path:'/Account_Position',component:Account_Position},
+    {path:'/Shop_Address',component:Shop_Address},
+    {path:'/Select_Address',component:Select_Address},
+    {path:'/Select_Position',component:Select_Position}
+
   ]
 })
 

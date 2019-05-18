@@ -5,7 +5,7 @@
          <span class="pull-left clearfix"><img src="../../images/商家.png" class="merimg"/></span>
         <span class="pull-right clearfix merfont">附近商家</span>
       </div>
-      <router-link :to="{path:'/'}" v-for="(pro , index) in proArr" :key="index" >
+      <router-link :to="{path:'/CAndESocket'}" v-for="(pro , index) in proArr" :key="index" >
         <ul class="ulinfor" @click="Scity(pro.id)">
           <li class="pull-left imgli">
             <img :src="'//elm.cangdu.org/img/'+ pro.image_path" alt="" class=""/>
@@ -78,7 +78,7 @@
         console.log(res);
         for (let i = 0; i < res.data.length; i++) {
           let pre = []
-          pre = res.data.is_premium
+          pre = res.data[i].is_premium
           // console.log(pre);
           if (pre == true) {
             this.premium = true

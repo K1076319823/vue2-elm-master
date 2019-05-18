@@ -1,13 +1,5 @@
 <template>
     <div class="mall"> 
-        <div class="titler clearfix">
-            <span class="commo">
-                <div class="shopBox">商品</div>
-            </span>
-            <span class="appraise">
-                评价
-            </span>
-        </div>
         <!-- 左边的选取区域 -->
         <div class="wrapper" ref='wrapper'> 
             <ul class="cate-left"> 
@@ -32,6 +24,7 @@
                                     <!-- <img :src="'//elm.cangdu.org/img/'+lists.image_path" alt=""> -->
                                     <img :src= "'//elm.cangdu.org/img/'+ lists.image_path" alt="请升级浏览器">
                                     <ul class="vesseler" >
+                                        <li class="newShop">新</li>
                                         <li class="smallTitle">{{ lists.name }}</li>
                                         <li class="referral">{{ lists.description }}</li>
                                         <li class="month">月售{{ lists.month_sales }}份</li>
@@ -39,9 +32,8 @@
                                         <li class="money">￥{{ lists.specfoods[0].price }}</li>
                                         <li class="money_txts">起</li>
                                         <!-- 插值表达式书写事件，传入后台请求的参数 -->
-                                        <!-- moveBall -->
-                                        <!-- @click="bounceWeb" -->
                                         <div @click="bounceWeb(lists)">
+                                            <!-- 点击按钮 将该商品添加到 Vuex 里面 -->
                                             <li class="choose" @click="addToShopCar(lists)" >
                                                 {{checked(lists.specfoods)}}
                                             </li>
@@ -49,7 +41,7 @@
                                     </ul>
                                 </div>
                             </div>
-        
+
                         </div>
                     </li> 
                 </ul> 
@@ -60,12 +52,15 @@
         <!-- :class="searchBarFixed == true ? 'isFixed' : '' " -->
         <div class="isFixed clearfix">
             <div class="logo"></div>
-            <div class="logoPrice" id="badge"></div>
+            <div class="logoPrice" id="badge">
+                {{ $store.getters.getAllCount }}
+            </div>
             <ul class="totalVessel">
-                <li class="totalPrice">￥0.00</li>
+                <li class="totalPrice">￥{{ $store.getters.getAllPrice }}.00</li>
                 <li class="delivery">配送费￥5</li>
             </ul>
             <div class="price">还差 ￥20起送</div>
+            <router-link :to="{}" class="freight" v-show="$store.state.affair">立即下单</router-link>
         </div>
 
         <transition
@@ -92,7 +87,6 @@
                 </div>
                 <div class="popBot">
                     <span class="sizeMoney" >￥{{ bouncePrice }}</span>
-                    <span class="addToCar">加入购物车</span>
                 </div>
             </div>
         </div>
@@ -115,7 +109,7 @@
                 searchBarFixed: Boolean,
                 ballFlage: false,
                 // 定义数组存储购买的商品
-                shopDatas: [],
+                // shopDatas: [],
                 bounce: false,
                 // 弹出框里的三个数据
                 bounceValue01: '',
@@ -126,32 +120,42 @@
                 shopName: '',
                 shopObj: {},
                 // 设置a选择状态
-                changeA: false
+                changeA: false,
+                selectedCount: 1, // 每点击一次,数量增加一
+                foodsPrice: Number, // 商品的 价格
+                item_id: Number, //商品的 ID
+
+                // VueX 里面的 商品列表数组
+                shopCar: []
 
             } 
         },
         mounted(){
-            Vue.axios.get('https://elm.cangdu.org/shopping/v2/menu?restaurant_id=1').then((res) => {
+            console.log(this.$store.state.shopid)
+            Vue.axios.get(`https://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.$store.state.shopid}`).then((res) => {
                 for (const key in res.data) {
                     this.leftName.push(res.data[key].name)
                     // 循环遍历出 每一个左边栏对应的 右边栏列表块
                     this.foods.push(res.data[key])
+                   
                 }
-                // console.log(this.leftName)
-                // console.log(this.foods)
             }) 
-
             // 设置窗口监听
             window.addEventListener('scroll', this.handleScroll)
+
+
+            // 判断样式右下角 立即下单按钮
+
         },
         methods:{
             checked(lists){
-                // console.log(lists)
+                
                 if(lists.length == 1){
                     return '+' 
                 }else{
                     return '选规格'
                 }
+
             },
             moveBall(){
                 this.ballFlage = !this.ballFlage;
@@ -183,29 +187,25 @@
                 this.ballFlage = !this.ballFlage
             },
             // 添加对象到购物车
-            addToShopCar(shop){
-                // console.log('111')
-                // console.log(shop)
-                // this.shopObj = shop
-                // console.log(shop)
-                // let shopObj = {name: shop, count: 1}
-                // if(this.shopDatas === null){
-                //     this.shopDatas.push(shopObj)
-                //     console.log(this.shopDatas)
-                // }else{
-                //     let isHas = this.shopDatas.some((v)=>{
-                //         return v.name._id === shop._id;
-                //     })
+            addToShopCar(commo){
+               this.foodsPrice = commo.specfoods[0].price
+               console.log(this.foodsPrice)
+               this.item_id = commo.specfoods[0].item_id
+               console.log(this.item_id)
+                // 存储一个对象, 把商品对象数据存到 VueX 里
+               let goodsInfor = {
+                   id: this.item_id,
+                   count: this.selectedCount,
+                   price: this.foodsPrice,
+                   selected: true
+               }
+                // 调用 store 中的 mutations
+                this.$store.commit('addToShopCar',goodsInfor)
+                // 从 VueX 里面把 商品列表的数组取出来
+                this.shopCar = this.$store.state.car
+                console.log(this.shopCar)
 
-                //     if(isHas){
-                //         const arr = this.shopDatas.filter((v)=>{
-                //             return v.name._id === shop._id
-                //         })
-                //         arr[0].count++
-                //     }else{
-                //         this.shopDatas.push(shopObj)
-                //     }
-                // }
+
             },
 
             // 添加按钮被点击，弹出窗口
@@ -241,8 +241,7 @@
                 this.bounce = false;
             },
             changeMe(target){
-                console.log(target)
-                // target.style.backgroundColor = "red"
+
                 this.changeA = !this.changeA
             }
         }                       
@@ -250,6 +249,19 @@
 </script>
 
 <style scoped>  
+    .newShop{
+        width: .8rem;
+        height: .8rem;
+        position: absolute;
+        left: 7.4rem;
+        top: .5rem;
+        font-size: .16rem;
+        background-color: darkorange;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        border: 1px double gold;
+    }
     /* 左侧 A标签的点击样式 */
     .colorful{
         color: rgb(49, 144, 232)
@@ -271,7 +283,8 @@
         background-color: white;
         border-radius: 4px;
         opacity: 1;
-        margin: 9rem auto 0;
+        margin: 6.4rem auto 0;
+        border: 1px solid rgb(240, 240, 240);
     }
     .popTitle{
         width: 100%;
@@ -308,11 +321,11 @@
     .sizeSelect>div:first-child{
         width: 46%;
         height: 100%;
-        /* background-color: lightblue; */
         float: left;
         margin-left: .4rem;
-        border: 1px solid rgb(49, 153, 232);
-        color: rgb(49, 153, 232);
+        /*  选择框被选中时显示的边框和文字颜色  (49, 153, 232) */
+        border: 1px solid rgb(207, 207, 207);
+        color: #666;
         border-radius: 4px;
         text-align: center;
         line-height: 1.6rem;
@@ -320,9 +333,9 @@
     .sizeSelect>div:last-child{
         width: 36%;
         height: 100%;
-        /* background-color: lightblue; */
         float: right;
-        border: 1px solid rgb(49, 153, 232);
+        border: 1px solid rgb(207, 207, 207);
+        color: #666;
         border-radius: 4px;
         text-align: center;
         line-height: 1.6rem;
@@ -349,7 +362,7 @@
         background-color: rgb(49, 153, 232);
         color: white;
         padding: .4rem .6rem;
-        margin-left: 4.2rem;
+        margin-left: 3.2rem;
         border-radius: 4px;
     }
 
@@ -379,6 +392,25 @@
         border-top-left-radius:.2em;
         border-top-right-radius:.2em;
     }
+    .isFixed a{
+        float: right;
+        width: 6rem;
+        height: 2.2rem;
+        color: white;
+        display: inline-block;
+        position: relative;
+        bottom: 3.96rem;
+        left: 6rem;
+        background-color: rgb(86, 209, 108);
+        /* border: 1px solid #10C2B0; */
+        border-radius: .2rem;
+        font-size: .7rem;
+        font-weight: 800;
+        line-height: 2.34rem;
+        text-align: center;
+        text-decoration: none;
+        border-bottom: 20px solid rgb(86, 209, 108);
+    }
     .logoPrice{
         width: 1rem;
         height: 1rem;
@@ -387,6 +419,8 @@
         bottom: 4.1rem;
         left: 3.1rem;
         border-radius: 50%;
+        text-align: center;
+        color: white;
     }
     .price{
         float: right;
@@ -403,6 +437,7 @@
         line-height: 2.34rem;
         text-align: center;
     }
+    
     .totalVessel{
         float: left;
         position: relative;
@@ -444,13 +479,23 @@
         background-position: center center;
         background-size: cover;
     }
-    .shopLists{
-        
-    }
 
 
     ul{
         list-style: none;
+    }
+    .cate-left{
+        width: 4.4rem;
+        height: 600px;
+        overflow-x: hidden;
+    }
+    .cate-left>li{
+        height: 10%;
+    }
+    .cate-right{
+        width: 12.6rem;
+        height: 600px;
+        overflow-x: hidden;
     }
     *{
         margin: 0;
@@ -459,8 +504,8 @@
     .mall{
         width: 100%;
         height: 100%;
-        overflow-x: hidden;
-        overflow-y: hidden;
+        /* overflow-x: hidden; */
+        /* overflow-y: hidden; */
         position: relative;
     }
     .titler{
@@ -471,36 +516,18 @@
         box-shadow: 1px 1px 1px lightgray;
         font-size: .8rem;
         line-height: 2.3rem;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        z-index: 1;
     }
-    .sohopBox{
-        display: inline-block;
-        box-sizing: border-box;
-        padding: 10px 2px;
-    }
-    .titler span{
-        display: inline-block;
-    }
-    .commo{
-        width: 50%;
-        display: inline-block;
-        float: left;
-        text-align: center;
-        color: rgb(49, 144, 232);
-        box-sizing: border-box;
-        font-weight: 600;
-    }
-    .appraise{
-        width: 50%;
-        display: inline-block;
-        float: left;
-        text-align: center;
-    }
+
     /* 左边选区区域 */
     .wrapper{
         width: 26%;
         height: 615.41px;
         position: absolute;
-        overflow: auto;
         overflow-x:hidden;
     }
     /* 右边的商品详情 */
@@ -508,9 +535,9 @@
         width: 74%;
         height: 615.41px;
         position: absolute;
-        left: 4.2rem;
-        overflow: auto;
         overflow-x:hidden;
+        left: 4.1rem;
+        background-color: rgb(245, 245, 245);
     }
    
     .vessel{
@@ -546,8 +573,8 @@
     }
     .good{
         position: relative;
-        bottom: .46rem;
-        left: 3rem;
+        bottom: .62rem;
+        left: 4rem;
         font-weight: 400;
         color: black;
     }
@@ -571,7 +598,7 @@
     .right-txts>a{
         color: rgb(102, 102, 102);
         width: 100%;
-        background-color: lightgray;
+        background-color: rgb(245, 245, 245);
     }
     .title{
         width: 44%;
@@ -579,7 +606,7 @@
         font-size: 1rem;
         font-weight: 600;
         float: left;
-        padding: .18rem 0;
+        padding: .4rem 0;
         box-sizing: border-box;
         padding-left: .4rem;
         padding-top: .6rem;
@@ -593,9 +620,6 @@
         padding-bottom: .4rem;
         padding-top: .94rem;
     }
-    .cate-left{
-        width: 100%;
-    }
     .cate-left>li{
         background-color: #F5F5F5;
     }
@@ -603,10 +627,11 @@
         width: 100%;
         font-size: .8rem;
         font-weight: 600;
-        line-height: 3.5rem;
+        line-height: 3.1rem;
         border-bottom: 1px solid lightgray;
         box-sizing: border-box;
-        padding-left: .4rem; 
+        padding-left: .3rem; 
+        /* text-align: center; */
         color: rgb(121, 121, 121);
         text-shadow: 0 .1px rgb(233, 233, 233), 
                       .1px 0 rgb(233, 233, 233),

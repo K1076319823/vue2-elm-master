@@ -1,151 +1,144 @@
 <template>
-  <div class="classify">
-    <!--<Load></Load>-->
-    <div class="vessel">
-      <!-- 顶端跳转部分 -->
-      <div class="ifyTop">
-        <router-link :to="{path:'/index'}" class="goBack"></router-link>
-        <p> {{ $store.state.Dclass }} </p>
-      </div>
-      <div id="ifyCenter">
-        <el-menu
-          class="el-menu-demo one"
-          mode="horizontal"
-          background-color="white"
-          text-color="#666"
-          active-text-color="rgb(49,144,232)" >
-          <el-submenu index="1" class="container">
-            <template slot="title">
-              <div @click="fenglei" class="cfen" >
-                <p  v-text="btnText" v-show='mas==true'></p>
-                <p  v-text="btnText" v-show='mas==false'></p>
-              </div>
-            </template>
-            <div v-show='fhao1==true'>
-              <el-submenu index="2-1"  v-for="(el,index) in leftOne" :key="index" >
-                <template slot="title" class="leftPull">
-                  <img :src="imgs[index]" alt="请升级浏览器" class="images">
-                  <a href="javascript:;" @click="clickSub(el)">{{ el.name }}</a>
-                  <a href="javascript:;" id="leftPullA">{{ el.count }}</a>
-                </template>
-                <el-menu-item  v-for="(ele,indexs) in leftTwo" :key="indexs" class="poser">
-                  <div class="listxiao">{{ ele.name }}</div>
-                </el-menu-item>
-              </el-submenu>
+  <div>
+    <div class="classify">
+        <!--<Load></Load>-->
+        <div class="vessel">
+            <!-- 顶端跳转部分 -->
+            <div class="ifyTop">
+                <router-link :to="{path:'/index'}" class="goBack"></router-link>
+                <p> {{ this.txt }} </p>
             </div>
-          </el-submenu>
-        </el-menu>
+            <div id="ifyCenter">
+                <el-menu
+                class="el-menu-demo one"
+                mode="horizontal"
+                background-color="white"
+                text-color="#666"
+                active-text-color="rgb(49,144,232)" >
+                    <el-submenu index="1" class="container">
+                        <template slot="title">分类</template>
+                        <el-submenu index="2-1"  v-for="(el,index) in leftOne" :key="index" >
+                            <template slot="title" class="leftPull">
+                                <img :src="imgs[index]" alt="请升级浏览器" class="images">
+                                <a href="javascript:;" @click="clickSub(el)">{{ el.name }}</a>
+                                <a href="javascript:;" id="leftPullA">{{ el.count }}</a>
+                            </template>
+                            <el-menu-item  v-for="(ele,indexs) in leftTwo" :key="indexs" class="poser">
+                                <div>{{ ele.name }}</div>
+                            </el-menu-item>
+                        </el-submenu>
+                    </el-submenu>
+                </el-menu>
 
-        <el-menu
-          class="el-menu-demo eler"
-          mode="vertical"
-          background-color="white"
-          text-color="#666"
-          active-text-color="rgb(49, 144, 232)">
-          <el-submenu index="2" class="center">
+                 <el-menu
+                class="el-menu-demo eler"
+                mode="vertical"
+                background-color="white"
+                text-color="#666"
+                active-text-color="rgb(49, 144, 232)">
+                    <el-submenu index="2" class="center">
 
-            <template slot="title" ><div @click="Xu">排序</div></template>
-            <div v-show='flag'>
-              <p class="centerP " :class="{select:selectName==='4'?true:false}" @click="getp('4')" >
-                <img src="../../images/sort.png" alt="请升级浏览器">
-                <span>智能排序</span>
-                <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
-              </p>
-              <p class="centerP" :class="{select:selectName==='5'?true:false}" @click="getp('5')" >
-                <img src="../../images/place.png" alt="请升级浏览器">
-                <span>距离最近</span>
-                <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
-              </p>
-              <p class="centerP" :class="{select:selectName==='6'?true:false}" @click="getp('6')">
-                <img src="../../images/flame.png" alt="请升级浏览器">
-                <span>销量最高</span>
-                <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
-              </p>
-              <p class="centerP" :class="{select:selectName==='1'?true:false}" @click="getp('1')">
-                <img src="../../images/money.png" alt="请升级浏览器">
-                <span>起送价最低</span>
-                <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
-              </p>
-              <p class="centerP" :class="{select:selectName==='2'?true:false}" @click="getp('2')">
-                <img src="../../images/clock.png" alt="请升级浏览器">
-                <span>配送最快</span>
-                <img class="tu" src="../../images/check.png" alt="请升级浏览器">
-              </p>
-              <p class="centerP" :class="{select:selectName==='3'?true:false}" @click="getp('3')">
-                <img src="../../images/star.png" alt="请升级浏览器">
-                <span>评分最高</span>
-                <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
-              </p>
+                        <template slot="title"><div @click="Xu">排序</div></template>
+                      <div v-show='flag'>
+                        <p class="centerP " :class="{select:selectName==='4'?true:false}" @click="getp('4')" >
+                          <img src="../../images/sort.png" alt="请升级浏览器">
+                          <span>智能排序</span>
+                          <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
+                        </p>
+                        <p class="centerP" :class="{select:selectName==='5'?true:false}" @click="getp('5')" >
+                          <img src="../../images/place.png" alt="请升级浏览器">
+                          <span>距离最近</span>
+                          <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
+                        </p>
+                        <p class="centerP" :class="{select:selectName==='6'?true:false}" @click="getp('6')">
+                          <img src="../../images/flame.png" alt="请升级浏览器">
+                          <span>销量最高</span>
+                          <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
+                        </p>
+                        <p class="centerP" :class="{select:selectName==='1'?true:false}" @click="getp('1')">
+                          <img src="../../images/money.png" alt="请升级浏览器">
+                          <span>起送价最低</span>
+                          <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
+                        </p>
+                        <p class="centerP" :class="{select:selectName==='2'?true:false}" @click="getp('2')">
+                          <img src="../../images/clock.png" alt="请升级浏览器">
+                          <span>配送最快</span>
+                          <img class="tu" src="../../images/check.png" alt="请升级浏览器">
+                        </p>
+                        <p class="centerP" :class="{select:selectName==='3'?true:false}" @click="getp('3')">
+                          <img src="../../images/star.png" alt="请升级浏览器">
+                          <span>评分最高</span>
+                          <img  class="tu" src="../../images/check.png" alt="请升级浏览器">
+                        </p>
+                      </div>
+                    </el-submenu>
+                </el-menu>
+
+                <el-menu
+                class="el-menu-demo  elers"
+                mode="vertical"
+                background-color="white"
+                text-color="#666"
+                active-text-color="rgb(49, 144, 232)">
+                    <el-submenu index="3" class="right">
+                        <template slot="title">筛选</template>
+                        <div class="delivery">
+                            <p class="delTxtOne">配送方式</p>
+                            <!-- 蜂鸟专送 -->
+                            <div class="mango">
+                                <img src="../../images/mongos.png" alt="请升级">
+                                <span v-text="mangoTxt"></span>
+                            </div>
+                            <p class="delTxtTwo">商家属性（可以多选）</p>
+                            <div>
+                                <div class="shopNature" >
+                                    <!-- key 这个就是那个对象 key.isClick就是我要添加的属性 然后我把这个key对象传给函数   -->
+                                    <p v-for="key in rightTwo" :key="key.id"
+                                      :class="{ color:key.isClick}" @click="changeColor(key)">
+                                        <span>{{ key.icon_name }}</span>
+                                        {{ key.name }}
+                                    </p>
+                                </div>
+                            </div>
+                            <form action="" class="former clearfix">
+                                <input type="submit" value="清空" title="清空" class="empty" @click="empty">
+                                <input type="submit" :value="'确定'+clickTxt" title="提交" class="sub">
+                            </form>
+                        </div>
+                    </el-submenu>
+                </el-menu>
             </div>
-          </el-submenu>
-        </el-menu>
-
-        <el-menu
-          class="el-menu-demo  elers"
-          mode="vertical"
-          background-color="white"
-          text-color="#666"
-          active-text-color="rgb(49, 144, 232)">
-          <el-submenu index="3" class="right">
-            <template slot="title">筛选</template>
-            <div class="delivery">
-              <p class="delTxtOne">配送方式</p>
-              <!-- 蜂鸟专送 -->
-              <div class="mango">
-                <img src="../../images/mongos.png" alt="请升级">
-                <span v-text="mangoTxt"></span>
-              </div>
-              <p class="delTxtTwo">商家属性（可以多选）</p>
-              <div>
-                <div class="shopNature" >
-                  <!-- key 这个就是那个对象 key.isClick就是我要添加的属性 然后我把这个key对象传给函数   -->
-                  <p v-for="key in rightTwo" :key="key.id"
-                     :class="{ color:key.isClick}" @click="changeColor(key)">
-                    <span>{{ key.icon_name }}</span>
-                    {{ key.name }}
-                  </p>
+        </div>
+    </div>
+          <!--从卖家页面布局的-->
+          <div class="mar clearfix">
+            <div class = "dingpai"  v-for="it in proArr">
+              <div class="left">
+                <div class="ctu">
+                  <img :src="'//elm.cangdu.org/img/'+ it.image_path " alt="">
                 </div>
               </div>
-              <form action="" class="former clearfix">
-                <input type="submit" value="清空" title="清空" class="empty" @click="empty">
-                <input type="submit" :value="'确定'+clickTxt" title="提交" class="sub">
-              </form>
-            </div>
-
-          </el-submenu>
-        </el-menu>
-
-      </div>
-      <!--从卖家页面布局的-->
-      <div class="mar clearfix"   >
-        <div class = "dingpai"  v-for="it in proArr">
-        <div class="left">
-          <div class="ctu">
-            <img :src="'//elm.cangdu.org/img/'+ it.image_path " alt="">
-          </div>
-        </div>
-        <div class="right">
-          <div class="one clearfix">
-            <div class="zuo"><span class="pingpai">品牌</span><b class="name">{{it.name}}</b></div>
-            <div class="you">
-              <p>保</p>
-              <p>{{it.supports[1].icon_name}}</p>
-              <p>票</p>
+              <div class="right">
+                <div class="one clearfix">
+                  <div class="zuo"><span class="pingpai">品牌</span><b class="name">{{it.name}}</b></div>
+                  <div class="you">
+                    <p>保</p>
+                    <p>{{it.supports[1].icon_name}}</p>
+                    <p>票</p>
+                  </div>
+                </div>
+                <div class="two clearfix">
+                  <div class="zuo"><span class="pfen">{{it.rating}}</span><span class="xiaoliang">月销{{it.recent_order_num}}单</span></div>
+                  <div class="you"> <p class="da">{{it.supports[1].name}}</p><p  class="fengniao">{{it.delivery_mode.text}}</p></div>
+                </div>
+                <div class="there clearfix">
+                  <div class="zuo"> <span> ￥20元起送</span>/<span>{{it.piecewise_agent_fee.tips}}</span></div>
+                  <div class="you"> <span>{{it.distance}}</span> <span class="tim">{{it.order_lead_time}}</span></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="two clearfix">
-            <div class="zuo"><span class="pfen">{{it.rating}}</span><span class="xiaoliang">月销{{it.recent_order_num}}单</span></div>
-            <div class="you"> <p class="da">{{it.supports[1].name}}</p><p  class="fengniao">{{it.delivery_mode.text}}</p></div>
-          </div>
-          <div class="there clearfix">
-            <div class="zuo"> <span> ￥20元起送</span>/<span>{{it.piecewise_agent_fee.tips}}</span></div>
-            <div class="you"> <span>{{it.distance}}</span> <span class="tim">{{it.order_lead_time}}</span></div>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
-    {{cd}}
+      {{cd}}
   </div>
 </template>
 
@@ -155,7 +148,7 @@
     import axios from 'axios'
     import VueAxios from 'vue-axios'
     Vue.use(VueAxios, axios);
-    import Swiper from 'swiper'
+
     import Load from './Loading.vue'
 
     export default {
@@ -189,7 +182,7 @@
             clickTxt:'',
             clickBtn: 0,
             blon: false,
-            indexNum:0,//默认给0
+            indexNum:0 , //默认给0
 
               selectName:'4', //默认排序序号
               flag:true,  //排序默认为真
@@ -201,67 +194,6 @@
               idArr: [],
             }
         },
-      methods: {
-
-        clickSub(target){
-          this.leftTwo = target.sub_categories.slice(1)
-          console.log(this.leftTwo)
-        },
-        clickFor(target){
-
-          console.log(target.id)
-          target.onclick = function(){
-            target.bgc = this.blon
-          }
-          if(this.clickBtn <= 5){
-            this.clickBtn += 1;
-            this.clickTxt = '(' + this.clickBtn + ')'
-            this.blon = true
-          }else if(this.clickBtn === 6){
-            this.clickBtn = null
-            this.clickFor = null
-          }
-        },
-        empty(){
-          this.blon = false
-          this.clickTxt = ''
-          this.clickBtn = 0
-        },
-        changeColor(key,index){
-          // 然后判断 点击时候判断 有就加 但是值是false  没有就加 值是true 懂了吗 我一点 就会添加这个属性 没有 值是true  有 值是false
-          if(key.isClick){
-            Vue.set(key,"isClick",false);
-          }else{
-            Vue.set(key,"isClick",true);
-          }
-        },
-        getp(xh) {
-          this.selectName = xh;
-          this.flag = false;
-
-          // this.$store.state.xunhao=this.selectName
-          // console.log( this.$store.state.xunhao, 100)
-        },
-        Xu(){
-          this.flag = true;
-
-        },
-        fenglei() {
-          this.mas = !this.mas
-          if (this.mas == true) {
-            this.btnText = this.$store.state.Dclass
-            this.fhao1=!this.fhao1
-
-          } else if (this.mas == false) {
-            this.btnText = "分类"
-            this.fhao1=!this.fhao1
-          }
-        }
-
-      },
-      components: {
-        Load
-      },
         mounted(){
             //  请求分类
             Vue.axios.get('https://elm.cangdu.org/shopping/v2/restaurant/category')
@@ -295,60 +227,89 @@
 
 
         },
-      watch: {
+        methods: {
+            clickSub(target){
+                this.leftTwo = target.sub_categories.slice(1)
+                console.log(this.leftTwo)
+            },
+            clickFor(target){
 
-      },
+                console.log(target.id)
+                target.onclick = function(){
+                    target.bgc = this.blon
+                }
+                if(this.clickBtn <= 5){
+                   this.clickBtn += 1;
+                   this.clickTxt = '(' + this.clickBtn + ')'
+                   this.blon = true
+                }else if(this.clickBtn === 6){
+                    this.clickBtn = null
+                    this.clickFor = null
+                }
+            },
+            empty(){
+                this.blon = false
+                this.clickTxt = ''
+                this.clickBtn = 0
+            },
+            changeColor(key,index){
+                // 然后判断 点击时候判断 有就加 但是值是false  没有就加 值是true 懂了吗 我一点 就会添加这个属性 没有 值是true  有 值是false
+                 if(key.isClick){
+                    Vue.set(key,"isClick",false);
+                 }else{
+                    Vue.set(key,"isClick",true);
+                 }
+            },
+          getp(xh) {
+            this.selectName = xh;
+            this.flag = false;
+
+            // this.$store.state.xunhao=this.selectName
+            // console.log( this.$store.state.xunhao, 100)
+          },
+          Xu(){
+            this.flag = true;
+
+          },
+          // fenglei() {
+          //   this.mas = !this.mas
+          //   if (this.mas == true) {
+          //     this.btnText = this.$store.state.Dclass
+          //     this.fhao1=!this.fhao1
+          //
+          //   } else if (this.mas == false) {
+          //     this.btnText = "分类"
+          //     this.fhao1=!this.fhao1
+          //   }
+          // }
+        },
+        components: {
+            Load
+        },
       computed:{
-          cd(){
-            //请求数据
-            let jin=this.$store.state.latitude
-            let wei=this.$store.state.longitude
-            let ms =parseInt(this.selectName)
-            console.log(jin,wei,ms,"111aaaaaa")
-            Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${jin}&longitude=${wei}&order_by=${ms}`).then((res) => {
-              console.log(res.data,ms,444);
-              this.proArr = res.data;
-              console.log(this.proArr,'qqqqqq');
+        cd(){
+          //请求数据
+          let jin=this.$store.state.latitude
+          let wei=this.$store.state.longitude
+          let ms =parseInt(this.selectName)
+          console.log(jin,wei,ms,"111aaaaaa")
+          Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${jin}&longitude=${wei}&order_by=${ms}`).then((res) => {
+            console.log(res.data,ms,444);
+            this.proArr = res.data;
+            console.log(this.proArr,'qqqqqq');
+          }).catch((error) => {
+            console.log('请求错误', error);
+          })
 
+          return
 
-
-            }).catch((error) => {
-              console.log('请求错误', error);
-            })
-
-return
-
-          }
+        }
       },
-      mounted() {
-        new Swiper(this.$refs.slider, {
-
-        })
-      }
     }
 </script>
 
 <style scoped>
 /* 想办法让这个选择器权重最高 可以了 然后看我怎么写*/
-.cfen p{
-  margin-top:0.4rem;
-
-}
-.mar{
-  margin-top:5.3rem;
-  display: block;
-  /*overflow: scroll;*/
-}
-.leftPull{
-  margin-top:0.5rem;
-}
-.delivery{
-  background-color: #fff;
-}
-
-.liebiao{
-  margin-top:2rem;
-}
    .shopNature .color{
         color: #fff;
      background-color: #3190e8;
@@ -374,7 +335,6 @@ return
         margin-top: .18rem;
         border: 1px solid lightgrey;
         border-radius: 4px;
-
     }
     .shopNature span{
         width: 1.2rem;
@@ -394,12 +354,10 @@ return
         width: 1.2rem;
         height: 1.1rem;
         position: relative;
-
     }
     .mango{
         line-height: 1.2rem;
         text-align: left;
-
     }
     .centerP{
         width: 300%;
@@ -411,14 +369,11 @@ return
         font-size: .58rem;
         color: #666;
         line-height: 2.4rem;
-      border-bottom:1px #ccc solid;
-      z-index:2;
     }
     .centerP span{
         display: inline-block;
         width: 12rem;
         text-align: left;
-
     }
     .centerP img{
         width: .8rem;
@@ -445,7 +400,7 @@ return
         left: 1.2rem;
         bottom: 2.9rem;
         width: 44%;
-        /*height: 74%;*/
+        height: 74%;
         background-color: white;
         border-radius: 4px;
         font-size: .8rem;
@@ -460,7 +415,7 @@ return
         right: .4rem;
         bottom: 2.9rem;
         width: 44%;
-        /*height: 74%;*/
+        height: 74%;
         background-color: rgb(86, 209, 118);
         border-radius: 4px;
         font-size: .8rem;
@@ -471,7 +426,7 @@ return
     }
     .former{
         width: 100%;
-        /*height: 24.6%;*/
+        height: 24.6%;
         background-color: rgb(241, 241, 241);
         position: relative;
         top: 3.2rem;
@@ -481,7 +436,7 @@ return
     }
     .mango{
         width: 26%;
-        /*height: 12%;*/
+        height: 12%;
         background-color: white;
         margin-left: 1.4rem;
         margin-bottom: .6rem;
@@ -505,14 +460,14 @@ return
         text-shadow: .3px .3px .3px rgb(190, 190, 190);
     }
     .delivery{
-      width:18rem;
+        width: 16.5rem;
         height: 10.4rem;
         position: relative;
-        bottom:0rem;
-        right: 11rem;
+        bottom: .48rem;
+        right: 11.6rem;
         line-height: 1.2rem;
-      background-color: #fff;
-      z-index:5;
+      /*  代替了高度作为修复bug的小手法*/
+      background: white;
     }
     .images{
         width: 20px;
@@ -524,7 +479,7 @@ return
         padding-right: .4rem;
     }
     .twoLi{
-        /*width: 300%;*/
+        width: 300%;
         z-index: 1;
         text-align: left;
         position: relative;
@@ -539,9 +494,9 @@ return
         height: 2.9rem;
         width: 6.33rem;
         position: relative;
-        /*top: .3rem;*/
+        top: .3rem;
         right: .4rem;
-        /*overflow: hidden;*/
+        overflow: hidden;
     }
     .eler{
         display: block;
@@ -562,17 +517,19 @@ return
         left: 5.33rem;
     }
     #ifyCenter{
-        width: 200%;
-        height: 4rem;
+        width: 100%;
+        height: 10%;
         position: fixed;
-        top:2rem;
-        /*left:0rem;*/
-        /*background-color:red;*/
+        margin-top: 12%;
     }
     .vessel{
         width: 100%;
         height: 12.6%;
         background-color: white;
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
         text-align: center;
         border-bottom: 1px solid rgb(223, 223, 223);
         z-index: 1;
@@ -583,9 +540,7 @@ return
         background-color: rgb(49, 144, 232);
         border-bottom: 1px solid rgb(49, 144, 232);
         position: fixed;
-        left: 0;
         top: 0;
-        right: 0;
         text-align: center;
         font-size: 0.8rem;
         color: white;
@@ -608,6 +563,7 @@ return
     }
     .classify{
         width: 100%;
+        height: 100%;
         background-color: white;
     }
     .center{
@@ -621,58 +577,7 @@ return
     :root{
         background-color: lightblue;
     }
-    .tu{
-      opacity: 0;
-    }
-.select{
-  color:#3190e8;
-}
-.select .tu {
-    opacity: 1;
-  }
-.merimg {
-  width: 0.8rem;
-  height: 0.8rem;
-}
-
-.merfont {
-  line-height: 1rem;
-  font-size: 0.55rem;
-}
-
-.ulinfor {
-  width: 100%;
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 0.6rem 0.8rem;
-  list-style: none;
-  color: black;
-}
-
-.imgli {
-  width: 20%;
-  margin-right: 0.4rem;
-}
-
-.imgli img {
-  width: 100%;
-  /*height: 100%;*/
-
-}
-
-.ul_text {
-  display: inline-block;
-  width: 75%;
-}
-
-.listxiao{
-  background-color: #fff;
-}
-.el-submenu__title{
-  background-color: #fff;
-}
-
-  /*下部布局*/
+/*下部布局*/
 .mar{
   padding:0.4rem;
 }
@@ -680,16 +585,16 @@ return
   float:left;
   width:20%;
 }
-  .right{
-    float:left;
-    width:75%;
-    box-sizing: border-box;
-    margin-left:0.4rem;
+.right{
+  float:left;
+  width:75%;
+  box-sizing: border-box;
+  margin-left:0.4rem;
 
 
-  }
+}
 /*.right  P{*/
-  /*float:left;*/
+/*float:left;*/
 /*}*/
 .ctu{
   width:100%;
@@ -716,44 +621,48 @@ name{
 }
 .one p{
   padding:0 0.2rem;
-  }
-  .pfen{
-    margin-right:0.4rem;
-  }
-  .two .you p{
-    float:right;
-  }
-  .fengniao{
-    background-color: dodgerblue;
-    color:white;
-    margin-right:0.2rem;
-  }
-  .da{
-    color:dodgerblue;
-    border:1px #ccc solid;
-  }
-  .there  p{
-    margin:0 0.2rem;
-  }
+}
+.pfen{
+  margin-right:0.4rem;
+}
+.two .you p{
+  float:right;
+}
+.fengniao{
+  background-color: dodgerblue;
+  color:white;
+  margin-right:0.2rem;
+}
+.da{
+  color:dodgerblue;
+  border:1px #ccc solid;
+}
+.there  p{
+  margin:0 0.2rem;
+}
 .there {
   font-size:0.5rem;
 }
-  .there .tim{
-    color: dodgerblue;
-  }
-  .one .you p{
-    float:right;
-  }
-  .dingpai{
-    Height: 5rem;
-    margin:0;
-  }
+.there .tim{
+  color: dodgerblue;
+}
+.one .you p{
+  float:right;
+}
+.dingpai{
+  Height: 5rem;
+  margin:0;
+}
 .ctu img{
   width:100%;
 }
-
-
-
-
-
+.tu{
+  opacity: 0;
+}
+.select{
+  color:#3190e8;
+}
+.select .tu {
+  opacity: 1;
+}
 </style>

@@ -10,6 +10,7 @@
           搜索
       </div>
     </div>
+    <div class="tijiao">
     <form action="#">
       <label for="input"></label>
       <div class="onehang clearfix">
@@ -19,8 +20,8 @@
         <div class="btn btn-primary" @click="F_btn">提交</div>
       </div>
     </form>
-
-
+    </div>
+<div class="dataxi">
       <div v-show='ftiao==true'>
       <p class="li" >
         删除历史
@@ -53,6 +54,7 @@
       </div>
     </div>
     </div>
+</div>
     <Footer></Footer>
   </div>
 
@@ -135,6 +137,16 @@
 </script>
 
 <style scoped>
+  .tijiao{
+    position: fixed;
+    width:100%;
+    background-color: #fff;
+  top:2rem;
+    left:0;
+  }
+  .dataxi{
+   margin-top: 6rem;
+  }
   .literr{
     position: relative;
     left:-1rem;
@@ -160,6 +172,10 @@
     float:right;
   }
   .head{
+    position: fixed;
+    width:100%;
+    top:0;
+    left:0;
     background-color: #3190e8;
   }
   .head div{

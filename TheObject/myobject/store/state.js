@@ -15,9 +15,9 @@ let state={
   loginState:false,//判断是否登录
   userId:'',//用户名id
 
-
+  Input:'',//修改的用户名
   abc:'外卖',
-  cityname:''  //记录选地点名称
-
+  cityname:'' , //记录选地点名称
+  car : []
 }
 export  default  state;

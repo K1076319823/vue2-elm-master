@@ -1,5 +1,5 @@
+<!-- 我的 -->
 <template>
-
   <div class="my">
     <div class="head clearfix">
       <div class="left">
@@ -14,9 +14,7 @@
     <!-- 利用点击事件判断要跳转到登录还是未登录页面  -->
     <div class="myone clearfix" @click="rouLink()">
       <div class="left">
-        <router-link :to="{path:'/login'}">
-          <div class="toutu"><span class="tou glyphicon glyphicon-user"></span></div>
-        </router-link>
+        <div class="toutu"><span class="tou glyphicon glyphicon-user"></span></div>
       </div>
       <div class="center">
         <h4 class="dz">
@@ -98,7 +96,7 @@
     data() {
       return {
         LoginUp: '',
-        gift: '',
+        gift: 0,
         user: ''
       }
     },
@@ -106,17 +104,34 @@
       // true 是  登录状态
       // false是  未登录
       Vue.axios.get(`https://elm.cangdu.org/v1/user`).then((res) => {
-        console.log(res.data.status)
+        console.log(res.data)
         let status = res.data.status;
-        this.gift = 0;
-        if (status == 0) {
-          // this.gift = 0;
-          console.log(this.gift)
+        if (status === 0) {
+          this.user = '登录/注册'
+        } else {
+          this.gift = res.data.gift_amount
+          this.user = res.data.username
+          if(this.$store.state.Input  !== ''){
+            this.user = this.$store.state.Input
+          }else{
+            this.user = res.data.username
+          }
         }
-        this.gift = res.data.gift_amount
-        this.user = res.data.username
       })
     },
+    methods:{
+      rouLink(){
+        if(this.user === '登录/注册'){
+          this.$router.push({
+            path:'/login'
+          })
+        }else{
+          this.$router.push({
+            path:'/Account'
+          })
+        }
+      }
+    }
   }
 </script>
 
@@ -284,9 +299,5 @@
   }
 
 </style>
-
-
-
-
 
 
