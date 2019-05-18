@@ -71,7 +71,8 @@
         username: '',
         password: '',
         captcha_code: '',
-        userSet: [], // 扔到了Vuex里面的用户名
+        userSet: '', // 扔到了Vuex里面的用户名
+        status:''
       }
     },
     mounted() {
@@ -96,7 +97,7 @@
           this.nums = res.data.code;
         })
       },
-      subLogin(user, loginState, userId) {
+      subLogin(user, userId) {
         Vue.axios.post('https://elm.cangdu.org/v2/login', {
           username: this.username,
           password: this.password,
@@ -115,29 +116,19 @@
             // 成功后提示框显示登录成功延迟跳转
             this.SetTxt = '登录成功!'
             let _this = this;
-            setTimeout(function () {
-              _this.$router.push({
-                // 需要跳转的路径地址
-                path: '/My'
-              })
-            }, 2000)
-            // 判断是否登录
-            if (res.data.status === 1) {
-              loginState = false
-              this.$store.state.loginState = loginState
-              console.log(this.$store.state.loginState, '登录失败')
-            } else {
-              loginState = true
-              this.$store.state.loginState = loginState
-              console.log(this.$store.state.loginState, '登录成功')
-            }
+            // setTimeout(function () {
+            //   _this.$router.push({
+            //     // 需要跳转的路径地址
+            //     path: '/My'
+            //   })
+            // }, 2000)
             //向Vuex扔数据
             user = res.data.username;
             this.$store.state.user = user;
             userId = res.data.user_id;
             this.$store.state.userId = userId;
-            console.log(userId)
           }
+          this.status = res.data.status
         }).catch((error) => {
           console.log(error)
         })
@@ -145,15 +136,12 @@
       },
       Show(e) {
         this.isHide = false
-        let login = this.$store.state.loginState
-        console.log(login)
-        if (login === true) {
-          // this.$router.push({
-          //   // 需要跳转的路径地址
-          //   path: '/My'
-          // })
-        } else {
-          this.isHide = false;
+        if(this.status === 0){
+          this.isHide = false
+        }else{
+          this.$router.push({
+            path:'/My'
+          })
         }
       },
     },
