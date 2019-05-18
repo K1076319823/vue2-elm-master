@@ -19,7 +19,7 @@
     </div>
     <ul>
       <li class="Forin" v-for="(per , index) in ForArr" :key="index">
-        <router-link :to="{path:'/Select_Address',query:{SelectPathname:per.name}}">
+        <router-link :to="{path:'/Select_Address',query:{SelectPathname:per.name,SelectGeohash:per.geohash}}">
           <p>{{per.name}}</p>
           <p>{{per.address}}</p>
         </router-link>
@@ -51,7 +51,7 @@
         Vue.axios.get(a).then((response) => {
           console.log(response);
           this.ForArr = response.data
-          
+
         });
       }
     },

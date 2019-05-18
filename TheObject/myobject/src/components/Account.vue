@@ -29,11 +29,9 @@
     </div>
     <p class="safety">安全设置</p>
     <div class="loginPas">
-
-      <span>登陆密码</span>
-
+      <router-link :to="{path:'/Reset'}" style="width: 100%;height: 100%;display: inline-block">
+      <span style="color: black;">登陆密码</span>
       <img src="../../images/right_arrows.png" alt="请升级浏览器" class="rightArr rightImgs">
-      <router-link :to="{path:'/Reset'}">
       <span class="loginTxt">修改</span>
       </router-link>
     </div>
