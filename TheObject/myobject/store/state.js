@@ -11,7 +11,11 @@ let state={
   user:'',//存储传递的用户名
   loginState:false,//判断是否登录
   userId:'',//用户名id
+  abc:'外卖',
+  cityname:'',//记录选择地点名称
   Input:'',//修改的用户名
-  Dclass:'',//首页轮播类tit
+  Dclass:'',//首页轮播类tit,
+  car:[],
+  cannum:'' //数量总数
 }
 export  default  state;

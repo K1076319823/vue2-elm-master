@@ -56,6 +56,7 @@ import Account_Position from'../components/Account_Position';
 import Shop_Address from '../components/Shop_Address';
 import Select_Address from '../components/Select_Address';
 import Select_Position from '../components/Select_Position'
+import DJhead from '../components/DJhead'
 export default new Router({
   routes: [
 
@@ -116,7 +117,8 @@ export default new Router({
     {path:'/Account_Position',component:Account_Position},
     {path:'/Shop_Address',component:Shop_Address},
     {path:'/Select_Address',component:Select_Address},
-    {path:'/Select_Position',component:Select_Position}
+    {path:'/Select_Position',component:Select_Position},
+    {path:'/DJhead',component:DJhead}
 
   ]
 })

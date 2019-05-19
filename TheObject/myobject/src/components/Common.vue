@@ -1,13 +1,13 @@
 <template>
-    <div class="mall"> 
+    <div class="mall">
         <!-- 左边的选取区域 -->
-        <div class="wrapper" ref='wrapper'> 
-            <ul class="cate-left"> 
+        <div class="wrapper" ref='wrapper'>
+            <ul class="cate-left">
                 <li class="ellipsis" v-for="(list,index) in leftName" :key='index'>
                     <a :href="'#' + index" @click="changeMe(index)" >{{list}}</a>
                 </li>
-            </ul> 
-        </div> 
+            </ul>
+        </div>
         <!-- 右边的具体商品 -->
         <!-- <div class="shopLists"> -->
             <div class="wrapper2" ref='wrapper2'>
@@ -17,7 +17,7 @@
                             <span class="title" :id="index">{{ list.name }}</span>
                             <span class="texts">{{ list.description }}</span>
                         </a>
-                        <div > 
+                        <div >
                             <!-- 商品详情 -->
                             <div v-for="(lists,id) in list.foods" :key="id">
                                 <div class="vessel clearfix">
@@ -43,9 +43,9 @@
                             </div>
 
                         </div>
-                    </li> 
-                </ul> 
-            </div> 
+                    </li>
+                </ul>
+            </div>
         <!-- </div> -->
 
         <!-- 购物车 -->
@@ -60,7 +60,7 @@
                 <li class="delivery">配送费￥5</li>
             </ul>
             <div class="price">还差 ￥20起送</div>
-            <router-link :to="{}" class="freight" v-show="$store.state.affair">立即下单</router-link>
+            <router-link :to="{path:'/Indent'}" class="freight" v-show="$store.state.affair">立即下单</router-link>
         </div>
 
         <transition
@@ -79,7 +79,7 @@
                     <span>{{ shopName }}</span>
                     <img src="../../images/close.png" alt="请升级浏览器" @click="closeBounce">
                 </div>
-                
+
                 <span class="size">规格</span>
                 <div class="sizeSelect">
                     <div @click="clicker01Btn">{{ bounceValue01 }}</div>
@@ -124,11 +124,12 @@
                 selectedCount: 1, // 每点击一次,数量增加一
                 foodsPrice: Number, // 商品的 价格
                 item_id: Number, //商品的 ID
+                proname:'', //定义商品里的name
 
                 // VueX 里面的 商品列表数组
                 shopCar: []
 
-            } 
+            }
         },
         mounted(){
             console.log(this.$store.state.shopid)
@@ -137,9 +138,10 @@
                     this.leftName.push(res.data[key].name)
                     // 循环遍历出 每一个左边栏对应的 右边栏列表块
                     this.foods.push(res.data[key])
-                   
+                  console.log(this.foods)
+
                 }
-            }) 
+            })
             // 设置窗口监听
             window.addEventListener('scroll', this.handleScroll)
 
@@ -149,9 +151,9 @@
         },
         methods:{
             checked(lists){
-                
+
                 if(lists.length == 1){
-                    return '+' 
+                    return '+'
                 }else{
                     return '选规格'
                 }
@@ -175,7 +177,7 @@
                 const ballPosition = this.$refs.ball.getBoundingClientRect()
                 // 获取徽标在网页中过的位置
                 const badgePosition =  document.getElementById('badge').getBoundingClientRect()
-                // 
+                //
                 const xDist = badgePosition.left - ballPosition.left
                 const yDist = badgePosition.top - ballPosition.top
 
@@ -191,10 +193,12 @@
                this.foodsPrice = commo.specfoods[0].price
                console.log(this.foodsPrice)
                this.item_id = commo.specfoods[0].item_id
+              this.proname =commo.specfoods[0].name
                console.log(this.item_id)
                 // 存储一个对象, 把商品对象数据存到 VueX 里
                let goodsInfor = {
                    id: this.item_id,
+                 proname:this.proname,
                    count: this.selectedCount,
                    price: this.foodsPrice,
                    selected: true
@@ -213,7 +217,7 @@
                 // console.log(lists)
                 this.shopObj = lists
                 console.log(this.shopObj)
-               
+
                 if(lists.specfoods.length > 1){
                     // 定义 拥有选规格外卖的数据变量
                     this.bounceValue01 = lists.specfoods[0].specs_name
@@ -244,11 +248,11 @@
 
                 this.changeA = !this.changeA
             }
-        }                       
+        }
     }
 </script>
 
-<style scoped>  
+<style scoped>
     .newShop{
         width: .8rem;
         height: .8rem;
@@ -437,7 +441,7 @@
         line-height: 2.34rem;
         text-align: center;
     }
-    
+
     .totalVessel{
         float: left;
         position: relative;
@@ -539,7 +543,7 @@
         left: 4.1rem;
         background-color: rgb(245, 245, 245);
     }
-   
+
     .vessel{
         width: 100%;
         background-color: white;
@@ -630,10 +634,10 @@
         line-height: 3.1rem;
         border-bottom: 1px solid lightgray;
         box-sizing: border-box;
-        padding-left: .3rem; 
+        padding-left: .3rem;
         /* text-align: center; */
         color: rgb(121, 121, 121);
-        text-shadow: 0 .1px rgb(233, 233, 233), 
+        text-shadow: 0 .1px rgb(233, 233, 233),
                       .1px 0 rgb(233, 233, 233),
                       -.1px 0 rgb(233, 233, 233),
                       0 -.1px rgb(233, 233, 233);

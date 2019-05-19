@@ -103,6 +103,7 @@
     methods: {
       Scity(id){
         console.log(id);
+
         this.$store.state.shopid=id;
       }
     }

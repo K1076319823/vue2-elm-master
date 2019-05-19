@@ -2,7 +2,7 @@
     <div class="indent">
         <!-- 订单页面头部 -->
         <div class="header clearfix">
-            <router-link to="" class="skip">
+            <router-link :to="{path:'/CAndESocket'}" class="skip">
             </router-link>
             <p class="fonts">
                 <router-link :to="{}" style="color:white">
@@ -52,43 +52,43 @@
                <span class="sustain">暂时只在饿了吗APP中支持</span>
            </p>
            <p class="effect">
-               <img src="../../images/eye.png" alt="请升级浏览器">
-               <span>效果演示</span>
+               <img  :src="'//elm.cangdu.org/img/'+dianxiang.image_path" alt="请升级浏览器">
+               <span>{{dianxiang.name}}</span>
            </p>
        </div>
        <div class="lineVessel"></div>
        <!-- 结算内容 -->
        <div class="total">
            <!-- 展示被结算的内容 -->
-           <ul class="shopping">
-               <li class="shoppingSum">
+           <table class="shopping" v-for="(it,index) in  dingdan" :key="index">
+               <tr class="shoppingSum" >
                    <!-- 商品名称 -->
-                   <span class="commom">和璧隋珠</span>
+                   <td class="commom">{{it.proname}}</td>
                    <!-- 商品数量 -->
-                   <span class="count">x 1</span>
+                   <td class="count">*{{it.count}}</td>
                    <!-- 商品价格 -->
-                   <span class="price">¥ 1</span>
-               </li>
-           </ul>
+                   <td class="price">{{it.price}}</td>
+               </tr>
+           </table>
        </div>
        <!-- 餐盒 -->
        <div class="lunchBox clearfix">
            <span>餐盒</span>
-           <span class="lunchBox02">¥ 3</span>
+           <span class="lunchBox02">{{cannum}}* ¥ 3 </span>
        </div>
        <!-- 配送费 -->
        <div class="road clearfix">
            <span>配送费</span>
-           <span class="roadBox02">¥ 3</span>
+           <span class="roadBox02">¥ 5</span>
        </div>
        <!-- 订单总价 -->
        <div class="totalVal clearfix">
-           <span class="undone">订单 : ¥ 7</span>
+           <span class="undone">订单 : ¥ {{$store.getters.getAllPrice+5+cannum*3}}</span>
        </div>
        <!-- 待支付 -->
        <div class="waitFor clearfix">
            <span >待支付</span>
-           <span class="money">¥ 7</span>
+           <span class="money">¥ {{$store.getters.getAllPrice+5+cannum*3}}</span>
        </div>
 
         <div class="division"></div>
@@ -112,9 +112,11 @@
        <!-- 结算栏 -->
        <div class="finally clearfix">
            <span class="fina01">待支付 :</span>
-           <span class="finMoney">¥ 7</span>
+           <span class="finMoney">¥ {{$store.getters.getAllPrice+5+cannum*3}}</span>
            <span class="finLogo"></span>
-           <span class="thatSure">确认下单</span>
+         <!--<router-link :to="{path:'/'}">-->
+           <span class="thatSure" @click="loadD">确认下单</span>
+         <!--</router-link>-->
        </div>
 
         <!-- 支付方式 -->
@@ -142,13 +144,20 @@
 </template>
 
 <script>
+  import Vue from 'vue';
 export default {
     name: 'Indent',
     data(){
         return{
-            close: true
+            close: true,
+            dingdan:[],
+            cannum:0,
+          dianxiang:[] //店铺头像
         }
     },
+  beforeCreate: function(){
+
+  },
     methods: {
         closeTheList(){
             this.close = false;
@@ -156,8 +165,40 @@ export default {
         },
         showTheList(){
             this.close = true;
+        },
+      loadD(){
+        if(this.$store.state.user==''){
+          console.log(111)
+        }else{
+          console.log(222)
+          this.$router.push({path:'/ding'})
         }
-    }
+      }
+
+    },
+  mounted(){
+    let m=this.$store.state.shopid;
+    console.log(m,1111)
+    Vue.axios.get(`https://elm.cangdu.org/shopping/restaurant/${m}`).then((res) => {
+        console.log(res.data);
+        this.dianxiang=res.data;
+        console.log(this.dianxiang,"111111")
+      }
+    )
+      this.dingdan=this.$store.state.car
+      console.log(this.dingdan)
+      console.log('22')
+      for(let i=0;i<this.dingdan.length;i++){
+        // console.log(this.dingdan.length)
+        this.cannum+=this.dingdan[i].count;
+        // console.log(this.dingdan[i].count);
+      }
+      return this.cannum
+
+    },
+  computed:{
+
+  }
 }
 </script>
 
@@ -467,7 +508,7 @@ export default {
         width: 100%;
         height: 15%;
         background-color: white;
-        border-bottom: 1% solid rgb(221, 221, 221);
+        border-bottom: 1px solid rgb(221, 221, 221);
         border: .1px solid transparent;
     }
     .goldCoin img{
@@ -644,7 +685,13 @@ export default {
         background-size: contain;
 
     }
-    ul{
-        list-style: none;
+    .commom{
+      width:50%;
+      box-sizing: border-box;
+      padding:0.5rem;
     }
+  .count,.price{
+    width:25%;
+    text-align: center;
+  }
 </style>

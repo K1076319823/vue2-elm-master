@@ -1,30 +1,43 @@
 <template>
-    <div class="CAndESocket">
-        <div class="titler clearfix">
+ <div>
+   <DJhead></DJhead>
+   <div>
+     <div class="CAndESocket">
+       <div class="titler clearfix">
             <span class="commo">
                 <router-link :to="{ path: '/CAndESocket/Common' }">
                     <div class="shopBox">商品</div>
                 </router-link>
             </span>
-            <span class="appraise">
+         <span class="appraise">
                 <router-link :to="{ path: '/CAndESocket/Evaluate' }">
                     评价
                 </router-link>
             </span>
-        </div>
-        <!-- 给路由插座 添加动画 -->
-        <transition name="fade" mode="out-in">
-            <router-view class="orange-router"></router-view>
-        </transition>
-    </div>
+       </div>
+       <!-- 给路由插座 添加动画 -->
+       <transition name="fade" mode="out-in">
+         <router-view class="orange-router"></router-view>
+       </transition>
+     </div>
+   </div>
+ </div>
 </template>
 
 <script>
 import Common from '../components/Common.vue'
 import Evaluate from '../components/Evaluate.vue'
+import DJhead from "./DJhead";
+
+
+
 export default {
     name: 'CAndESocket',
     components: {
+      DJhead,
+
+
+
         Common,
         Evaluate
     }
@@ -32,7 +45,12 @@ export default {
 </script>
 
 <style scoped>
-
+    .CAndESocket{
+      position: fixed;
+      top:6rem;
+      left:0;
+      width:100%;
+    }
     .fade-enter-active{
         animation: fadeIn 1s;
     }
