@@ -2,7 +2,7 @@
   <div class="Discounts" style="width: 100%; height: 100%; background:#f0f0f0;">
     <header class="header text-center">
         <span class="pull-left clearfix">
-          <router-link :to="{path:'/'}"><img src="../../images/左箭头.png" style="width: 0.8rem;"/></router-link>
+          <router-link :to="{path:'/My'}"><img src="../../images/左箭头.png" style="width: 0.8rem;"/></router-link>
         </span>我的优惠
     </header>
     <div class="header_link text-center">
