@@ -43,7 +43,8 @@
           seconds: 0,
           dianxiang: [],//店铺头像
           dingdan: [],
-          cannum: 0
+          cannum: 0,
+          abc:'订单'
         }
       },
       methods: {

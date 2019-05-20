@@ -39,7 +39,7 @@
       <div class="four">
         <span class="pull-left tact tactPhone">标签</span>
         <div class="pull-left inPut">
-          <input type="text" class="nameInput" placeholder="无/家/学校/公司" v-model="tag">
+          <input type="text" class="nameInput" placeholder="无/家/学校/公司(必填）" v-model="tag">
         </div>
       </div>
       <button class="btn btn-default under" @click="under">确认</button>

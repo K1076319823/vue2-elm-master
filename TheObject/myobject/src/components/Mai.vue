@@ -6,7 +6,7 @@
         <span class="pull-right clearfix merfont">附近商家</span>
       </div>
       <router-link :to="{path:'/CAndESocket'}" v-for="(pro , index) in proArr" :key="index" >
-        <ul class="ulinfor" @click="Scity(pro.id)">
+        <ul class="ulinfor" @click="Scity(pro.id,pro.rating_count,pro.rating)">
           <li class="pull-left imgli">
             <img :src="'//elm.cangdu.org/img/'+ pro.image_path" alt="" class=""/>
           </li>
@@ -101,9 +101,10 @@
       })
     },
     methods: {
-      Scity(id){
+      Scity(id,z,f){
         console.log(id);
-
+        this.$store.state.zan=z;
+        this.$store.state.prosfen=f;
         this.$store.state.shopid=id;
       }
     }

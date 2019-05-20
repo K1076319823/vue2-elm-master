@@ -54,7 +54,8 @@
     <div class="there">
       <h4>配送信息</h4>
       <p>送达时间: <span>尽快送达</span></p>
-      <p>送达地址: <span>asold</span></p>
+      <p>送达地址: <span>{{this.$store.state.useraddr}}{{this.$store.state.useraddrs}}</span></p>
+      <p>订单联系人(电话):{{this.$store.state.usname}}({{this.$store.state.userph}})</p>
       <p>配送方式: <span>蜂鸟专送</span></p>
     </div>
     <div class="there">

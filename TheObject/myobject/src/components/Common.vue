@@ -20,7 +20,8 @@
                         <div >
                             <!-- 商品详情 -->
                             <div v-for="(lists,id) in list.foods" :key="id">
-                                <div class="vessel clearfix">
+                             <router-link :to="{path:'/Proshow',query:{prosname:lists.name,prosimg:lists.image_path,prosM:lists.description,prosS:lists.month_sales,prosGd:lists.satisfy_rate,prosprice:lists.specfoods[0].price}}">
+                                <div class="vessel clearfix" @click="pshow">
                                     <!-- <img :src="'//elm.cangdu.org/img/'+lists.image_path" alt=""> -->
                                     <img :src= "'//elm.cangdu.org/img/'+ lists.image_path" alt="请升级浏览器">
                                     <ul class="vesseler" >
@@ -40,6 +41,7 @@
                                         </div>
                                     </ul>
                                 </div>
+                             </router-link>
                             </div>
 
                         </div>
@@ -127,7 +129,8 @@
                 proname:'', //定义商品里的name
 
                 // VueX 里面的 商品列表数组
-                shopCar: []
+                shopCar: [],
+                xqPro:[]  //详情数组
 
             }
         },
