@@ -12,7 +12,7 @@
         </div>
 
         <!-- 添加新的收货地址 -->
-      <router-link :to="{path:'/Select_Address'}">
+      <router-link :to="{path:'/Shop_Address'}">
         <div class="addSite">
             <img src="../../images/coord.png" alt="请升级浏览器">
 
@@ -132,27 +132,31 @@
                     <span class="onLineTxt">在线支付</span>
                     <span class="onLineImg"></span>
                 </p>
-                <!-- <p class="PyPay clearfix">
-                    <span class="pyTxt">Py交易</span>
-                    <span class="pyImg"></span>
-                </p> -->
+                <!--<p class="PyPay clearfix">-->
+                    <!--<span class="pyTxt">Py交易</span>-->
+                    <!--<span class="pyImg"></span>-->
+                <!--</p> -->
             </div>
             <div class="close" @click="closeTheList"></div>
         </div>
-
+        <Com_PromptBox v-show='isHide' :childCom="SetTxt" @childEvent="Show($event)"></Com_PromptBox>
     </div>
 </template>
 
 <script>
   import Vue from 'vue';
+  import Com_PromptBox from "./Com_PromptBox";
 export default {
     name: 'Indent',
-    data(){
+  components: {Com_PromptBox},
+  data(){
         return{
+          isHide:false,
             close: true,
             dingdan:[],
             cannum:0,
-          dianxiang:[] //店铺头像
+          dianxiang:[] ,//店铺头像
+          SetTxt:'未登录,请登录'
         }
     },
   beforeCreate: function(){
@@ -166,13 +170,23 @@ export default {
         showTheList(){
             this.close = true;
         },
+        Show(a){
+          this.isHide=false
+      },
       loadD(){
-        if(this.$store.state.user==''){
-          console.log(111)
-        }else{
-          console.log(222)
-          this.$router.push({path:'/ding'})
-        }
+          Vue.axios.get('https://elm.cangdu.org/v1/user').then((res)=>{
+            console.log(res.data,77777)
+            if(res.data.message ==='通过session获取用户信息失败') {
+              console.log(res.data.message, "1111111111111111")
+              this.isHide=true;
+            }
+            else{
+              console.log(res.data.message,"222222222222222")
+              this.$router.push({path:'/ding'})
+            }
+          })
+
+
       }
 
     },

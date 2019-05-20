@@ -112,7 +112,7 @@
     </div>
           <!--从卖家页面布局的-->
           <div class="mar clearfix">
-            <div class = "dingpai"  v-for="it in proArr" @click="Scity(it.id)">
+            <div class = "dingpai"  v-for="it in proArr" @click="Scity(it.id,it. rating_count,it.rating)">
               <router-link :to="{path:'/CAndESocket'}" >
               <div class="left">
                 <div class="ctu">
@@ -230,10 +230,12 @@
 
         },
         methods: {
-          Scity(id){
+          Scity(id,z,f){
             console.log(id);
             this.$store.state.shopid=id;
-            console.log(this.$store.state.shopid);
+            this.$store.state.zan=z;
+            this.$store.state.prosfen=f;
+            console.log(this.$store.state.shopid,this.$store.state.zan);
           },
             clickSub(target){
                 this.leftTwo = target.sub_categories.slice(1)

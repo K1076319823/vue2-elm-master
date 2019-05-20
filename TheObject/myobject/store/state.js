@@ -15,6 +15,13 @@ let state={
   Input:'',//修改的用户名
   Dclass:'',//首页轮播类tit,
   car:[],
-  cannum:'' //数量总数
+  cannum:'', //数量总数
+  useraddr:'', //用户地址
+  useraddrs:'', //用户详细地址
+  userph:'',//用户电话
+  usname:'', //送餐联系人
+  XPro:[], //选择商品的显示数组
+  zan:'',//店铺评论
+  prosfen:'' //商品详情店铺分
 }
 export  default  state;

@@ -2,34 +2,41 @@
     <div class="Proshow">
       <div class="head clearfix">
         <div>
-          <router-link :to="{path:'/index'}">
+          <router-link :to="{path:'/CAndESocket'}">
             <span class="glyphicon glyphicon-chevron-left jian"></span>
           </router-link>
         </div>
         <div class="center">
-          name
+          {{this.$route.query.prosname}}
         </div>
       </div>
       <div class="photo">
-        <img data-v-a51691c2="" src="//elm.cangdu.org/img/16772d91c1823153.jpg" class="food_img">
+        <img data-v-a51691c2="" :src="'//elm.cangdu.org/img/'+this.$route.query.prosimg" class="food_img">
       </div>
       <div class="ping">
-        <p>123</p>
-        <p>1231</p>
-        <p>评分: <span class="org">X</span></p>
-        <p>月售:<span>1000单</span   > <span class="org">售价￥20元起</span></p>
-        <p>评论数: <span>995</span>  好评率: <span class="org">14%</span> </p>
+        <h2> {{this.$route.query.prosname}}</h2>
+        <p>{{this.$route.query.prosM}}</p>
+        <p>评分: <span class="org">{{this.$store.state.prosfen}}</span></p>
+        <p>月售:<span>{{this.$route.query.prosS}}单</span   > <span class="org1">售价￥
+          <span class="red">{{this.$route.query.prosprice}}</span>元起</span></p>
+        <p>评论数: <span>{{this.$store.state.zan}}</span>  <span class="org1"> 好评率: <span class="red">{{this.$route.query.prosGd}}</span>%</span> </p>
       </div>
     </div>
 </template>
 
 <script>
+  import Vue from 'vue';
     export default {
         name: "Proshow"
     }
 </script>
 
 <style scoped>
+  .Proshow{
+    background-color: #fff;
+    width:100%;
+    height:100%;
+  }
   .head{
     background-color: #3190e8;
     height:1.9rem;
@@ -62,9 +69,21 @@
   }
   .ping{
     background-color: #fff;
+    padding:0.5rem;
   }
   .org{
     color: orange;
+  }
+  .org1{
+    width:60%;
+    text-align:right;
+    margin-left:3rem;
+
+  }
+  .red{
+    color:orange;
+    padding:0.2rem;
+    font-size:0.6rem;
   }
 
 </style>

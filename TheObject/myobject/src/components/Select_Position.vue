@@ -19,7 +19,7 @@
     </div>
     <ul>
       <li class="Forin" v-for="(per , index) in ForArr" :key="index">
-        <router-link :to="{path:'/Select_Address',query:{SelectPathname:per.name,SelectGeohash:per.geohash}}">
+        <router-link :to="{path:'/Select_Address',query:{SelectPathname:per.address,SelectGeohash:per.geohash}}">
           <p>{{per.name}}</p>
           <p>{{per.address}}</p>
         </router-link>
