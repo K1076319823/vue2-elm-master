@@ -9,7 +9,6 @@ let state={
   neirong:'',//服务中心内容参数数组下标
   arry1:[] , //存储所有服务中心中心列表英文tit的数组
   user:'',//存储传递的用户名
-  loginState:false,//判断是否登录
   userId:'',//用户名id
   abc:'外卖',
   cityname:'',//记录选择地点名称

@@ -8,7 +8,7 @@
 
       <p class="pSize">密码登录</p>
     </div>
-    <form action="" class="login_form">
+    <div class="login_form">
       <input type="text" placeholder="请输入账号" v-model="username">
       <div class="pas">
         <input :type="isText" placeholder="请输入密码" class="pasint" v-model="password">
@@ -36,11 +36,11 @@
       </div>
 
       <div class="loginSim">
-        <input type="submit" value="登录" title="点击登录" class="lastInt" @click="subLogin($event)">
+        <button class="lastInt btn" @click="subLogin($event)">登录</button>
       </div>
 
       <router-link :to="{path:'/Reset'}">重置密码?</router-link>
-    </form>
+    </div>
     <Com_PromptBox v-show="isHide" :childCom="SetTxt" @childEvent="Show($event)"></Com_PromptBox>
   </div>
 </template>
@@ -79,7 +79,7 @@
       Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((res) => {
         this.nums = res.data.code;
       })
-
+      console.log('第一次')
     },
     methods: {
       clicker() {
@@ -115,14 +115,14 @@
           } else {
             // 成功后提示框显示登录成功延迟跳转
             this.SetTxt = '登录成功!'
-            let _this = this;
-            // setTimeout(function () {
-            //   _this.$router.push({
-            //     // 需要跳转的路径地址
-            //     path: '/My'
-            //   })
-            // }, 2000)
-            //向Vuex扔数据
+            setTimeout(function () {
+              this.$router.push({
+                // 需要跳转的路径地址
+                path: '/My',
+
+              })
+            }, 2000)
+            // 向Vuex扔数据
             user = res.data.username;
             this.$store.state.user = user;
             userId = res.data.user_id;
@@ -136,12 +136,12 @@
       },
       Show(e) {
         this.isHide = false
-        if(this.status === 0){
-          this.isHide = false
-        }else{
+        if (this.SetTxt === '登录成功!') {
           this.$router.push({
             path:'/My'
           })
+        }else{
+          this.isHide = false
         }
       },
     },
@@ -282,6 +282,7 @@
     border-radius: 4px;
     width: 94%;
     height: 20%;
+    outline: none;
   }
 
   .loginSim {
