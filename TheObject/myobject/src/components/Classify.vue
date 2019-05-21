@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="classify">
+    <div class="classify" style="height: 5rem ;">
         <!--<Load></Load>-->
         <div class="vessel">
             <!-- 顶端跳转部分 -->
