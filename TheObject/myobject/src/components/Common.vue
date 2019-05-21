@@ -137,16 +137,20 @@
             }
         },
         mounted(){
-            console.log(this.$store.state.shopid)
+          setTimeout(()=>{
+            console.log(this.$store.state.shopid,777777)
             Vue.axios.get(`https://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.$store.state.shopid}`).then((res) => {
-                for (const key in res.data) {
-                    this.leftName.push(res.data[key].name)
-                    // 循环遍历出 每一个左边栏对应的 右边栏列表块
-                    this.foods.push(res.data[key])
-                  console.log(this.foods)
+              console.log(res.data)
+              for (const key in res.data) {
+                this.leftName.push(res.data[key].name)
+                // 循环遍历出 每一个左边栏对应的 右边栏列表块
+                this.foods.push(res.data[key])
+                console.log(this.foods)
 
-                }
+              }
             })
+          },1000)
+
             // 设置窗口监听
             window.addEventListener('scroll', this.handleScroll)
 

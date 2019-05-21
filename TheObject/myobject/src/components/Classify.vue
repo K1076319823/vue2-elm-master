@@ -6,7 +6,7 @@
             <!-- 顶端跳转部分 -->
             <div class="ifyTop">
                 <router-link :to="{path:'/index'}" class="goBack"></router-link>
-                <p> {{ this.txt }} </p>
+                <p> {{$store.state.Dclass}} </p>
             </div>
             <div id="ifyCenter">
                 <el-menu
@@ -221,9 +221,9 @@
             .then((res)=>{
                 for (const keys in res.data) {
                     this.rightTwo.push(res.data[keys])
-                    console.log(this.rightTwo)
+                    // console.log(this.rightTwo)
                     this.data = (res.data[keys].id)
-                    console.log(this.data)
+                    // console.log(this.data)
                 }
             })
 

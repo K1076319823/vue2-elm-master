@@ -71,7 +71,7 @@
       let j = this.$store.state.latitude;
       let w = this.$store.state.longitude;
       let c = this.$store.state.msg1;
-      console.log(j , w,'当前城市是:',c)
+      // console.log(j , w,'当前城市是:',c)
       Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${j}&longitude=${w}`).then((res) => {
         // 遍历商品的信息展示在界面上
         this.proArr = res.data;
@@ -94,7 +94,7 @@
         }
 
       }).catch((error) => {
-        console.log('请求错误', error);
+        // console.log('请求错误', error);
       });
       new Swiper(this.$refs.slider, {
         // pagination: '.swiper-pagination',
@@ -102,10 +102,11 @@
     },
     methods: {
       Scity(id,z,f){
-        console.log(id);
+        // console.log(id);
         this.$store.state.zan=z;
         this.$store.state.prosfen=f;
         this.$store.state.shopid=id;
+
       }
     }
   }

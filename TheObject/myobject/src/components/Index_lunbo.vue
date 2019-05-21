@@ -13,7 +13,7 @@
           </div>
 
           <div class="swiper-slide" >
-            <router-link  v-for="(slide,index) in comshopArrRight" :key="index" to="" @click.prevent>
+            <router-link  v-for="(slide,index) in comshopArrRight" :key="index" :to="{path:'/Classify'}" @click.prevent>
               <div class="vessel" @click="Dclass(slide.title)">
                 <img :src="'//fuss10.elemecdn.com/' + slide.image_url" title="slide.title"/>
                 <p class="pSize">{{ slide.title }}</p>

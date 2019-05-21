@@ -43,14 +43,15 @@
           }
       },
       mounted() {
-        let id = this.$store.state.shopid;
-        Vue.axios.get(`https://elm.cangdu.org/shopping/restaurant/${id}`).then((res) => {
-          // 遍历商品的信息展示在界面上
-          this.DJ = res.data;
-          this.num =res.data.activities.length;
-          console.log(res.data.activities.length);
-
-        })
+        setTimeout(()=>{
+          let id = this.$store.state.shopid;
+          Vue.axios.get(`https://elm.cangdu.org/shopping/restaurant/${id}`).then((res) => {
+            // 遍历商品的信息展示在界面上
+            this.DJ = res.data;
+            this.num =res.data.activities.length;
+            // console.log(res.data.activities.length);
+          })
+        },500)
       },
 
     }
