@@ -10,27 +10,29 @@
     </header>
     <!-- 内容层 -->
     <div class="biaoshi">
-    <router-link :to="{query:{addName:add.name,addGeohash:add.geohash}}" class="inFor clearfix" v-for="(add , index) in dataArr" :key="index" >
-      <div class="pull-left" @click="xuan(add.name)"  :class="{'ms':selectName === add.name ? true : false}">
-        <p style="margin: 0;"><b style="font-size: 0.8rem;">{{add.name}}</b><span
-          style="margin:01rem">{{add.sex == '1' ? '男' : '女'}}</span><span>{{add.phone}}</span></p>
-        <p style="margin: 0.4rem 0 0 0"><span
-          class="Home">{{add.tag}}</span><span>{{add.address}}{{add.address_detail}}</span></p>
-        <div class="pull-left" style="margin: 0.3rem 0.5rem 0 0 ;"><img src="../../images/选中.png" class="dui" style="width: 1.2rem;"/>
+      <router-link :to="{query:{addName:add.name,addGeohash:add.geohash}}" class="inFor clearfix"
+                   v-for="(add , index) in dataArr" :key="index">
+        <div class="pull-left" @click="xuan(add.name)" :class="{'ms':selectName === add.name ? true : false}">
+          <p style="margin: 0;"><b style="font-size: 0.8rem;">{{add.name}}</b><span
+            style="margin:01rem">{{add.sex == '1' ? '男' : '女'}}</span><span>{{add.phone}}</span></p>
+          <p style="margin: 0.4rem 0 0 0"><span
+            class="Home">{{add.tag}}</span><span>{{add.address}}{{add.address_detail}}</span></p>
+          <div class="pull-left" style="margin: 0.3rem 0.5rem 0 0 ;"><img src="../../images/选中.png" class="dui"
+                                                                          style="width: 1.2rem;"/>
+          </div>
+          <p class="delet" @click="deletePer(index)">删除本条信息</p>
         </div>
-        <p class="delet" @click="deletePer(index)">删除本条信息</p>
-      </div>
 
-    </router-link>
+      </router-link>
       <div class="quebtn">
         <button class="que" @click="myque()">确认</button>
       </div>
-    <!-- 新增加收货地址 -->
-    <p class="Footer text-center">
-      <router-link :to="{path:'/Select_Address'}"><img src="../../images/定位.png" style="width: 1rem;height: 1rem"/>
-        新增加收货地址
-      </router-link>
-    </p>
+      <!-- 新增加收货地址 -->
+      <p class="Footer text-center">
+        <router-link :to="{path:'/Select_Address'}"><img src="../../images/定位.png" style="width: 1rem;height: 1rem"/>
+          新增加收货地址
+        </router-link>
+      </p>
     </div>
   </div>
 </template>
@@ -43,7 +45,7 @@
     data() {
       return {
         dataArr: '',
-        selectName:"小华"
+        selectName: ""
       }
     },
     mounted() {
@@ -55,46 +57,50 @@
       })
 
     },
-    methods:{
-      xuan(cName){
+    methods: {
+      xuan(cName) {
         this.selectName = cName;
         return this.selectName
       },
-      myque(){
-        for(let i=0;i<this.dataArr.length;i++){
-          if(this.dataArr[i].name==this.selectName){
-            this.$store.state.usname =this.selectName;
-            this.$store.state.useraddr =this.dataArr[i].address;
-            this.$store.state.useraddrs=this.dataArr[i].address_detail;
-            this.$store.state.userph=this.dataArr[i].phone;
+      myque() {
+        for (let i = 0; i < this.dataArr.length; i++) {
+          if (this.dataArr[i].name === this.selectName) {
+            this.$store.state.usname = this.selectName;
+            this.$store.state.useraddr = this.dataArr[i].address;
+            this.$store.state.useraddrs = this.dataArr[i].address_detail;
+            this.$store.state.userph = this.dataArr[i].phone;
+            console.log(this.dataArr[i].address)
           }
         }
-        if(this.selectName!=""){
-          this.$router.push({path:'/Indent'})
+        if (this.selectName !== "") {
+          this.$router.push({path: '/Indent'})
         }
-        },
-      deletePer(i){
-        this.dataArr.splice(i,1);
+      },
+      deletePer(i) {
+        this.dataArr.splice(i, 1);
       }
     }
   }
 </script>
 
 <style scoped>
-  .quebtn{
+  .quebtn {
     text-align: center;
   }
-  .que{
-    margin:1rem auto;
-    background:yellowgreen;
-    width:50%;
-    height:1.2rem;
+
+  .que {
+    margin: 1rem auto;
+    background: yellowgreen;
+    width: 50%;
+    height: 1.2rem;
     border-radius: 0.5rem;
-    color:#fff;
+    color: #fff;
   }
-  .biaoshi{
-    margin-top:2rem;
+
+  .biaoshi {
+    margin-top: 2rem;
   }
+
   .Footer a {
     width: 100%;
     height: 100%;
@@ -125,13 +131,15 @@
   .inFor span {
     font-size: 0.7rem;
   }
-  .biaoshi .ms .dui{
+
+  .biaoshi .ms .dui {
     opacity: 1;
   }
-  .dui{
+
+  .dui {
     position: absolute;
-    top:0.5rem;
-    left:90%;
+    top: 0.5rem;
+    left: 90%;
     opacity: 0.1;
   }
 
@@ -161,10 +169,11 @@
     width: 0.8rem;
     height: 0.8rem;
   }
-  .delet{
-    color:red;
+
+  .delet {
+    color: red;
     position: absolute;
-    right:0.5rem;
-    top:3rem;
+    right: 0.5rem;
+    top: 3rem;
   }
 </style>
