@@ -3,7 +3,7 @@
   <div style="background:white;height: 100%;">
     <header class="header text-center clearfix">
         <span class="pull-left clearfix">
-          <router-link :to="{path:'/Account'}">
+          <router-link :to="{path:'/Indent'}">
 <img src="../../images/左箭头.png"/>
           </router-link>
         </span>选择地址
@@ -50,7 +50,6 @@
       Vue.axios.get('https://elm.cangdu.org/v1/user').then((respons) => {
         let userId = respons.data.user_id
         Vue.axios.get(`https://elm.cangdu.org/v1/users/${userId}/addresses`).then((res) => {
-          console.log(res.data)
           this.dataArr = res.data
         })
       })
@@ -59,7 +58,6 @@
     methods:{
       xuan(cName){
         this.selectName = cName;
-        console.log( this.selectName,"1111111" );
         return this.selectName
       },
       myque(){
@@ -69,7 +67,6 @@
             this.$store.state.useraddr =this.dataArr[i].address;
             this.$store.state.useraddrs=this.dataArr[i].address_detail;
             this.$store.state.userph=this.dataArr[i].phone;
-            console.log( this.$store.state.usname, this.$store.state.useraddr,this.$store.state.useraddrs,this.$store.state.userph,"ppppppppppppp")
           }
         }
         if(this.selectName!=""){
@@ -78,7 +75,6 @@
         },
       deletePer(i){
         this.dataArr.splice(i,1);
-
       }
     }
   }
