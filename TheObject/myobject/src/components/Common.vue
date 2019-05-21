@@ -35,6 +35,7 @@
                                         <li class="money">￥{{ lists.specfoods[0].price }}</li>
                                         <li class="money_txts">起</li>
                                         <!-- 插值表达式书写事件，传入后台请求的参数 -->
+                                      <div @click="deproOne(lists.item_id)" class="redjian">-1</div>
                                         <div @click="bounceWeb(lists)">
                                             <!-- 点击按钮 将该商品添加到 Vuex 里面 -->
                                             <li class="choose" @click="addToShopCar(lists)" >
@@ -256,12 +257,31 @@
             changeMe(target){
 
                 this.changeA = !this.changeA
-            }
+            },
+          deproOne(id){
+             this.$store.commit('del',id)
+            console.log(id);
+              }
         }
     }
 </script>
 
 <style scoped>
+  .vesseler{
+    position: relative;
+  }
+  .redjian{
+    position: absolute;
+    top:60%;
+    left:38%;
+    background-color: red;
+    color:#fff;
+    padding:0.1rem;
+    width:1rem;
+    height:1rem;
+    border-radius:50% ;
+    text-align: center;
+  }
     .newShop{
         width: .8rem;
         height: .8rem;

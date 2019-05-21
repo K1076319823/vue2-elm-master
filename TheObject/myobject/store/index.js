@@ -7,6 +7,19 @@ let store = new vuex.Store(
   {state,
 
   mutations:{
+    del(state,id) {
+      for (let i in state.car) {
+        if (id === state.car[i].id) {
+          if (state.car[i].count > 1) {
+            state.car[i].count--
+          } else {
+            state.car.splice(i, 1);
+          }
+        }
+
+      }
+    },
+
   addToShopCar(state,goodsInfor){
 
     var flag = false // 假设没有在购物车中找到对应的商品
