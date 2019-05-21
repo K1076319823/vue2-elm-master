@@ -20,7 +20,7 @@
                         <el-submenu index="2-1"  v-for="(el,index) in leftOne" :key="index" >
                             <template slot="title" class="leftPull">
                                 <img :src="imgs[index]" alt="请升级浏览器" class="images">
-                                <a href="javascript:;" @click="clickSub(el)">{{ el.name }}</a>
+                                <a href="javascript:;" @click="clickSub(el,el.id)">{{ el.name }}</a>
                                 <a href="javascript:;" id="leftPullA">{{ el.count }}</a>
                             </template>
                             <el-menu-item  v-for="(ele,indexs) in leftTwo" :key="indexs" class="poser">
@@ -158,7 +158,6 @@
         render: h => h(Classify),
         data() {
             return {
-            txt: '快餐便当' ,
             // Left  一级数组，
             leftOne: [],
             // 循环图片 拼接路径的 src值
@@ -194,6 +193,8 @@
               fhao1:false,  //分类显示隐藏
               premium: true,
               idArr: [],
+              // fleiID:[]   //分类显示id
+              FoneD:'' //分类id
             }
         },
         mounted(){
@@ -201,8 +202,11 @@
             Vue.axios.get('https://elm.cangdu.org/shopping/v2/restaurant/category')
 
                 .then((res)=>{
+                  console.log(res.data,3333333333333)
                 for (const key in res.data) {
                     this.leftOne.push(res.data[key])
+                  // this.fleiID.push(res.data[key].id)
+                  console.log(this.fleiID,34342)
                 }
                 }).catch(function(error){
                     console.log(error)
@@ -237,9 +241,10 @@
             this.$store.state.prosfen=f;
             console.log(this.$store.state.shopid,this.$store.state.zan);
           },
-            clickSub(target){
+            clickSub(target,elid){
                 this.leftTwo = target.sub_categories.slice(1)
-                console.log(this.leftTwo)
+                this.FoneD=elid;
+                console.log(this.leftTwo,this.FoneD,"sssssssssssss")
             },
             clickFor(target){
 
@@ -301,8 +306,8 @@
           let jin=this.$store.state.latitude
           let wei=this.$store.state.longitude
           let ms =parseInt(this.selectName)
-          console.log(jin,wei,ms,"111aaaaaa")
-          Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${jin}&longitude=${wei}&order_by=${ms}`).then((res) => {
+          console.log(jin,wei,ms,this.FoneD,"111aaaaaa")
+          Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${jin}&longitude=${wei}&order_by=${ms}&restaurant_category_id=${this.FoneD}`).then((res) => {
             console.log(res.data,ms,444);
             this.proArr = res.data;
             console.log(this.proArr,'qqqqqq');
