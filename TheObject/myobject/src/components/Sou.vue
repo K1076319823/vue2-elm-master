@@ -28,7 +28,7 @@
       </p>
       <div v-for="(item,index) in perhistory" :key="index" class="tiao " >
         <div class="onedata clearfix">
-          <div class="nshao" @click="add(item.Input)" >{{item.Input}} </div> <div @click="deletePer(index)" class="err">X</div>
+          <div class="nshao" @click="add(item,index)" >{{item}} </div> <div @click="deletePer(index)" class="err">X</div>
         </div>
       </div>
       <div class="jilu" @click="clearall">清除历史记录</div>
@@ -39,7 +39,7 @@
     </p>
     <!--<h3 v-show='fe==false' class="niming">暂无搜素记录</h3>-->
     <div v-for="(sxin,index) in sangjia" :key="index">
-      <div class="yidan clearfix"  @click="Scity(sxin.id)">
+      <div class="yidan clearfix"  @click="Scity(sxin.id,sxin.rating_count,sxin.rating)">
         <router-link :to="{path:'/CAndESocket'}">
         <div class="left">
           <img class="souimg" :src="'//elm.cangdu.org/img/'+ sxin.image_path" alt="">
@@ -54,6 +54,7 @@
       </div>
     </div>
     </div>
+  <Com_PromptBox v-show='isHide' :childCom="SetTxt" @childEvent="Show($event)"></Com_PromptBox>
 </div>
     <Footer></Footer>
   </div>
@@ -64,6 +65,7 @@
   import Footer from "./Footer";
   import Vue from "vue"
   import Swiper from 'swiper'
+  import Com_PromptBox from "./Com_PromptBox";
 
   export default {
     name: "Sou",
@@ -75,10 +77,12 @@
         ftiao:false,
         perhistory:[],
         zixian:'',
+        isHide:false,
+        SetTxt:'暂无搜索结果'
         // fe:false
       }
     },
-    components: { Footer},
+    components: {Com_PromptBox, Footer},
     mounted() {
       new Swiper (this.$refs.slider, {
         // pagination: '.swiper-pagination',
@@ -98,26 +102,33 @@
         let sou = `https://elm.cangdu.org/v4/restaurants?geohash=${jin},${wei}&keyword=${this.Input}`
         console.log(this.Input);
         Vue.axios.get(sou).then((res) => {
-          console.log(res.data);
-          this.sangjia=res.data;
-
+          console.log(res.data,999999);
+          this.sangjia=res.data
+          if(res.data.status===0){
+            this.isHide=true;
+            this.flag=false;
+            console.log(this.flag)
+          }
         }).catch((error) => {
           console.log('请求错误', error);
           // this.fe = true
         })
-        let per ={
-          Input:this.Input,
-        };
-        this.perhistory.push(per);
-        this.Input = "";
+        if(this.perhistory.length===0){
+          this.perhistory.push(this.Input)
+        }else{
+          if(!this.perhistory.some((item)=>{return item === this.Input;})){
+            this.perhistory.push(this.Input)
+          }
+        }
 
+      // this.Input = "";
       },
       deletePer(i){
         this.perhistory.splice(i,1);
       },
-      add(nei){
+      add(nei,i){
         this.Input = nei;
-        this.perhistory.splice(0,1);
+        this.perhistory.splice(i,1);
      },
       clearall(){
        this.ftiao=false;
@@ -128,10 +139,15 @@
        this.ftiao=true;
         this.flag = !this.flag;
       },
-        Scity(id){
-          console.log(id);
-          this.$store.state.shopid=id;
-        }
+      Scity(id,z,f) {
+        console.log(id);
+        this.$store.state.zan = z;
+        this.$store.state.prosfen = f;
+        this.$store.state.shopid = id;
+      },
+      Show($event){
+        this.isHide=false
+      }
     }
   }
 </script>

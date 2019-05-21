@@ -13,7 +13,9 @@
     <div class="one">
       <img data-v-b204fb80="" :src="'//elm.cangdu.org/img/'+dianxiang.image_path"  alt="" class="IndentLogo">
       <p>等待支付</p>
+      <router-link :to="{path:'/CAndESocket'}">
       <span>再来1单</span>
+      </router-link>
     </div>
     <div class="two">
       <div class="clearfix">

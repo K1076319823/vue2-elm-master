@@ -115,6 +115,7 @@
           } else {
             // 成功后提示框显示登录成功延迟跳转
             this.SetTxt = '登录成功!'
+            let _this=this
             setTimeout(function () {
               this.$router.push({
                 // 需要跳转的路径地址

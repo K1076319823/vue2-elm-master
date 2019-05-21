@@ -20,15 +20,17 @@
                         <div >
                             <!-- 商品详情 -->
                             <div v-for="(lists,id) in list.foods" :key="id">
-                             <router-link :to="{path:'/Proshow',query:{prosname:lists.name,prosimg:lists.image_path,prosM:lists.description,prosS:lists.month_sales,prosGd:lists.satisfy_rate,prosprice:lists.specfoods[0].price}}">
-                                <div class="vessel clearfix" @click="pshow">
+
+                                <div class="vessel clearfix" >
                                     <!-- <img :src="'//elm.cangdu.org/img/'+lists.image_path" alt=""> -->
                                     <img :src= "'//elm.cangdu.org/img/'+ lists.image_path" alt="请升级浏览器">
                                     <ul class="vesseler" >
+                                      <router-link :to="{path:'/Proshow',query:{prosname:lists.name,prosimg:lists.image_path,prosM:lists.description,prosS:lists.month_sales,prosGd:lists.satisfy_rate,prosprice:lists.specfoods[0].price}}">
                                         <li class="newShop">新</li>
                                         <li class="smallTitle">{{ lists.name }}</li>
                                         <li class="referral">{{ lists.description }}</li>
                                         <li class="month">月售{{ lists.month_sales }}份</li>
+                                      </router-link>
                                         <li class="good">好评率{{lists.satisfy_rate}}%</li>
                                         <li class="money">￥{{ lists.specfoods[0].price }}</li>
                                         <li class="money_txts">起</li>
@@ -41,7 +43,7 @@
                                         </div>
                                     </ul>
                                 </div>
-                             </router-link>
+
                             </div>
 
                         </div>
