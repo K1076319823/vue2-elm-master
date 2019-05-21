@@ -104,9 +104,11 @@
         Vue.axios.get(sou).then((res) => {
           // console.log(res.data,999999);
           this.sangjia=res.data
+          console.log(this.sangjia);
           if(res.data.status===0){
             this.isHide=true;
             this.flag=false;
+            this.sangjia=""
             // console.log(this.flag)
           }
         }).catch((error) => {

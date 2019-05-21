@@ -185,8 +185,8 @@ export default {
               this.$router.push({path:'/ding'})
             }
           })
-
-
+        this.$store.state.abc="订单";
+        console.log( this.store.state.abc,666666);
       }
 
     },

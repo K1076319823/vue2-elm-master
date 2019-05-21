@@ -32,6 +32,7 @@
       }
       },
     mounted(){
+      console.log(this.$store.state.abc);
       this.selectName=this.$store.state.abc;
     },
         methods: {
