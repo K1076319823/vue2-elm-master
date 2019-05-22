@@ -21,7 +21,16 @@
             </h4>
             <h4>
             <span class="pull-left">
-              <span class="rating">{{pro.rating}}</span>
+              <!-- 评分星星 -->
+              <!--<span class="rating">{{pro.rating}}</span>-->
+              <el-rate
+                v-model="value5"
+                disabled
+                show-score
+                text-color="#ff9900"
+                score-template="{value}">
+</el-rate>
+              <!------------------------------------------>
               <span class="recent">月售{{pro.recent_order_num}}单</span>
             </span>
               <span class="pull-right">
@@ -64,6 +73,7 @@
         premium: true,
         proArr: [],
         idArr: [],
+        value5:4.7
       }
     },
     components: {Footer},

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition :name="transitionName">
-      <router-view class="transView"></router-view>
+      <router-view class="transView elwidth"></router-view>
     </transition>
   </div>
 </template>
@@ -49,6 +49,18 @@
 
 <style>
   @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+  .elwidth .el-rate {
+    display: inline-block;
+  }
+  .elwidth .el-rate i{
+    width: 0.1rem;
+    font-size: 0.1rem;
+  }
+  .elwidth .el-rate .el-rate__text{
+    font-size: 0.4rem;
+  }
+
+
   /* Vue 路由跳转动画 */
   .transView{
     position: absolute;
