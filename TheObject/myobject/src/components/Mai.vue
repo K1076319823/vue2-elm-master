@@ -19,7 +19,7 @@
             <b>{{pro.supports[1].icon_name}}</b>
           </span>
             </h4>
-            <h4>
+            <h4 class="twohang">
             <span class="pull-left">
               <!-- 评分星星 -->
               <!--<span class="rating">{{pro.rating}}</span>-->
@@ -38,7 +38,7 @@
               <span class="supports">{{pro.supports[1].name}}</span>
             </span>
             </h4><br>
-            <h4>
+            <h4 class="msthere">
             <span class="pull-left piecewise">
               ￥20起送 / {{pro.piecewise_agent_fee.tips}}
             </span>
@@ -134,7 +134,7 @@
     width: 3.3rem;
     color: gray;
     display: inline-block;
-    margin: 0.3rem 0 0 0.3rem;
+    margin: 0.3rem 0.3rem;
   }
 
   .merimg {
@@ -190,14 +190,14 @@
   }
 
   b {
-    font-size: 0.01rem;
+    font-size: 0.5rem;
     border: 1px solid rgba(0, 0, 0, 0.1);
     color: rgba(0, 0, 0, 0.4);
   }
 
   .delivery,
   .supports {
-    font-size: 0.001rem;
+    font-size: 0.5rem;
     display: inline-block;
     color: white;
     background: deepskyblue;
@@ -212,13 +212,13 @@
   }
 
   .piecewise {
-    font-size: 0.001rem;
+    font-size: 0.5rem;
     display: inline-block;
   }
 
   .distance,
   .time {
-    font-size: 0.01rem;
+    font-size: 0.5rem;
   }
 
   .time {
@@ -226,12 +226,19 @@
   }
 
   .rating {
-    font-size: 0.01rem;
+    font-size: 0.5rem;
     color: red;
   }
 
   .recent {
-    font-size: 0.01rem;
+    font-size: 0.5rem;
+    margin-bottom:0.5rem;
+  }
+  .msthere{
+    margin-top:0.7rem;
+  }
+  .twohang{
+    margin-top:0.5rem;
   }
 </style>
 
