@@ -51,7 +51,7 @@
           console.log(res);
           this.nums = res.data.length;
           this.disArr = res.data;
-          console.log(this.disArr);
+          // console.log(this.disArr);
         }).catch((error)=>{
           console.log(error);
         })

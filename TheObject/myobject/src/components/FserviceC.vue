@@ -99,7 +99,7 @@
         this.$store.state.neirong=c
         // console.log(this.$store.state.neirong)
         this.$store.state.arry1=this.array2;
-        console.log(this.$store.state.arry1);
+        // console.log(this.$store.state.arry1);
       }
     }
   }

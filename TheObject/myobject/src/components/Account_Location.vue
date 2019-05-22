@@ -50,10 +50,10 @@
         this.userId = res.data.user_id
         Vue.axios.get(`https://elm.cangdu.org/v1/users/${this.userId}/addresses`).then((respons) => {
           this.dataArr = respons.data
-          console.log(respons.data)
+
           for (let i = 0; i < respons.data.length; i++) {
             this.address_id = respons.data[i].id
-            console.log(this.address_id)
+
           }
         })
       })
@@ -70,17 +70,16 @@
       },
       DeleteBtn(i) {
         Vue.axios.delete(`https://elm.cangdu.org/v1/users/${this.userId}/addresses/${this.address_id}`).then((res) => {
-          // this.dataArr.splice(i, 1);
-          console.log(i, 666);
-          console.log(res)
+
+
           // 判断如果删除成功再次请求新数据放入定义的数组里
           if (res.data.success === "删除地址成功") {
             Vue.axios.get(`https://elm.cangdu.org/v1/users/${this.userId}/addresses`).then((respons) => {
               this.dataArr = respons.data
-              console.log(respons.data)
+
               for (let i = 0; i < respons.data.length; i++) {
                 this.address_id = respons.data[i].id
-                console.log(this.address_id)
+
               }
             })
           }

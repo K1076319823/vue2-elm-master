@@ -52,7 +52,7 @@
         let b = this.$store.state.addid
         let a = 'https://elm.cangdu.org/v1/pois?city_id=' + b + '&keyword=' + this.Input + '&type=search'
         Vue.axios.get(a).then((response) => {
-          console.log(response);
+
           this.ForArr = response.data
 
           if(response.data.message === '参数错误'){

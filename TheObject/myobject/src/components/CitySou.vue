@@ -71,11 +71,9 @@
 
     },
     methods: {
-      // addThingEnter(event){
-      //   console.log(event.target.value);
-      // }
+
       text1() {
-        console.log(this.text);
+        // console.log(this.text);
       },
 
       // Dcity(b){
@@ -91,11 +89,11 @@
 
       getadd() {
        let b=this.$store.state.addid
-        console.log(b,'333')
+
         let a = 'https://elm.cangdu.org/v1/pois?city_id=' + b + '&keyword=' + this.text + '&type=search'
-        console.log(a);
+        // console.log(a);
         Vue.axios.get(a).then((response)=>{
-          console.log(response.data);
+
           this.hit = response.data;
         });
           this.isshow = false;
@@ -103,7 +101,7 @@
       storeadd(a,b){
         this.$store.state.cityname=a;
         this.$store.state.msgaddr=b;
-        console.log(this.$store.state.cityname,this.$store.state.msgaddr ,"aaaaaa")
+
        }
 
 

@@ -77,7 +77,7 @@
           if (_this.seconds === 0 && _this.minutes) {
             _this.seconds = 59;
             _this.minutes -= 1;
-            console.log(typeof(_this.minutes));
+            // console.log(typeof(_this.minutes));
           } else if (_this.minutes === 0 && _this.seconds === 0) {
             _this.seconds = 0;
             window.clearInterval(timer);

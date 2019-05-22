@@ -59,7 +59,7 @@
     mounted() {
       Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((res) => {
         this.nums = res.data.code;
-        console.log(this.nums)
+        // console.log(this.nums)
       })
     },
     updated() {

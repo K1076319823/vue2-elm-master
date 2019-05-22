@@ -84,9 +84,9 @@
     mounted(){
       this.day= new Date();
         let m = this.$store.state.shopid;
-        console.log(m, 1111)
+        // console.log(m, 1111)
         Vue.axios.get(`https://elm.cangdu.org/shopping/restaurant/${m}`).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             this.dianxiang = res.data;
             // console.log(this.dianxiang, "111111")
           }

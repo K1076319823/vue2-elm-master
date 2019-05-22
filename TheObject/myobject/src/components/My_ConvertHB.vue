@@ -82,7 +82,7 @@
     mounted() {
       Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((res) => {
         this.Code = res.data.code;
-        console.log(this.Code);
+        // console.log(this.Code);
       }).catch((error) => {
         console.log(error);
       });

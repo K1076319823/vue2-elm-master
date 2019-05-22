@@ -135,13 +135,13 @@
     },
     created() {
       this.GetMsg = this.$route.query.pathname
-      console.log(this.geohash)
+
       // console.log(this.$store.state.latitude);
 
     },
     mounted() {
       Vue.axios.get('https://elm.cangdu.org/v1/user').then((res) => {
-        console.log(res);
+
         this.UserId = res.data.user_id;
       })
     }

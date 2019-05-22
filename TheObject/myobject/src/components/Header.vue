@@ -30,7 +30,7 @@
     },
     mounted() {
       Vue.axios.get('https://elm.cangdu.org/v1/user').then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         if (res.data.status !== 0) {
           this.a = res.data.username
           if (this.$store.state.Input !== '') {
@@ -50,7 +50,7 @@
           this.$router.push({
             path: '/login'
           })
-          console.log(11)
+          // console.log(11)
         } else {
           this.$router.push({
             path: '/Account'

@@ -104,7 +104,7 @@
       // true 是  登录状态
       // false是  未登录
       Vue.axios.get(`https://elm.cangdu.org/v1/user`).then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         let status = res.data.status;
         if (status === 0) {
           this.user = '登录/注册'

@@ -38,20 +38,20 @@
       under(put) {
         put = this.Input
         this.$store.state.Input = put
-        console.log(put)
+
         this.$router.push({
           path: '/Account'
         })
       },
       SetMsg() {
-        console.log(this.Input.length)
+
         let Inputlength = this.Input.length
         if (Inputlength <= 5 ) {
           this.BorderColor = '1px solid red',
             this.FontColor = 'red',
             this.FontSize = '0.5rem',
           this.pointer = true
-          console.log(this.pointer)
+
         } else if (Inputlength > 24) {
           this.BorderColor = '1px solid red',
             this.FontColor = 'red',

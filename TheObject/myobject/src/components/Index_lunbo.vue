@@ -44,12 +44,12 @@
     },
     mounted(){
             Vue.axios.get('https://elm.cangdu.org/v2/index_entry').then((res)=>{
-                  console.log(res.data)
+                  // console.log(res.data)
                   this.shopArr = res.data;
                   this.comshopArrLeft = this.shopArr.slice(0,res.data.length/2)
-                  console.log(this.comshopArrLeft)
+                  // console.log(this.comshopArrLeft)
                   this.comshopArrRight = this.shopArr.slice(res.data.length/2)
-                  console.log(this.comshopArrRight)
+                  // console.log(this.comshopArrRight)
             }).catch(function(error){
                   console.log(error)
             }),
@@ -60,7 +60,7 @@
     methods:{
       Dclass(c){
         this.$store.state.Dclass=c
-        console.log(this.$store.state.Dclass )
+        // console.log(this.$store.state.Dclass )
       },
     }
     }

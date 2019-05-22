@@ -49,7 +49,7 @@
         let b = this.$store.state.addid
         let a = 'https://elm.cangdu.org/v1/pois?city_id=' + b + '&keyword=' + this.Input + '&type=search'
         Vue.axios.get(a).then((response) => {
-          console.log(response);
+          // console.log(response);
           this.ForArr = response.data
 
         });
@@ -57,7 +57,7 @@
     },
     mounted(){
       Vue.axios.get('https://elm.cangdu.org/v1/user').then((res) => {
-        console.log(res);
+        // console.log(res);
       })
     }
   }

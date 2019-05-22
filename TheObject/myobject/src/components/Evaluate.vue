@@ -31,7 +31,7 @@
         <!-- 请求接口二: 获取评价分类 -->
         <div class="evaClass">
             <ul class="classUl clearfix">
-                <li  v-for="(lists, index) in appraise" :key="index" 
+                <li  v-for="(lists, index) in appraise" :key="index"
                    :class="active == index ? 'addclass' : '' "  @click="down(index)">
                     {{ lists.name }} ({{ lists.count }})
                 </li>
@@ -82,7 +82,7 @@
                 appraiseNum: [], //第二条评价数据的值
                 evaMsgs: [], //第三条数据的请求数组
                 active: false // 判断第二条请求数据里的元素有没有被点击
-                
+
             }
         },
         // 请求数据
@@ -106,11 +106,11 @@
             })
             // 请求接口三: 获取评价信息
             Vue.axios.get(`https://elm.cangdu.org/ugc/v2/restaurants/${this.$store.state.shopid}/ratings`).then((res) => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     for (let key in res.data) {
                         this.evaMsgs.push(res.data[key])
                     }
-                    console.log(this.evaMsgs)
+                    // console.log(this.evaMsgs)
             })
         },
         methods: {

@@ -37,7 +37,7 @@
   },
   created(){
     Vue.axios.get('https://elm.cangdu.org/v3/profile/explain').then((response) => {
-      console.log(response.data.pointtextContent);
+      // console.log(response.data.pointtextContent);
       this.yue= response.data.pointtextContent;
     })
   },
@@ -59,7 +59,7 @@
           }
         }
       })
-      console.log(this.arry)
+      // console.log(this.arry)
       return this.arry;
     }
   }

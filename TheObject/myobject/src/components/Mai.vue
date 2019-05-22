@@ -75,7 +75,7 @@
       Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${j}&longitude=${w}`).then((res) => {
         // 遍历商品的信息展示在界面上
         this.proArr = res.data;
-        console.log(res);
+        // console.log(res);
         for (let i = 0; i < res.data.length; i++) {
           let pre = []
           pre = res.data[i].is_premium

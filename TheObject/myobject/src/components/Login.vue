@@ -79,7 +79,7 @@
       Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((res) => {
         this.nums = res.data.code;
       })
-      console.log('第一次')
+      // console.log('第一次')
     },
     methods: {
       clicker() {
@@ -104,7 +104,7 @@
           captcha_code: this.captcha_code,
           withCredentials: true
         }).then((res) => {
-          console.log(res);
+          // console.log(res);
           this.userSet = res.data
           // 输入有错误时跳出提示框
           if (res.data.status === 0) {

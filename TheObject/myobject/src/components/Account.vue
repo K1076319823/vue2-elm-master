@@ -61,7 +61,7 @@
     },
     mounted() {
       Vue.axios.get('https://elm.cangdu.org/v1/user').then((res) => {
-        console.log(res)
+
         if (this.$store.state.Input !== '') {
           this.user = this.$store.state.Input
         } else {

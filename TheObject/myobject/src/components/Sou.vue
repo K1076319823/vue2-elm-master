@@ -98,13 +98,13 @@
         // console.log(this.zixian);
         let jin=this.$store.state.latitude
         let wei=this.$store.state.longitude
-        console.log(jin,wei)
+        // console.log(jin,wei)
         let sou = `https://elm.cangdu.org/v4/restaurants?geohash=${jin},${wei}&keyword=${this.Input}`
         // console.log(this.Input);
         Vue.axios.get(sou).then((res) => {
           // console.log(res.data,999999);
           this.sangjia=res.data
-          console.log(this.sangjia);
+          // console.log(this.sangjia);
           if(res.data.status===0){
             this.isHide=true;
             this.flag=false;
@@ -147,7 +147,7 @@
         this.$store.state.prosfen = f;
         this.$store.state.shopid = id;
         // console.log()
-        console.log( id,this.$store.state.shopid,"mmmmm1111");
+        // console.log( id,this.$store.state.shopid,"mmmmm1111");
       },
       Show($event){
         this.isHide=false

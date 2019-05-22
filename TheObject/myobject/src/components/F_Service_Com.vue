@@ -45,7 +45,7 @@
       Vue.axios.get('https://elm.cangdu.org/v3/profile/explain').then((res) => {
         // this.title = res.data.supervipCaption;
         this.yue= res.data[this.sss];
-        console.log(res.data)
+        // console.log(res.data)
       }).catch((error) => {
         console.log(error);
       })
@@ -68,7 +68,7 @@
             }
           }
         })
-        console.log(this.arry)
+        // console.log(this.arry)
         return this.arry;
       }
     }

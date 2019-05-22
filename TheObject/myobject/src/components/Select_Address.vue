@@ -10,7 +10,7 @@
         <span class="pull-left tact contact">联系人</span>
         <div class="pull-left inPut">
           <div style="border-bottom: 1px solid rgba(0,0,0,0.04);width: 100%;">
-            <input type="text" class="nameInput" placeholder="名字" v-model="UserName">
+            <input type="text" class="nameInput" placeholder="名字(请先选择配送地点）" v-model="UserName">
           </div>
           <div style="width: 100%;" class="sexInput">
             <el-radio v-model="radio" label="1">小哥哥</el-radio>
@@ -85,7 +85,7 @@
       // 点击确认传递数据 , 增加收货地址
       under(){
         let radio = parseInt(this.radio)
-        console.log(this.geohash)
+        // console.log(this.geohash)
         Vue.axios.post(`https://elm.cangdu.org/v1/users/${this.UserId}/addresses`,{
           address:this.PathName,
           address_detail:this.detailed,
@@ -97,7 +97,7 @@
           phone_bk:'123123',
           tag_type:2,
         }).then((res)=>{
-          console.log(res)
+          // console.log(res)
           if(res.data.success === "添加地址成功"){
             this.$router.push({
               path:'/Shop_Address'

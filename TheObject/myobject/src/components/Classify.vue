@@ -139,8 +139,11 @@
               </div>
               </router-link>
             </div>
+
           </div>
       {{cd}}
+      {{ loading }}
+        <Loading v-show="block"></Loading>
   </div>
 </template>
 
@@ -151,7 +154,7 @@
     import VueAxios from 'vue-axios'
     Vue.use(VueAxios, axios);
 
-    import Load from './Loading.vue'
+    import Loading from './Loading.vue'
 
     export default {
         name: 'Classify',
@@ -177,6 +180,8 @@
             leftTwo: [],
             rightTwo: [],
             data: Number,
+
+            block:true,
             // data: [],
 
             // 按钮计数
@@ -202,14 +207,14 @@
             Vue.axios.get('https://elm.cangdu.org/shopping/v2/restaurant/category')
 
                 .then((res)=>{
-                  console.log(res.data,3333333333333)
+
                 for (const key in res.data) {
                     this.leftOne.push(res.data[key])
                   // this.fleiID.push(res.data[key].id)
-                  console.log(this.fleiID,34342)
+
                 }
                 }).catch(function(error){
-                    console.log(error)
+                    //console.log(error)
             })
 
             // 请求第三 下拉框
@@ -235,11 +240,11 @@
         },
         methods: {
           Scity(id,z,f){
-            console.log(id);
+            // console.log(id);
             this.$store.state.shopid=id;
             this.$store.state.zan=z;
             this.$store.state.prosfen=f;
-            console.log(this.$store.state.shopid,this.$store.state.zan);
+            // console.log(this.$store.state.shopid,this.$store.state.zan);
           },
             clickSub(target,elid){
                 this.leftTwo = target.sub_categories.slice(1)
@@ -298,7 +303,7 @@
           // }
         },
         components: {
-            Load
+            Loading
         },
       computed:{
         cd(){
@@ -306,19 +311,27 @@
           let jin=this.$store.state.latitude
           let wei=this.$store.state.longitude
           let ms =parseInt(this.selectName)
-          console.log(jin,wei,ms,this.FoneD,"111aaaaaa")
+
           Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${jin}&longitude=${wei}&order_by=${ms}&restaurant_category_id=${this.FoneD}`).then((res) => {
-            console.log(res.data,ms,444);
+            // console.log(res.data,ms,444);
             this.proArr = res.data;
-            console.log(this.proArr,'qqqqqq');
+
           }).catch((error) => {
-            console.log('请求错误', error);
+            // console.log('请求错误', error);
           })
 
           return
 
-        }
+        },
+      loading(){
+          setTimeout(()=>{
+              this.block = false
+          },1500)
+      }
+
       },
+
+
     }
 </script>
 

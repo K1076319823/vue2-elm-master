@@ -55,7 +55,7 @@
     mounted(){
       console.log(this.InPlace);
       Vue.axios.get(`https://elm.cangdu.org/v1/user`).then((res) => {
-        console.log(res)
+        // console.log(res)
         this.v = res.data.username
       })
     },
@@ -63,8 +63,8 @@
       ifIn() {
         let one = this.InPlace.txtIN.length;
         let tow = this.InPlace.CodeIn.length;
-        console.log(one)
-        console.log(tow)
+        // console.log(one)
+        // console.log(tow)
         if (one >= 1 && tow == 6) {
           this.BackBtn.background = '#4cd964';
         } else if (one < 1 && tow < 6) {

@@ -69,16 +69,16 @@
       mounted() {
         this.timer()
         let m = this.$store.state.shopid;
-        console.log(m, 1111)
+        // console.log(m, 1111)
         Vue.axios.get(`https://elm.cangdu.org/shopping/restaurant/${m}`).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             this.dianxiang = res.data;
-            console.log(this.dianxiang, "111111")
+            // console.log(this.dianxiang, "111111")
           }
         )
         this.dingdan = this.$store.state.car
-        console.log(this.dingdan)
-        console.log('22')
+        // console.log(this.dingdan)
+        // console.log('22')
         for (let i = 0; i < this.dingdan.length; i++) {
           // console.log(this.dingdan.length)
           this.cannum += this.dingdan[i].count;

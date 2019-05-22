@@ -11,11 +11,9 @@
 </template>
 
 <script>
-    // export default{
-    //     retun{
-
-    //     }
-    // }
+    export default{
+      name: "Loading"
+    }
 </script>
 
 <style scoped>

@@ -63,8 +63,7 @@
           this.$store.state.addid=b
           this.$store.state.latitude=c
           this.$store.state.longitude=d
-          console.log(this.$store.state.msg1,this.$store.state.addid)
-          console.log(this.$store.state.latitude,this.$store.state.longitude)
+
         },
 
       },
@@ -77,26 +76,26 @@
         fc() {
           this.citykey = Object.keys(this.Grocity);
           this.citykey.sort();
-          console.log(this.citykey);
+          // console.log(this.citykey);
             for (let i = 0; i < this.citykey.length;i++) {
             const index = this.citykey[i];
             this.newCity[index]=this.Grocity[index];
           }
-            console.log(this.newCity);
+
             return this.newCity;
           }
         },
         mounted() {
           Vue.axios.get('https://elm.cangdu.org/v1/cities?type=hot').then((response) => {
-            console.log(response.data);
+
             this.Hotcity = response.data;
           });
           Vue.axios.get('https://elm.cangdu.org/v1/cities?type=group').then((response) => {
-            // console.log(response.data);
+
             this.Grocity = response.data;
           });
           Vue.axios.get('https://elm.cangdu.org/v1/cities?type=guess').then((response) => {
-            // console.log(response.data);
+
             this.Dcity = response.data;
           });
 

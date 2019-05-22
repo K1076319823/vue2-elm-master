@@ -53,10 +53,10 @@ getters: {
 
   getAllPrice(state){
     var sum = 0;
-    console.log(sum)
+    // console.log(sum)
     state.car.forEach( item => {
       sum += item.count*item.price
-      console.log(sum)
+      // console.log(sum)
     } )
     if(sum >= 20){
       state.affair = true;

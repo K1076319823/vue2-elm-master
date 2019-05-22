@@ -69,7 +69,7 @@
             this.$store.state.useraddr = this.dataArr[i].address;
             this.$store.state.useraddrs = this.dataArr[i].address_detail;
             this.$store.state.userph = this.dataArr[i].phone;
-            console.log(this.dataArr[i].address)
+            // console.log(this.dataArr[i].address)
           }
         }
         if (this.selectName !== "") {

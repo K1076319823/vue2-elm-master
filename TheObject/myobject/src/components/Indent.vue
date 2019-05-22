@@ -188,7 +188,7 @@
 
     },
     mounted() {
-      console.log(this.$store.state.useraddr)
+      // console.log(this.$store.state.useraddr)
       let m = this.$store.state.shopid;
       Vue.axios.get(`https://elm.cangdu.org/shopping/restaurant/${m}`).then((res) => {
           this.dianxiang = res.data;
